@@ -32,8 +32,8 @@ namespace IMCore.Domain
         [Column(TypeName = "money")]
         public decimal? RetailPrice { get; set; }
         public bool Active { get; set; }
-        [Column("PrintOnWO")]
-        public bool? PrintOnWo { get; set; }
+        [Column("PrintOnWorkOrder")]
+        public bool? PrintOnWorkOrder { get; set; }
         [Column("ItemID")]
         public int? ItemId { get; set; }
         public bool? Size { get; set; }

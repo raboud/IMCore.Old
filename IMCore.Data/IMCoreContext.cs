@@ -292,7 +292,7 @@ namespace IMCore.Data
 
             modelBuilder.Entity<BasicLabor>(entity =>
             {
-                entity.Property(e => e.PrintOnWo).HasDefaultValueSql("((1))");
+                entity.Property(e => e.PrintOnWorkOrder).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.Item)
                     .WithMany(p => p.BasicLabor)
@@ -1377,7 +1377,7 @@ namespace IMCore.Data
             {
                 entity.HasIndex(e => e.OrderId);
 
-                entity.HasIndex(e => new { e.InstallQuantity, e.UnitCost, e.UnitPrice, e.UnitRetail, e.PrintOnInvoice, e.PrintOnWo, e.ServiceLineNumber, e.MaterialStatusId, e.EntryMethodId, e.Deleted, e.Reviewed, e.ReviewedById, e.ReviewedDate, e.MaterialCost, e.ExtendedPrice, e.ExtendedCost, e.OrderId, e.Id, e.BasicLaborId })
+                entity.HasIndex(e => new { e.InstallQuantity, e.UnitCost, e.UnitPrice, e.UnitRetail, e.PrintOnInvoice, e.PrintOnWorkOrder, e.ServiceLineNumber, e.MaterialStatusId, e.EntryMethodId, e.Deleted, e.Reviewed, e.ReviewedById, e.ReviewedDate, e.MaterialCost, e.ExtendedPrice, e.ExtendedCost, e.OrderId, e.Id, e.BasicLaborId })
                     .HasName("IX_OrderBasicLaborDetails_Jobs");
 
                 entity.Property(e => e.EntryMethodId).HasDefaultValueSql("((1))");
@@ -1388,7 +1388,7 @@ namespace IMCore.Data
 
                 entity.Property(e => e.PrintOnInvoice).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.PrintOnWo).HasDefaultValueSql("((1))");
+                entity.Property(e => e.PrintOnWorkOrder).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.BasicLabor)
                     .WithMany(p => p.OrderBasicLaborDetails)
@@ -1511,7 +1511,7 @@ namespace IMCore.Data
 
                 entity.HasIndex(e => e.OrderId);
 
-                entity.HasIndex(e => new { e.OrdeOptionslId, e.Quantity, e.UnitPrice, e.SubContractorId, e.UnitCost, e.UnitRetail, e.SubContractorPaid, e.SubContractorPay, e.EntryMethodId, e.PrintOnInvoice, e.PrintOnWo, e.Deleted, e.Reviewed, e.ReviewedById, e.ReviewedDate, e.MaterialCost, e.ExtendedPrice, e.ExtendedCost, e.OrderId, e.OptionId })
+                entity.HasIndex(e => new { e.OrdeOptionslId, e.Quantity, e.UnitPrice, e.SubContractorId, e.UnitCost, e.UnitRetail, e.SubContractorPaid, e.SubContractorPay, e.EntryMethodId, e.PrintOnInvoice, e.PrintOnWorkOrder, e.Deleted, e.Reviewed, e.ReviewedById, e.ReviewedDate, e.MaterialCost, e.ExtendedPrice, e.ExtendedCost, e.OrderId, e.OptionId })
                     .HasName("IX_Order Options Details_JOB");
 
                 entity.Property(e => e.EntryMethodId).HasDefaultValueSql("((1))");
@@ -1522,7 +1522,7 @@ namespace IMCore.Data
 
                 entity.Property(e => e.PrintOnInvoice).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.PrintOnWo).HasDefaultValueSql("((1))");
+                entity.Property(e => e.PrintOnWorkOrder).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.EntryMethod)
                     .WithMany(p => p.OrderOptionsDetails)

@@ -32,8 +32,8 @@ namespace IMCore.Domain
         [Required]
         public bool? PrintOnInvoice { get; set; }
         [Required]
-        [Column("PrintOnWO")]
-        public bool? PrintOnWo { get; set; }
+        [Column("PrintOnWorkOrder")]
+        public bool? PrintOnWorkOrder { get; set; }
         public bool Deleted { get; set; }
         public bool Reviewed { get; set; }
         [Column("ReviewedByID")]

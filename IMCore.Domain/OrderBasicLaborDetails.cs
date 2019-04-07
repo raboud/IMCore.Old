@@ -24,8 +24,8 @@ namespace IMCore.Domain
         [Required]
         public bool? PrintOnInvoice { get; set; }
         [Required]
-        [Column("PrintOnWO")]
-        public bool? PrintOnWo { get; set; }
+        [Column("PrintOnWorkOrder")]
+        public bool? PrintOnWorkOrder { get; set; }
         public int? ServiceLineNumber { get; set; }
         [Column("MaterialStatusID")]
         public int? MaterialStatusId { get; set; }
