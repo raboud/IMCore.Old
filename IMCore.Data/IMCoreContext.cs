@@ -1377,12 +1377,9 @@ namespace IMCore.Data
             {
                 entity.HasIndex(e => e.OrderId);
 
-                entity.HasIndex(e => new { e.InstallQuantity, e.UnitCost, e.UnitPrice, e.UnitRetail, e.PrintOnInvoice, e.PrintOnWorkOrder, e.ServiceLineNumber, e.MaterialStatusId, e.EntryMethodId, e.Deleted, e.Reviewed, e.ReviewedById, e.ReviewedDate, e.MaterialCost, e.ExtendedPrice, e.ExtendedCost, e.OrderId, e.Id, e.BasicLaborId })
-                    .HasName("IX_OrderBasicLaborDetails_Jobs");
-
                 entity.Property(e => e.EntryMethodId).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.ExtendedCost).HasComputedColumnSql("(isnull(case when [PrintOnWO]='1' then [UnitCost]*[InstallQuantity] else (0) end,(0.0)))");
+                entity.Property(e => e.ExtendedCost).HasComputedColumnSql("(isnull(case when [PrintOnWorkOrder]='1' then [UnitCost]*[InstallQuantity] else (0) end,(0.0)))");
 
                 entity.Property(e => e.ExtendedPrice).HasComputedColumnSql("(isnull(case when [PrintOnInvoice]='1' then [UnitPrice]*[InstallQuantity] else (0) end,(0.0)))");
 
@@ -1511,12 +1508,9 @@ namespace IMCore.Data
 
                 entity.HasIndex(e => e.OrderId);
 
-                entity.HasIndex(e => new { e.OrdeOptionslId, e.Quantity, e.UnitPrice, e.SubContractorId, e.UnitCost, e.UnitRetail, e.SubContractorPaid, e.SubContractorPay, e.EntryMethodId, e.PrintOnInvoice, e.PrintOnWorkOrder, e.Deleted, e.Reviewed, e.ReviewedById, e.ReviewedDate, e.MaterialCost, e.ExtendedPrice, e.ExtendedCost, e.OrderId, e.OptionId })
-                    .HasName("IX_Order Options Details_JOB");
-
                 entity.Property(e => e.EntryMethodId).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.ExtendedCost).HasComputedColumnSql("(isnull(case when [PrintOnWO]='1' then [UnitCost]*[Quantity] else (0) end,(0.0)))");
+                entity.Property(e => e.ExtendedCost).HasComputedColumnSql("(isnull(case when [PrintOnWorkOrder]='1' then [UnitCost]*[Quantity] else (0) end,(0.0)))");
 
                 entity.Property(e => e.ExtendedPrice).HasComputedColumnSql("(isnull(case when [PrintOnInvoice]='1' then [UnitPrice]*[Quantity] else (0) end,(0.0)))");
 

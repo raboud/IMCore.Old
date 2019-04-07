@@ -316,7 +316,7 @@ namespace IMCore.Data.Migrations
                     b.Property<int>("MaterialTypeId")
                         .HasColumnName("MaterialTypeID");
 
-                    b.Property<bool?>("PrintOnWo")
+                    b.Property<bool?>("PrintOnWorkOrder")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("PrintOnWorkOrder")
                         .HasDefaultValueSql("((1))");
@@ -2950,7 +2950,7 @@ namespace IMCore.Data.Migrations
                     b.Property<decimal>("ExtendedCost")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("decimal(37, 8)")
-                        .HasComputedColumnSql("(isnull(case when [PrintOnWO]='1' then [UnitCost]*[InstallQuantity] else (0) end,(0.0)))");
+                        .HasComputedColumnSql("(isnull(case when [PrintOnWorkOrder]='1' then [UnitCost]*[InstallQuantity] else (0) end,(0.0)))");
 
                     b.Property<decimal>("ExtendedPrice")
                         .ValueGeneratedOnAddOrUpdate()
@@ -2974,7 +2974,7 @@ namespace IMCore.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((1))");
 
-                    b.Property<bool?>("PrintOnWo")
+                    b.Property<bool?>("PrintOnWorkOrder")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnName("PrintOnWorkOrder")
@@ -3010,9 +3010,6 @@ namespace IMCore.Data.Migrations
                     b.HasIndex("OrderId");
 
                     b.HasIndex("ReviewedById");
-
-                    b.HasIndex("InstallQuantity", "UnitCost", "UnitPrice", "UnitRetail", "PrintOnInvoice", "PrintOnWo", "ServiceLineNumber", "MaterialStatusId", "EntryMethodId", "Deleted", "Reviewed", "ReviewedById", "ReviewedDate", "MaterialCost", "ExtendedPrice", "ExtendedCost", "OrderId", "Id", "BasicLaborId")
-                        .HasName("IX_OrderBasicLaborDetails_Jobs");
 
                     b.ToTable("OrderBasicLaborDetails");
                 });
@@ -3180,7 +3177,7 @@ namespace IMCore.Data.Migrations
                     b.Property<decimal>("ExtendedCost")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("decimal(37, 8)")
-                        .HasComputedColumnSql("(isnull(case when [PrintOnWO]='1' then [UnitCost]*[Quantity] else (0) end,(0.0)))");
+                        .HasComputedColumnSql("(isnull(case when [PrintOnWorkOrder]='1' then [UnitCost]*[Quantity] else (0) end,(0.0)))");
 
                     b.Property<decimal>("ExtendedPrice")
                         .ValueGeneratedOnAddOrUpdate()
@@ -3201,7 +3198,7 @@ namespace IMCore.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((1))");
 
-                    b.Property<bool?>("PrintOnWo")
+                    b.Property<bool?>("PrintOnWorkOrder")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnName("PrintOnWorkOrder")
@@ -3244,9 +3241,6 @@ namespace IMCore.Data.Migrations
                     b.HasIndex("OrderId");
 
                     b.HasIndex("ReviewedById");
-
-                    b.HasIndex("OrdeOptionslId", "Quantity", "UnitPrice", "SubContractorId", "UnitCost", "UnitRetail", "SubContractorPaid", "SubContractorPay", "EntryMethodId", "PrintOnInvoice", "PrintOnWo", "Deleted", "Reviewed", "ReviewedById", "ReviewedDate", "MaterialCost", "ExtendedPrice", "ExtendedCost", "OrderId", "OptionId")
-                        .HasName("IX_Order Options Details_JOB");
 
                     b.ToTable("Order Options Details");
                 });

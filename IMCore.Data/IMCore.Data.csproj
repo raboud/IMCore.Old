@@ -5,6 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190407164721_PrintOnWorkOrder.cs" />
+    <Compile Remove="Migrations\20190407164721_PrintOnWorkOrder.Designer.cs" />
+    <Compile Remove="Migrations\20190407172045_PrintOnWorkOrder.cs" />
+    <Compile Remove="Migrations\20190407172045_PrintOnWorkOrder.Designer.cs" />
+    <Compile Remove="Migrations\20190407172854_PrintOnWorkOrder.cs" />
+    <Compile Remove="Migrations\20190407172854_PrintOnWorkOrder.Designer.cs" />
+    <Compile Remove="Migrations\20190407174042_PrintOnWorkOrder.cs" />
+    <Compile Remove="Migrations\20190407174042_PrintOnWorkOrder.Designer.cs" />
+    <Compile Remove="Migrations\20190407174213_PrintOnWorkOrder.cs" />
+    <Compile Remove="Migrations\20190407174213_PrintOnWorkOrder.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0-preview3.19153.1" />
   </ItemGroup>
 
