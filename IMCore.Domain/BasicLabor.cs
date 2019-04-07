@@ -14,7 +14,6 @@ namespace IMCore.Domain
             BasicPricingOld = new HashSet<BasicPricingOld>();
             BasicRetail = new HashSet<BasicRetail>();
             MaterialCategoryBasicLaborMappings = new HashSet<MaterialCategoryBasicLaborMappings>();
-            OrderBasicLaborDetails = new HashSet<OrderBasicLaborDetails>();
         }
 
         [Column("UnitOfMeasureID")]
@@ -47,17 +46,11 @@ namespace IMCore.Domain
         [ForeignKey("UnitOfMeasureId")]
         [InverseProperty("BasicLabor")]
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-        [InverseProperty("Labor")]
         public virtual ICollection<BasicCost> BasicCost { get; set; }
-        [InverseProperty("Labor")]
         public virtual ICollection<BasicPrice> BasicPrice { get; set; }
-        [InverseProperty("BasicLabor")]
         public virtual ICollection<BasicPricingOld> BasicPricingOld { get; set; }
-        [InverseProperty("Labor")]
         public virtual ICollection<BasicRetail> BasicRetail { get; set; }
         [InverseProperty("BasicLabor")]
         public virtual ICollection<MaterialCategoryBasicLaborMappings> MaterialCategoryBasicLaborMappings { get; set; }
-        [InverseProperty("BasicLabor")]
-        public virtual ICollection<OrderBasicLaborDetails> OrderBasicLaborDetails { get; set; }
     }
 }

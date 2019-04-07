@@ -198,35 +198,20 @@ namespace IMCore.Domain
         public virtual ICollection<Orders> InversePrimaryOrder { get; set; }
         [InverseProperty("PrimaryOrder")]
         public virtual ICollection<Jobs> Jobs { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<MeasureCompCalcData> MeasureCompCalcData { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<MeasureCompOrderData> MeasureCompOrderData { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<OrderBasicLaborDetails> OrderBasicLaborDetails { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<OrderCustomDetails> OrderCustomDetails { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<OrderDiagrams> OrderDiagrams { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<OrderDocument> OrderDocument { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<OrderOptionsDetails> OrderOptionsDetails { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<OrderRegMerchandiseDetails> OrderRegMerchandiseDetails { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<OrderSomerchandiseDetails> OrderSomerchandiseDetails { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<Payroll> Payroll { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<Ponotes> Ponotes { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<Pophotos> Pophotos { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<UserTasks> UserTasks { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<Voc> Voc { get; set; }
-        [InverseProperty("Order")]
         public virtual ICollection<WorkOrder> WorkOrder { get; set; }
     }
 }

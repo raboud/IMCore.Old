@@ -25,11 +25,7 @@ namespace IMCore.Domain
         [ForeignKey("BranchId")]
         [InverseProperty("BasicCost")]
         public virtual Market Branch { get; set; }
-        [ForeignKey("LaborId")]
-        [InverseProperty("BasicCost")]
-        public virtual BasicLabor Labor { get; set; }
         [ForeignKey("StoreId")]
-        [InverseProperty("BasicCost")]
         public virtual Stores Store { get; set; }
     }
 }

@@ -33,7 +33,6 @@ namespace IMCore.Domain
         [InverseProperty("OptionPricingOld")]
         public virtual Options Option { get; set; }
         [ForeignKey("StoreId")]
-        [InverseProperty("OptionPricingOld")]
         public virtual Stores Store { get; set; }
     }
 }

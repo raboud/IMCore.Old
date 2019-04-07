@@ -277,17 +277,6 @@ namespace IMCore.Data
                     .WithMany(p => p.BasicCost)
                     .HasForeignKey(d => d.BranchId)
                     .HasConstraintName("FK_BasicCost_Market");
-
-                entity.HasOne(d => d.Labor)
-                    .WithMany(p => p.BasicCost)
-                    .HasForeignKey(d => d.LaborId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_BasicCost_Labor");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.BasicCost)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_BasicCost_Stores");
             });
 
             modelBuilder.Entity<BasicLabor>(entity =>
@@ -334,11 +323,6 @@ namespace IMCore.Data
                     .HasForeignKey(d => d.LaborId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BasicPrice_Labor");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.BasicPrice)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_BasicPrice_Stores");
             });
 
             modelBuilder.Entity<BasicPricingOld>(entity =>
@@ -357,11 +341,6 @@ namespace IMCore.Data
                     .HasForeignKey(d => d.MarketId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BasicPricing_Market");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.BasicPricingOld)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_BasicPricing_Stores");
             });
 
             modelBuilder.Entity<BasicRetail>(entity =>
@@ -387,11 +366,6 @@ namespace IMCore.Data
                     .HasForeignKey(d => d.LaborId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BasicRetail_Labor");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.BasicRetail)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_BasicRetail_Stores");
             });
 
             modelBuilder.Entity<Bill>(entity =>
@@ -803,11 +777,6 @@ namespace IMCore.Data
                     .WithMany(p => p.ItemCosting)
                     .HasForeignKey(d => d.MarketId)
                     .HasConstraintName("FK_ItemCosting_Market");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.ItemCosting)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_ItemCosting_Stores");
             });
 
             modelBuilder.Entity<ItemMatCosting>(entity =>
@@ -825,11 +794,6 @@ namespace IMCore.Data
                     .HasForeignKey(d => d.MarketId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ItemMatCosting_Market");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.ItemMatCosting)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_ItemMatCosting_Stores");
             });
 
             modelBuilder.Entity<ItemPricing>(entity =>
@@ -855,11 +819,6 @@ namespace IMCore.Data
                     .WithMany(p => p.ItemPricing)
                     .HasForeignKey(d => d.MarketId)
                     .HasConstraintName("FK_ItemPricing_Market");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.ItemPricing)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_ItemPricing_Stores");
             });
 
             modelBuilder.Entity<Jobs>(entity =>
@@ -1007,11 +966,6 @@ namespace IMCore.Data
                     .WithMany(p => p.MaterialCost)
                     .HasForeignKey(d => d.ProgramId)
                     .HasConstraintName("FK_MaterialCost_Program");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.MaterialCost)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_MaterialCost_Stores");
             });
 
             modelBuilder.Entity<MaterialPrice>(entity =>
@@ -1033,11 +987,6 @@ namespace IMCore.Data
                     .WithMany(p => p.MaterialPrice)
                     .HasForeignKey(d => d.ProgramId)
                     .HasConstraintName("FK_MaterialPrice_MaterialType");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.MaterialPrice)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_MaterialPrice_Stores");
             });
 
             modelBuilder.Entity<MaterialType>(entity =>
@@ -1258,11 +1207,6 @@ namespace IMCore.Data
                     .HasForeignKey(d => d.LaborId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OptionCost_Labor");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.OptionCost)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_OptionCost_Stores");
             });
 
             modelBuilder.Entity<OptionPrice>(entity =>
@@ -1288,11 +1232,6 @@ namespace IMCore.Data
                     .HasForeignKey(d => d.LaborId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OptionPrice_Labor");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.OptionPrice)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_OptionPrice_Stores");
             });
 
             modelBuilder.Entity<OptionPricingOld>(entity =>
@@ -1307,11 +1246,6 @@ namespace IMCore.Data
                     .HasForeignKey(d => d.OptionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OptionPricing_Options");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.OptionPricingOld)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_OptionPricing_Stores");
             });
 
             modelBuilder.Entity<OptionRetail>(entity =>
@@ -1337,11 +1271,6 @@ namespace IMCore.Data
                     .HasForeignKey(d => d.LaborId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OptionRetail_Labor");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.OptionRetail)
-                    .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK_OptionRetail_Stores");
             });
 
             modelBuilder.Entity<Options>(entity =>
@@ -1387,12 +1316,6 @@ namespace IMCore.Data
 
                 entity.Property(e => e.PrintOnWorkOrder).HasDefaultValueSql("((1))");
 
-                entity.HasOne(d => d.BasicLabor)
-                    .WithMany(p => p.OrderBasicLaborDetails)
-                    .HasForeignKey(d => d.BasicLaborId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrderBasicLaborDetails_BasicLabor");
-
                 entity.HasOne(d => d.EntryMethod)
                     .WithMany(p => p.OrderBasicLaborDetails)
                     .HasForeignKey(d => d.EntryMethodId)
@@ -1403,11 +1326,6 @@ namespace IMCore.Data
                     .WithMany(p => p.OrderBasicLaborDetails)
                     .HasForeignKey(d => d.MaterialStatusId)
                     .HasConstraintName("FK_OrderBasicLaborDetail_MaterialStatus");
-
-                entity.HasOne(d => d.Order)
-                    .WithMany(p => p.OrderBasicLaborDetails)
-                    .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK_OrderBasicLaborDetails_Orders");
 
                 entity.HasOne(d => d.ReviewedBy)
                     .WithMany(p => p.OrderBasicLaborDetails)

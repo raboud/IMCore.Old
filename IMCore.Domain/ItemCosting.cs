@@ -34,7 +34,6 @@ namespace IMCore.Domain
         [InverseProperty("ItemCosting")]
         public virtual Market Market { get; set; }
         [ForeignKey("StoreId")]
-        [InverseProperty("ItemCosting")]
         public virtual Stores Store { get; set; }
     }
 }

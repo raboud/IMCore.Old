@@ -9,20 +9,7 @@ namespace IMCore.Domain
     {
         public Stores()
         {
-            BasicCost = new HashSet<BasicCost>();
-            BasicPrice = new HashSet<BasicPrice>();
-            BasicPricingOld = new HashSet<BasicPricingOld>();
-            BasicRetail = new HashSet<BasicRetail>();
             DepartmentsStoresAssignments = new HashSet<DepartmentsStoresAssignments>();
-            ItemCosting = new HashSet<ItemCosting>();
-            ItemMatCosting = new HashSet<ItemMatCosting>();
-            ItemPricing = new HashSet<ItemPricing>();
-            MaterialCost = new HashSet<MaterialCost>();
-            MaterialPrice = new HashSet<MaterialPrice>();
-            OptionCost = new HashSet<OptionCost>();
-            OptionPrice = new HashSet<OptionPrice>();
-            OptionPricingOld = new HashSet<OptionPricingOld>();
-            OptionRetail = new HashSet<OptionRetail>();
             StoreContacts = new HashSet<StoreContacts>();
         }
 
@@ -81,33 +68,7 @@ namespace IMCore.Domain
         [InverseProperty("Stores")]
         public virtual StoreType StoreType { get; set; }
         [InverseProperty("Store")]
-        public virtual ICollection<BasicCost> BasicCost { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<BasicPrice> BasicPrice { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<BasicPricingOld> BasicPricingOld { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<BasicRetail> BasicRetail { get; set; }
-        [InverseProperty("Store")]
         public virtual ICollection<DepartmentsStoresAssignments> DepartmentsStoresAssignments { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<ItemCosting> ItemCosting { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<ItemMatCosting> ItemMatCosting { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<ItemPricing> ItemPricing { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<MaterialCost> MaterialCost { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<MaterialPrice> MaterialPrice { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<OptionCost> OptionCost { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<OptionPrice> OptionPrice { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<OptionPricingOld> OptionPricingOld { get; set; }
-        [InverseProperty("Store")]
-        public virtual ICollection<OptionRetail> OptionRetail { get; set; }
         [InverseProperty("Store")]
         public virtual ICollection<StoreContacts> StoreContacts { get; set; }
     }

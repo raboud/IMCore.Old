@@ -38,7 +38,6 @@ namespace IMCore.Domain
         [InverseProperty("MaterialCost")]
         public virtual MaterialType Program { get; set; }
         [ForeignKey("StoreId")]
-        [InverseProperty("MaterialCost")]
         public virtual Stores Store { get; set; }
     }
 }

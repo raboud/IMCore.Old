@@ -29,7 +29,6 @@ namespace IMCore.Domain
         [InverseProperty("OptionRetail")]
         public virtual Options Labor { get; set; }
         [ForeignKey("StoreId")]
-        [InverseProperty("OptionRetail")]
         public virtual Stores Store { get; set; }
     }
 }

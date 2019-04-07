@@ -45,19 +45,12 @@ namespace IMCore.Domain
         public decimal ExtendedCost { get; set; }
 
         [ForeignKey("BasicLaborId")]
-        [InverseProperty("OrderBasicLaborDetails")]
         public virtual BasicLabor BasicLabor { get; set; }
         [ForeignKey("EntryMethodId")]
-        [InverseProperty("OrderBasicLaborDetails")]
         public virtual EntryMethod EntryMethod { get; set; }
         [ForeignKey("MaterialStatusId")]
-        [InverseProperty("OrderBasicLaborDetails")]
         public virtual MaterialStatus MaterialStatus { get; set; }
-        [ForeignKey("OrderId")]
-        [InverseProperty("OrderBasicLaborDetails")]
-        public virtual Orders Order { get; set; }
         [ForeignKey("ReviewedById")]
-        [InverseProperty("OrderBasicLaborDetails")]
         public virtual Employees ReviewedBy { get; set; }
     }
 }
