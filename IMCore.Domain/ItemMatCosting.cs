@@ -7,13 +7,13 @@ namespace IMCore.Domain
 {
     public partial class ItemMatCosting
     {
-        [Column("ItemMatCostingID")]
-        public int ItemMatCostingId { get; set; }
-        [Column("ItemID")]
+        [Column("Id")]
+        public int Id { get; set; }
+        [Column("ItemId")]
         public int ItemId { get; set; }
-        [Column("MarketID")]
+        [Column("MarketId")]
         public int MarketId { get; set; }
-        [Column("StoreID")]
+        [Column("StoreId")]
         public int? StoreId { get; set; }
         [Column(TypeName = "money")]
         public decimal? MatCost { get; set; }

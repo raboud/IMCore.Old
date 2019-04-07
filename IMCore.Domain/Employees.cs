@@ -34,7 +34,7 @@ namespace IMCore.Domain
             UserTasksCompletedBy = new HashSet<UserTasks>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(30)]
         public string FirstName { get; set; }

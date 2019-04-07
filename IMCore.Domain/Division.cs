@@ -15,14 +15,14 @@ namespace IMCore.Domain
             UserPermissions = new HashSet<UserPermissions>();
         }
 
-        [Column("DivisionID")]
-        public int DivisionId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [Column("Division")]
         [StringLength(20)]
         public string Division1 { get; set; }
-        [Column("VendorID")]
+        [Column("VendorId")]
         public int? VendorId { get; set; }
-        [Column("DivisionGroupID")]
+        [Column("DivisionGroupId")]
         public int DivisionGroupId { get; set; }
         [Required]
         public bool? PrintStatusReport { get; set; }

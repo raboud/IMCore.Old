@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class MaterialTypesMarketMapping
     {
-        [Column("MaterialTypeID")]
+        [Column("MaterialTypeId")]
         public int MaterialTypeId { get; set; }
-        [Column("MarketID")]
+        [Column("MarketId")]
         public int MarketId { get; set; }
         public bool AllowEntry { get; set; }
 

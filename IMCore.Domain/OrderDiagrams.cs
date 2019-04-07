@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class OrderDiagrams
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         [StringLength(20)]
         public string DiagramNumber { get; set; }

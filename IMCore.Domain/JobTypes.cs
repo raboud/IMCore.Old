@@ -14,8 +14,8 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("JobTypeID")]
-        public int JobTypeId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [StringLength(50)]
         public string Description { get; set; }
         public bool AlwaysSkipInitialCall { get; set; }

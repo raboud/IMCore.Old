@@ -12,7 +12,7 @@ namespace IMCore.Domain
             Discrepancies = new HashSet<Discrepancies>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(50)]

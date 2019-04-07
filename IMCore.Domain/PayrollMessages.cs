@@ -7,7 +7,7 @@ namespace IMCore.Domain
 {
     public partial class PayrollMessages
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(255)]
         public string Message { get; set; }

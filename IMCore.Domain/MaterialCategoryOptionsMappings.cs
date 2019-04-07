@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class MaterialCategoryOptionsMappings
     {
-        [Column("MaterialCategoryID")]
+        [Column("MaterialCategoryId")]
         public int MaterialCategoryId { get; set; }
-        [Column("OptionID")]
+        [Column("OptionId")]
         public int OptionId { get; set; }
 
         [ForeignKey("MaterialCategoryId")]

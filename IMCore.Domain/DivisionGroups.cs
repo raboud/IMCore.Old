@@ -12,7 +12,7 @@ namespace IMCore.Domain
             Division = new HashSet<Division>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(50)]
         public string Description { get; set; }

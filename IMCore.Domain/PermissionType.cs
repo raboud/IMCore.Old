@@ -12,7 +12,7 @@ namespace IMCore.Domain
             Permissions = new HashSet<Permissions>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(255)]
         public string Name { get; set; }

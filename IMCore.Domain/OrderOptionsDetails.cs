@@ -9,17 +9,17 @@ namespace IMCore.Domain
     public partial class OrderOptionsDetails
     {
         [Key]
-        [Column("OrdeOptionslID")]
+        [Column("OrdeOptionslId")]
         public int OrdeOptionslId { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
-        [Column("OptionID")]
+        [Column("OptionId")]
         public int OptionId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Quantity { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal UnitPrice { get; set; }
-        [Column("SubContractorID")]
+        [Column("SubContractorId")]
         public int? SubContractorId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal UnitCost { get; set; }
@@ -27,7 +27,7 @@ namespace IMCore.Domain
         public decimal? UnitRetail { get; set; }
         public bool? SubContractorPaid { get; set; }
         public double? SubContractorPay { get; set; }
-        [Column("EntryMethodID")]
+        [Column("EntryMethodId")]
         public int EntryMethodId { get; set; }
         [Required]
         public bool? PrintOnInvoice { get; set; }
@@ -36,7 +36,7 @@ namespace IMCore.Domain
         public bool? PrintOnWorkOrder { get; set; }
         public bool Deleted { get; set; }
         public bool Reviewed { get; set; }
-        [Column("ReviewedByID")]
+        [Column("ReviewedById")]
         public int? ReviewedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ReviewedDate { get; set; }

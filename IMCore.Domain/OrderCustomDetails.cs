@@ -8,11 +8,11 @@ namespace IMCore.Domain
     public partial class OrderCustomDetails
     {
         [Key]
-        [Column("OrderCustomID")]
+        [Column("OrderCustomId")]
         public int OrderCustomId { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
-        [Column("SubContractorID")]
+        [Column("SubContractorId")]
         public int? SubContractorId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal? RetailPrice { get; set; }
@@ -20,13 +20,13 @@ namespace IMCore.Domain
         public decimal UnitCost { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Quanity { get; set; }
-        [Column("UnitOfMeasureID")]
+        [Column("UnitOfMeasureId")]
         public int? UnitOfMeasureId { get; set; }
         public bool? NotOnInvoice { get; set; }
         public bool? NotOnWorkOrder { get; set; }
         public bool? SubContractorPaid { get; set; }
         public double? SubContractorPay { get; set; }
-        [Column("EntryMethodID")]
+        [Column("EntryMethodId")]
         public int EntryMethodId { get; set; }
         public int? CustomItemNumber { get; set; }
         [Required]
@@ -37,7 +37,7 @@ namespace IMCore.Domain
         public decimal UnitPrice { get; set; }
         [Required]
         public bool? Reviewed { get; set; }
-        [Column("ReviewedByID")]
+        [Column("ReviewedById")]
         public int? ReviewedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ReviewedDate { get; set; }

@@ -18,9 +18,9 @@ namespace IMCore.Domain
             ProgramReport = new HashSet<ProgramReport>();
         }
 
-        [Column("MaterialTypeID")]
-        public int MaterialTypeId { get; set; }
-        [Column("StoreTypeID")]
+        [Column("Id")]
+        public int Id { get; set; }
+        [Column("StoreTypeId")]
         public int? StoreTypeId { get; set; }
         [Column(TypeName = "money")]
         public decimal? MinimumPrice { get; set; }
@@ -35,7 +35,7 @@ namespace IMCore.Domain
         public bool? OnlyBasicToMinimum { get; set; }
         [StringLength(20)]
         public string ShortName { get; set; }
-        [Column("DivisionID")]
+        [Column("DivisionId")]
         public int? DivisionId { get; set; }
         public bool? Active { get; set; }
         public bool Furnish { get; set; }
@@ -56,7 +56,7 @@ namespace IMCore.Domain
         public string MaterialTypeName { get; set; }
         public bool InsuranceReplacement { get; set; }
         public bool AllowMaterialStatusUpdate { get; set; }
-        [Column("JobTypeID")]
+        [Column("JobTypeId")]
         public int? JobTypeId { get; set; }
         public bool WoodWaiver { get; set; }
         [Required]

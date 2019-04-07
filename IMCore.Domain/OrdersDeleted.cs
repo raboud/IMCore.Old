@@ -7,11 +7,11 @@ namespace IMCore.Domain
 {
     public partial class OrdersDeleted
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int? OrderId { get; set; }
-        [Column("CustomerID")]
+        [Column("CustomerId")]
         public int? CustomerId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? OrderDate { get; set; }
@@ -34,7 +34,7 @@ namespace IMCore.Domain
         public decimal? CostAmount { get; set; }
         [Column(TypeName = "money")]
         public decimal? BilledAmount { get; set; }
-        [Column("MaterialTypeID")]
+        [Column("MaterialTypeId")]
         public int MaterialTypeId { get; set; }
         [Column(TypeName = "money")]
         public decimal? OrderAmount { get; set; }
@@ -45,7 +45,7 @@ namespace IMCore.Domain
         public bool? ScheduledAm { get; set; }
         public bool Cancelled { get; set; }
         public bool Warrenty { get; set; }
-        [Column("StoreID")]
+        [Column("StoreId")]
         public int StoreId { get; set; }
         public bool SevenDay { get; set; }
         [Column(TypeName = "text")]
@@ -62,7 +62,7 @@ namespace IMCore.Domain
         [Column(TypeName = "datetime")]
         public DateTime? DateEntered { get; set; }
         public int? EnteredBy { get; set; }
-        [Column("EntryMethodID")]
+        [Column("EntryMethodId")]
         public int EntryMethodId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? FollowUpDate { get; set; }

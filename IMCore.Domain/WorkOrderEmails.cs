@@ -7,7 +7,7 @@ namespace IMCore.Domain
 {
     public partial class WorkOrderEmails
     {
-        [Column("WorkOrderID")]
+        [Column("WorkOrderId")]
         public int WorkOrderId { get; set; }
         public int EmailType { get; set; }
         [Column(TypeName = "datetime")]

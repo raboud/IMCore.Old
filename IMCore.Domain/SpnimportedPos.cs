@@ -8,15 +8,15 @@ namespace IMCore.Domain
     [Table("SPNImportedPOs")]
     public partial class SpnimportedPos
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [Column("PONumber")]
         [StringLength(50)]
         public string Ponumber { get; set; }
-        [Column("StoreID")]
+        [Column("StoreId")]
         public int StoreId { get; set; }
-        [Column("POStatusID")]
+        [Column("POStatusId")]
         public int PostatusId { get; set; }
         [Required]
         [Column("XMLFilePath")]

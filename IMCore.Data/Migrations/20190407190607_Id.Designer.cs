@@ -4,14 +4,16 @@ using IMCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IMCore.Data.Migrations
 {
     [DbContext(typeof(IMCoreContext))]
-    partial class IMCoreContextModelSnapshot : ModelSnapshot
+    [Migration("20190407190607_Id")]
+    partial class Id
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3559,7 +3561,7 @@ namespace IMCore.Data.Migrations
                     b.Property<string>("Number")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnName("NUMBER")
-                        .HasComputedColumnSql("(case when [Estimate]='1' OR len([PurchaseOrderNumber])<>(8) OR [PurchaseOrderNumber] IS NULL then str([OrderID]) else [PurchaseOrderNumber] end)")
+                        .HasComputedColumnSql("(case when [Estimate]='1' OR len([PurchaseOrderNumber])<>(8) OR [PurchaseOrderNumber] IS NULL then str([Id]) else [PurchaseOrderNumber] end)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
 

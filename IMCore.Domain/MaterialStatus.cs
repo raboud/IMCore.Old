@@ -16,8 +16,8 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("MatStatusID")]
-        public int MatStatusId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [Required]
         [StringLength(50)]
         public string Status { get; set; }

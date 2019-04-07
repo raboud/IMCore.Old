@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class MeasureCompOrderData
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         public bool? Heat { get; set; }
         public bool? Pets { get; set; }

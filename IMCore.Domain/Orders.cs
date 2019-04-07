@@ -35,9 +35,9 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("OrderID")]
-        public int OrderId { get; set; }
-        [Column("CustomerID")]
+        [Column("Id")]
+        public int Id { get; set; }
+        [Column("CustomerId")]
         public int CustomerId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? OrderDate { get; set; }
@@ -58,7 +58,7 @@ namespace IMCore.Domain
         public decimal CostAmount { get; set; }
         [Column(TypeName = "money")]
         public decimal BilledAmount { get; set; }
-        [Column("MaterialTypeID")]
+        [Column("MaterialTypeId")]
         public int MaterialTypeId { get; set; }
         [Column(TypeName = "money")]
         public decimal OrderAmount { get; set; }
@@ -71,7 +71,7 @@ namespace IMCore.Domain
         public bool ScheduledAm { get; set; }
         public bool Cancelled { get; set; }
         public bool Warrenty { get; set; }
-        [Column("StoreID")]
+        [Column("StoreId")]
         public int StoreId { get; set; }
         public bool SevenDay { get; set; }
         [Column(TypeName = "text")]
@@ -87,9 +87,9 @@ namespace IMCore.Domain
         public string OrderNo { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DateEntered { get; set; }
-        [Column("EnteredByID")]
+        [Column("EnteredById")]
         public int? EnteredById { get; set; }
-        [Column("EntryMethodID")]
+        [Column("EntryMethodId")]
         public int EntryMethodId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? FollowUpDate { get; set; }
@@ -104,15 +104,15 @@ namespace IMCore.Domain
         public int XmlorderCostAmount { get; set; }
         public bool Deleted { get; set; }
         public bool Reviewed { get; set; }
-        [Column("ReviewedByID")]
+        [Column("ReviewedById")]
         public int? ReviewedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ReviewedDate { get; set; }
-        [Column("VendorID")]
+        [Column("VendorId")]
         public int? VendorId { get; set; }
         [StringLength(30)]
         public string CustomerOrderNumber { get; set; }
-        [Column("CorrelationID")]
+        [Column("CorrelationId")]
         [StringLength(255)]
         public string CorrelationId { get; set; }
         [StringLength(15)]
@@ -123,28 +123,28 @@ namespace IMCore.Domain
         public DateTime? SvcCompleteSentDate { get; set; }
         [Column(TypeName = "date")]
         public DateTime? ScheduleEndDate { get; set; }
-        [Column("SalesPersonID")]
+        [Column("SalesPersonId")]
         public int? SalesPersonId { get; set; }
         public bool Estimate { get; set; }
         [Column("NUMBER")]
         [StringLength(10)]
         public string Number { get; set; }
-        [Column("AddressID")]
+        [Column("AddressId")]
         public int? AddressId { get; set; }
-        [Column("JobID")]
+        [Column("JobId")]
         public int? JobId { get; set; }
         public int? MarkDown { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? JobSize { get; set; }
-        [Column("JobStatusID")]
+        [Column("JobStatusId")]
         public int? JobStatusId { get; set; }
-        [Column("AssignedToID")]
+        [Column("AssignedToId")]
         public int? AssignedToId { get; set; }
-        [Column("PrimaryOrderID")]
+        [Column("PrimaryOrderId")]
         public int? PrimaryOrderId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CreatedDateTime { get; set; }
-        [Column("CreatedByID")]
+        [Column("CreatedById")]
         public int? CreatedById { get; set; }
         [Column(TypeName = "money")]
         public decimal? KeyRecAmount { get; set; }

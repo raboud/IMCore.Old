@@ -7,13 +7,13 @@ namespace IMCore.Domain
 {
     public partial class CapacityPools
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
-        [Column("HDPoolID")]
+        [Column("HDPoolId")]
         [StringLength(10)]
         public string HdpoolId { get; set; }
-        [Column("PoolTypeID")]
+        [Column("PoolTypeId")]
         public int PoolTypeId { get; set; }
         [Required]
         [StringLength(50)]
@@ -24,7 +24,7 @@ namespace IMCore.Domain
         [Required]
         [StringLength(50)]
         public string ZoneNumber { get; set; }
-        [Column("VendorID")]
+        [Column("VendorId")]
         public int VendorId { get; set; }
     }
 }

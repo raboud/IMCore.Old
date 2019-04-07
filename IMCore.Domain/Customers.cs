@@ -14,8 +14,8 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("CustomerID")]
-        public int CustomerId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [StringLength(50)]
         public string FirstName { get; set; }
         [StringLength(50)]
@@ -49,10 +49,10 @@ namespace IMCore.Domain
         public string CompanyName { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
-        [Column("QBCustomerID")]
+        [Column("QBCustomerId")]
         [StringLength(50)]
         public string QbcustomerId { get; set; }
-        [Column("AddressID")]
+        [Column("AddressId")]
         public int? AddressId { get; set; }
         [StringLength(102)]
         public string Name { get; set; }

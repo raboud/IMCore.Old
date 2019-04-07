@@ -7,11 +7,11 @@ namespace IMCore.Domain
 {
     public partial class OrderBasicLaborDetails
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
-        [Column("BasicLaborID")]
+        [Column("BasicLaborId")]
         public int BasicLaborId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal InstallQuantity { get; set; }
@@ -27,13 +27,13 @@ namespace IMCore.Domain
         [Column("PrintOnWorkOrder")]
         public bool? PrintOnWorkOrder { get; set; }
         public int? ServiceLineNumber { get; set; }
-        [Column("MaterialStatusID")]
+        [Column("MaterialStatusId")]
         public int? MaterialStatusId { get; set; }
-        [Column("EntryMethodID")]
+        [Column("EntryMethodId")]
         public int EntryMethodId { get; set; }
         public bool Deleted { get; set; }
         public bool Reviewed { get; set; }
-        [Column("ReviewedByID")]
+        [Column("ReviewedById")]
         public int? ReviewedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ReviewedDate { get; set; }

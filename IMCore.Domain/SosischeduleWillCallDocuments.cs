@@ -8,9 +8,9 @@ namespace IMCore.Domain
     [Table("SOSIScheduleWillCallDocuments")]
     public partial class SosischeduleWillCallDocuments
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         public int WillCallLineNumber { get; set; }
         [Required]

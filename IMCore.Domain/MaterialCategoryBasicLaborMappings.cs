@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class MaterialCategoryBasicLaborMappings
     {
-        [Column("MaterialCategoryID")]
+        [Column("MaterialCategoryId")]
         public int MaterialCategoryId { get; set; }
-        [Column("BasicLaborID")]
+        [Column("BasicLaborId")]
         public int BasicLaborId { get; set; }
 
         [ForeignKey("BasicLaborId")]

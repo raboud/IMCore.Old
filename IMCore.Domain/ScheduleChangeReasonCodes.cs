@@ -7,7 +7,7 @@ namespace IMCore.Domain
 {
     public partial class ScheduleChangeReasonCodes
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(50)]

@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class ActivityData
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("ActivityID")]
+        [Column("ActivityId")]
         public int ActivityId { get; set; }
         [StringLength(1024)]
         public string Data { get; set; }

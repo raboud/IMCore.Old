@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class OrderRegMerchandiseDetails
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         [Column("SKUNumber")]
         [StringLength(12)]
@@ -30,21 +30,21 @@ namespace IMCore.Domain
         public int? HdlineNumber { get; set; }
         [StringLength(1024)]
         public string Notes { get; set; }
-        [Column("StatusID")]
+        [Column("StatusId")]
         public int? StatusId { get; set; }
         public bool Deleted { get; set; }
-        [Column("EntryMethodID")]
+        [Column("EntryMethodId")]
         public int EntryMethodId { get; set; }
         public int? TransferredTo { get; set; }
         public int? TransferredFrom { get; set; }
-        [Column("XMLStatusID")]
+        [Column("XMLStatusId")]
         public int? XmlstatusId { get; set; }
         public bool Reviewed { get; set; }
-        [Column("ReviewedByID")]
+        [Column("ReviewedById")]
         public int? ReviewedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ReviewedDate { get; set; }
-        [Column("OriginalOrderID")]
+        [Column("OriginalOrderId")]
         public int? OriginalOrderId { get; set; }
 
         [ForeignKey("EntryMethodId")]

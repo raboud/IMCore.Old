@@ -8,9 +8,9 @@ namespace IMCore.Domain
     [Table("ActivityPONoteMapping")]
     public partial class ActivityPonoteMapping
     {
-        [Column("ActivityID")]
+        [Column("ActivityId")]
         public int ActivityId { get; set; }
-        [Column("PONoteID")]
+        [Column("PONoteId")]
         public int PonoteId { get; set; }
 
         [ForeignKey("ActivityId")]

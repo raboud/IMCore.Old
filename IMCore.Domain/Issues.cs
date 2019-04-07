@@ -7,14 +7,14 @@ namespace IMCore.Domain
 {
     public partial class Issues
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         public int AddedByUser { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime DateAdded { get; set; }
         [StringLength(2048)]
         public string Description { get; set; }
-        [Column("StatusID")]
+        [Column("StatusId")]
         public int StatusId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? StatusDate { get; set; }

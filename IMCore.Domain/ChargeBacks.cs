@@ -14,11 +14,11 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("ChargeBackID")]
-        public int ChargeBackId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [Column(TypeName = "decimal(19, 2)")]
         public decimal Amount { get; set; }
-        [Column("SubcontractorID")]
+        [Column("SubcontractorId")]
         public int SubcontractorId { get; set; }
         [Column(TypeName = "decimal(19, 2)")]
         public decimal AmountToSub { get; set; }
@@ -36,7 +36,7 @@ namespace IMCore.Domain
         [StringLength(50)]
         public string OriginalPo { get; set; }
         public bool? CostAdjustment { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int? OrderId { get; set; }
         public int ApprovalNumber { get; set; }
         [Required]

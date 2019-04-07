@@ -7,12 +7,12 @@ namespace IMCore.Domain
 {
     public partial class InstallationCrewType
     {
-        [Column("CrewID")]
-        public int CrewId { get; set; }
-        [Column("JobTypeID")]
+        [Column("Id")]
+        public int Id { get; set; }
+        [Column("JobTypeId")]
         public int JobTypeId { get; set; }
         public double? Rating { get; set; }
-        [Column("MaxSizeID")]
+        [Column("MaxSizeId")]
         public int? MaxSizeId { get; set; }
 
         [ForeignKey("CrewId")]

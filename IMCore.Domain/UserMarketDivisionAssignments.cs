@@ -7,13 +7,13 @@ namespace IMCore.Domain
 {
     public partial class UserMarketDivisionAssignments
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("UserID")]
+        [Column("UserId")]
         public int UserId { get; set; }
-        [Column("MarketID")]
+        [Column("MarketId")]
         public int MarketId { get; set; }
-        [Column("DivisionID")]
+        [Column("DivisionId")]
         public int DivisionId { get; set; }
 
         [ForeignKey("DivisionId")]

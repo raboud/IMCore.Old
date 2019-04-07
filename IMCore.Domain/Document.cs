@@ -14,7 +14,7 @@ namespace IMCore.Domain
             WorkOrderDocument = new HashSet<WorkOrderDocument>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(255)]
         public string Description { get; set; }

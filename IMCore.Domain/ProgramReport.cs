@@ -7,11 +7,11 @@ namespace IMCore.Domain
 {
     public partial class ProgramReport
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("ReportTypeID")]
+        [Column("ReportTypeId")]
         public int ReportTypeId { get; set; }
-        [Column("ProgramID")]
+        [Column("ProgramId")]
         public int ProgramId { get; set; }
         [Required]
         [StringLength(255)]

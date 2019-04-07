@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class DepartmentsContactTitles
     {
-        [Column("DepartmentsID")]
+        [Column("DepartmentsId")]
         public int DepartmentsId { get; set; }
-        [Column("ContactTitlesID")]
+        [Column("ContactTitlesId")]
         public int ContactTitlesId { get; set; }
         public bool? Required { get; set; }
 

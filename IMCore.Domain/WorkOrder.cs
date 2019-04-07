@@ -13,20 +13,20 @@ namespace IMCore.Domain
             WorkOrderEmails = new HashSet<WorkOrderEmails>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Column(TypeName = "date")]
         public DateTime ScheduleStartDate { get; set; }
-        [Column("CrewID")]
+        [Column("CrewId")]
         public int? CrewId { get; set; }
-        [Column("JobID")]
+        [Column("JobId")]
         public int? JobId { get; set; }
         public bool Cancel { get; set; }
         [Column("ScheduledAM")]
         public bool ScheduledAm { get; set; }
         [Column(TypeName = "date")]
         public DateTime ScheduleEndDate { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int? OrderId { get; set; }
 
         [ForeignKey("CrewId")]

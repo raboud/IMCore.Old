@@ -327,7 +327,7 @@ namespace IMCore.Data
 
             modelBuilder.Entity<BasicPricingOld>(entity =>
             {
-                entity.HasKey(e => e.BasicPricingId)
+                entity.HasKey(e => e.Id)
                     .HasName("PK_BasicPricing");
 
                 entity.HasOne(d => d.BasicLabor)
@@ -553,7 +553,7 @@ namespace IMCore.Data
                 entity.HasIndex(e => new { e.LastName, e.FirstName })
                     .HasName("CustomersLNameFName");
 
-                entity.HasIndex(e => new { e.CustomerId, e.FirstName, e.LastName })
+                entity.HasIndex(e => new { e.Id, e.FirstName, e.LastName })
                     .HasName("CustomersIDFNameLName");
 
                 entity.Property(e => e.Extension).IsUnicode(false);
@@ -717,11 +717,11 @@ namespace IMCore.Data
 
             modelBuilder.Entity<InstallationCrewType>(entity =>
             {
-                entity.HasKey(e => new { e.CrewId, e.JobTypeId });
+                entity.HasKey(e => new { e.Id, e.JobTypeId });
 
                 entity.HasOne(d => d.Crew)
                     .WithMany(p => p.InstallationCrewType)
-                    .HasForeignKey(d => d.CrewId)
+                    .HasForeignKey(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_InstallationCrewType_InstallationCrew");
 
@@ -991,7 +991,7 @@ namespace IMCore.Data
 
             modelBuilder.Entity<MaterialType>(entity =>
             {
-                entity.HasKey(e => e.MaterialTypeId)
+                entity.HasKey(e => e.Id)
                     .ForSqlServerIsClustered(false);
 
                 entity.Property(e => e.CostMultiplier).HasDefaultValueSql("((0.5))");
@@ -1849,7 +1849,7 @@ namespace IMCore.Data
 
             modelBuilder.Entity<Stores>(entity =>
             {
-                entity.HasKey(e => e.StoreId)
+                entity.HasKey(e => e.Id)
                     .ForSqlServerIsClustered(false);
 
                 entity.Property(e => e.Active).HasDefaultValueSql("((1))");
@@ -2008,7 +2008,7 @@ namespace IMCore.Data
 
             modelBuilder.Entity<Domain.Version>(entity =>
             {
-                entity.Property(e => e.VersionId).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<Voc>(entity =>

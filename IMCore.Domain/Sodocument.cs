@@ -8,9 +8,9 @@ namespace IMCore.Domain
     [Table("SODocument")]
     public partial class Sodocument
     {
-        [Column("DocumentID")]
+        [Column("Id")]
         public int DocumentId { get; set; }
-        [Column("SOID")]
+        [Column("SOId")]
         public int Soid { get; set; }
 
         [ForeignKey("DocumentId")]

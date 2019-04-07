@@ -8,7 +8,7 @@ namespace IMCore.Domain
     public partial class Admins
     {
         [Key]
-        [Column("EmployeeID")]
+        [Column("EmployeeId")]
         public int EmployeeId { get; set; }
 
         [ForeignKey("EmployeeId")]

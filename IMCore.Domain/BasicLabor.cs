@@ -16,24 +16,24 @@ namespace IMCore.Domain
             MaterialCategoryBasicLaborMappings = new HashSet<MaterialCategoryBasicLaborMappings>();
         }
 
-        [Column("UnitOfMeasureID")]
+        [Column("UnitOfMeasureId")]
         public int? UnitOfMeasureId { get; set; }
-        [Column("BasicLaborID")]
-        public int BasicLaborId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [StringLength(255)]
         public string LaborDescription { get; set; }
         [Column(TypeName = "money")]
         public decimal? UnitPrice { get; set; }
         [Column(TypeName = "money")]
         public decimal? UnitCost { get; set; }
-        [Column("MaterialTypeID")]
+        [Column("MaterialTypeId")]
         public int MaterialTypeId { get; set; }
         [Column(TypeName = "money")]
         public decimal? RetailPrice { get; set; }
         public bool Active { get; set; }
         [Column("PrintOnWorkOrder")]
         public bool? PrintOnWorkOrder { get; set; }
-        [Column("ItemID")]
+        [Column("ItemId")]
         public int? ItemId { get; set; }
         public bool? Size { get; set; }
 

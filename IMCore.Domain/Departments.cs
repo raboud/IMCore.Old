@@ -14,7 +14,7 @@ namespace IMCore.Domain
             StoreContacts = new HashSet<StoreContacts>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(30)]
         public string DepartmentName { get; set; }

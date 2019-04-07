@@ -7,17 +7,17 @@ namespace IMCore.Domain
 {
     public partial class StoreContacts
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("StoreID")]
+        [Column("StoreId")]
         public int? StoreId { get; set; }
-        [Column("DepartmentID")]
+        [Column("DepartmentId")]
         public int? DepartmentId { get; set; }
         [StringLength(30)]
         public string FirstName { get; set; }
         [StringLength(30)]
         public string LastName { get; set; }
-        [Column("TitleID")]
+        [Column("TitleId")]
         public int? TitleId { get; set; }
         [StringLength(30)]
         public string PhoneNumber { get; set; }

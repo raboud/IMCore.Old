@@ -18,7 +18,7 @@ namespace IMCore.Domain
             OrderSomerchandiseDetails = new HashSet<OrderSomerchandiseDetails>();
         }
 
-        [Column("UnitOfMeasureID")]
+        [Column("UnitOfMeasureId")]
         public int UnitOfMeasureId { get; set; }
         [Required]
         [StringLength(50)]

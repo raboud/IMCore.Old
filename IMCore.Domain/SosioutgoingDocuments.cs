@@ -8,9 +8,9 @@ namespace IMCore.Domain
     [Table("SOSIOutgoingDocuments")]
     public partial class SosioutgoingDocuments
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("DocumentTypeID")]
+        [Column("DocumentTypeId")]
         public int DocumentTypeId { get; set; }
         [StringLength(50)]
         public string Datafield1 { get; set; }

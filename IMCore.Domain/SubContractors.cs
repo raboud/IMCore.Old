@@ -18,7 +18,7 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("SubContractorID")]
+        [Column("SubContractorId")]
         public int SubContractorId { get; set; }
         [StringLength(30)]
         public string FirstName { get; set; }
@@ -68,7 +68,7 @@ namespace IMCore.Domain
         public int? AssignedTo { get; set; }
         public int? MarketId { get; set; }
         public int Status { get; set; }
-        [Column("StateID")]
+        [Column("StateId")]
         public int StateId { get; set; }
         [Column(TypeName = "smalldatetime")]
         public DateTime? WorkmansCompInsuranceDate { get; set; }
@@ -78,7 +78,7 @@ namespace IMCore.Domain
         public string PictureFilename { get; set; }
         [Column("LiabilityInsuranceOK")]
         public bool? LiabilityInsuranceOk { get; set; }
-        [Column("QBSubContractorID")]
+        [Column("QBSubContractorId")]
         [StringLength(50)]
         public string QbsubContractorId { get; set; }
         [Required]

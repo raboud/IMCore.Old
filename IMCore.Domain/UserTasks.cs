@@ -8,25 +8,25 @@ namespace IMCore.Domain
     public partial class UserTasks
     {
         [Key]
-        [Column("UserTaskID")]
-        public int UserTaskId { get; set; }
-        [Column("JobID")]
+        [Column("Id")]
+        public int Id { get; set; }
+        [Column("JobId")]
         public int? JobId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime DueDate { get; set; }
-        [Column("UserTaskTypeID")]
+        [Column("UserTaskTypeId")]
         public int UserTaskTypeId { get; set; }
-        [Column("AddedByID")]
+        [Column("AddedById")]
         public int AddedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime AddedDate { get; set; }
-        [Column("AssignedToID")]
+        [Column("AssignedToId")]
         public int? AssignedToId { get; set; }
-        [Column("CompletedByID")]
+        [Column("CompletedById")]
         public int? CompletedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CompletedDate { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int? OrderId { get; set; }
 
         [ForeignKey("AddedById")]

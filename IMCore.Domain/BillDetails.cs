@@ -7,7 +7,8 @@ namespace IMCore.Domain
 {
     public partial class BillDetails
     {
-        public int BillDetailsId { get; set; }
+		[Column("Id")]
+		public int Id { get; set; }
         public int BillId { get; set; }
         public bool NoRetainage { get; set; }
         [Column(TypeName = "date")]
@@ -19,11 +20,11 @@ namespace IMCore.Domain
         public decimal? PayAmount { get; set; }
         [StringLength(200)]
         public string Comments { get; set; }
-        [Column("ClassificationID")]
+        [Column("ClassificationId")]
         public int ClassificationId { get; set; }
-        [Column("BackChargeOwnerID")]
+        [Column("BackChargeOwnerId")]
         public int? BackChargeOwnerId { get; set; }
-        [Column("ChargeBackID")]
+        [Column("ChargeBackId")]
         public int? ChargeBackId { get; set; }
         [Column("QBUid")]
         [StringLength(20)]

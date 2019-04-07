@@ -14,15 +14,15 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("CheckID")]
-        public int CheckId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [StringLength(10)]
         public string CheckNumber { get; set; }
         [Column(TypeName = "smalldatetime")]
         public DateTime? CheckDate { get; set; }
         [Column(TypeName = "numeric(19, 2)")]
         public decimal? Amount { get; set; }
-        [Column("VendorID")]
+        [Column("VendorId")]
         public int VendorId { get; set; }
         [Column("QBTxnId")]
         [StringLength(50)]

@@ -13,8 +13,8 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("UserTaskTypeID")]
-        public int UserTaskTypeId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [StringLength(50)]
         public string Description { get; set; }
         public int? Priority { get; set; }

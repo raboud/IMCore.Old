@@ -14,7 +14,7 @@ namespace IMCore.Domain
             Stores = new HashSet<Stores>();
         }
 
-        [Column("StoreTypeID")]
+        [Column("StoreTypeId")]
         public int StoreTypeId { get; set; }
         [StringLength(50)]
         public string StoreTypeName { get; set; }

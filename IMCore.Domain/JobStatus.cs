@@ -13,8 +13,8 @@ namespace IMCore.Domain
             Orders = new HashSet<Orders>();
         }
 
-        [Column("JobStatusID")]
-        public int JobStatusId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [StringLength(50)]
         public string JobStatusDescription { get; set; }
 

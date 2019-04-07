@@ -7,15 +7,15 @@ namespace IMCore.Domain
 {
     public partial class MaterialPrice
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("MaterialCatID")]
+        [Column("MaterialCatId")]
         public int MaterialCatId { get; set; }
-        [Column("MarketID")]
+        [Column("MarketId")]
         public int? MarketId { get; set; }
-        [Column("StoreID")]
+        [Column("StoreId")]
         public int? StoreId { get; set; }
-        [Column("ProgramID")]
+        [Column("ProgramId")]
         public int? ProgramId { get; set; }
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }

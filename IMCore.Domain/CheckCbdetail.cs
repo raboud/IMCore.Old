@@ -8,11 +8,11 @@ namespace IMCore.Domain
     [Table("CheckCBDetail")]
     public partial class CheckCbdetail
     {
-        [Column("CheckCBDetailID")]
+        [Column("CheckCBDetailId")]
         public int CheckCbdetailId { get; set; }
-        [Column("CheckID")]
+        [Column("CheckId")]
         public int CheckId { get; set; }
-        [Column("ChargeBackID")]
+        [Column("ChargeBackId")]
         public int ChargeBackId { get; set; }
         [Column(TypeName = "numeric(19, 2)")]
         public decimal Amount { get; set; }

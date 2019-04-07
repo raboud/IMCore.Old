@@ -7,8 +7,8 @@ namespace IMCore.Domain
 {
     public partial class Version
     {
-        [Column("VersionID")]
-        public int VersionId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         public int? VersionNo { get; set; }
         public int? MinimumVersionMajor { get; set; }
         public int? MinimumVersionMinor { get; set; }

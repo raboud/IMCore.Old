@@ -8,7 +8,7 @@ namespace IMCore.Domain
     [Table("XMLSources")]
     public partial class Xmlsources
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(15)]

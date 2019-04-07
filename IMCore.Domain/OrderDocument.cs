@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class OrderDocument
     {
-        [Column("DocumentID")]
+        [Column("DocumentId")]
         public int DocumentId { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
 
         [ForeignKey("DocumentId")]

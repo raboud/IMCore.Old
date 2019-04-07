@@ -8,8 +8,8 @@ namespace IMCore.Domain
     [Table("VOC")]
     public partial class Voc
     {
-        [Column("VOCID")]
-        public int Vocid { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         public int? OrderId { get; set; }
         [Column("Pvendor_Nbr")]
         public short? PvendorNbr { get; set; }

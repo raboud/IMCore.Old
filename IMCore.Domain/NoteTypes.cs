@@ -12,7 +12,7 @@ namespace IMCore.Domain
             Ponotes = new HashSet<Ponotes>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(50)]

@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class Capacity
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("PoolID")]
+        [Column("PoolId")]
         public int PoolId { get; set; }
         [Column(TypeName = "smalldatetime")]
         public DateTime CapacityDate { get; set; }

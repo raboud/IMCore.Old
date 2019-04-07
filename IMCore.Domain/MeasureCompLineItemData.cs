@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class MeasureCompLineItemData
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("CalcID")]
+        [Column("CalcId")]
         public int CalcId { get; set; }
         public int LineItemNumber { get; set; }
         [StringLength(20)]

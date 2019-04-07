@@ -8,7 +8,7 @@ namespace IMCore.Domain
     [Table("SOSIDocumentTypes")]
     public partial class SosidocumentTypes
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(50)]
         public string DocType { get; set; }

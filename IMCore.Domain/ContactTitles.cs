@@ -12,7 +12,7 @@ namespace IMCore.Domain
             DepartmentsContactTitles = new HashSet<DepartmentsContactTitles>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(50)]
         public string Title { get; set; }

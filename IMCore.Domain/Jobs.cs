@@ -8,11 +8,11 @@ namespace IMCore.Domain
     public partial class Jobs
     {
         [Key]
-        [Column("JobID")]
-        public int JobId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime CreatedDateTime { get; set; }
-        [Column("CreatedByID")]
+        [Column("CreatedById")]
         public int CreatedById { get; set; }
         public bool? Deleted { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
@@ -23,11 +23,11 @@ namespace IMCore.Domain
         public DateTime? ScheduledEndDate { get; set; }
         [Column("ScheduledAM")]
         public bool? ScheduledAm { get; set; }
-        [Column("JobStatusID")]
+        [Column("JobStatusId")]
         public int JobStatusId { get; set; }
-        [Column("AssignedToID")]
+        [Column("AssignedToId")]
         public int? AssignedToId { get; set; }
-        [Column("PrimaryOrderID")]
+        [Column("PrimaryOrderId")]
         public int? PrimaryOrderId { get; set; }
 
         [ForeignKey("AssignedToId")]

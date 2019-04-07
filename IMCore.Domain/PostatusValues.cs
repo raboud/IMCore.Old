@@ -8,7 +8,7 @@ namespace IMCore.Domain
     [Table("POStatusValues")]
     public partial class PostatusValues
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(100)]

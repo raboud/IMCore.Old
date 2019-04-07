@@ -7,9 +7,9 @@ namespace IMCore.Domain
 {
     public partial class ActionReport
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ReportDate { get; set; }

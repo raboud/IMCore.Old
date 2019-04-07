@@ -14,9 +14,9 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("StoreID")]
-        public int StoreId { get; set; }
-        [Column("StoreTypeID")]
+        [Column("Id")]
+        public int Id { get; set; }
+        [Column("StoreTypeId")]
         public int StoreTypeId { get; set; }
         [StringLength(50)]
         public string StoreNumber { get; set; }
@@ -46,13 +46,13 @@ namespace IMCore.Domain
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
         public short? MarketNumber { get; set; }
-        [Column("XMLSourceID")]
+        [Column("XMLSourceId")]
         public int XmlsourceId { get; set; }
         [Required]
         public bool? IncludeInStatusReportAll { get; set; }
-        [Column("AccountRepID")]
+        [Column("AccountRepId")]
         public int? AccountRepId { get; set; }
-        [Column("AccountCoorID")]
+        [Column("AccountCoorId")]
         public int? AccountCoorId { get; set; }
 
         [ForeignKey("AccountCoorId")]

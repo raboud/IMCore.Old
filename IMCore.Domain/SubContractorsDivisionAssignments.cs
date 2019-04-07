@@ -7,13 +7,13 @@ namespace IMCore.Domain
 {
     public partial class SubContractorsDivisionAssignments
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("SubContractorID")]
+        [Column("SubContractorId")]
         public int SubContractorId { get; set; }
-        [Column("DivisionID")]
+        [Column("DivisionId")]
         public int DivisionId { get; set; }
-        [Column("SubDivisionID")]
+        [Column("SubDivisionId")]
         public int? SubDivisionId { get; set; }
     }
 }

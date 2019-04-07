@@ -8,9 +8,9 @@ namespace IMCore.Domain
     [Table("SPNActionQueue")]
     public partial class SpnactionQueue
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("ActionID")]
+        [Column("ActionId")]
         public int ActionId { get; set; }
         [StringLength(50)]
         public string DataField1 { get; set; }

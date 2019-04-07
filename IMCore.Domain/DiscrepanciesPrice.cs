@@ -7,13 +7,13 @@ namespace IMCore.Domain
 {
     public partial class DiscrepanciesPrice
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("DiscrepancyTypeID")]
+        [Column("DiscrepancyTypeId")]
         public int DiscrepancyTypeId { get; set; }
-        [Column("ItemID")]
+        [Column("ItemId")]
         public int ItemId { get; set; }
-        [Column("MarketID")]
+        [Column("MarketId")]
         public int MarketId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal? CurrentPrice { get; set; }

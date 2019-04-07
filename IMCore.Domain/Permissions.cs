@@ -12,14 +12,14 @@ namespace IMCore.Domain
             UserPermissions = new HashSet<UserPermissions>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
         public string PermissionName { get; set; }
         [StringLength(255)]
         public string Description { get; set; }
-        [Column("PermissionTypeID")]
+        [Column("PermissionTypeId")]
         public int PermissionTypeId { get; set; }
 
         [ForeignKey("PermissionTypeId")]

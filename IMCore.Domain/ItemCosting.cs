@@ -7,13 +7,13 @@ namespace IMCore.Domain
 {
     public partial class ItemCosting
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("ItemID")]
+        [Column("ItemId")]
         public int ItemId { get; set; }
-        [Column("MarketID")]
+        [Column("MarketId")]
         public int? MarketId { get; set; }
-        [Column("StoreID")]
+        [Column("StoreId")]
         public int? StoreId { get; set; }
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }
@@ -21,7 +21,7 @@ namespace IMCore.Domain
         public DateTime StartDate { get; set; }
         [Column(TypeName = "date")]
         public DateTime? EndDate { get; set; }
-        [Column("DivisionID")]
+        [Column("DivisionId")]
         public int? DivisionId { get; set; }
 
         [ForeignKey("DivisionId")]

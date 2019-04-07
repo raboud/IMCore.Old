@@ -24,7 +24,7 @@ namespace IMCore.Domain
         public string Description { get; set; }
         public bool IsPadding { get; set; }
         public int? YardsPerRoll { get; set; }
-        [Column("UnitOfMeasureID")]
+        [Column("UnitOfMeasureId")]
         public int UnitOfMeasureId { get; set; }
         public int? SubCatId { get; set; }
         [StringLength(512)]

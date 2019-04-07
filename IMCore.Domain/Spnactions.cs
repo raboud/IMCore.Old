@@ -13,7 +13,7 @@ namespace IMCore.Domain
             SpnactionQueue = new HashSet<SpnactionQueue>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(50)]

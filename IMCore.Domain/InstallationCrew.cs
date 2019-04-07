@@ -13,16 +13,16 @@ namespace IMCore.Domain
             WorkOrder = new HashSet<WorkOrder>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(50)]
         public string CrewName { get; set; }
-        [Column("OwnerID")]
+        [Column("OwnerId")]
         public int OwnerId { get; set; }
-        [Column("LeadID")]
+        [Column("LeadId")]
         public int LeadId { get; set; }
-        [Column("BranchID")]
+        [Column("BranchId")]
         public int BranchId { get; set; }
         public bool Active { get; set; }
         public bool InstallationManager { get; set; }

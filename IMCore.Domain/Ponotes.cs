@@ -13,20 +13,20 @@ namespace IMCore.Domain
             ActivityPonoteMapping = new HashSet<ActivityPonoteMapping>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
-        [Column("NoteTypeID")]
+        [Column("NoteTypeId")]
         public int NoteTypeId { get; set; }
-        [Column("SpokeWithID")]
+        [Column("SpokeWithId")]
         public int SpokeWithId { get; set; }
         [StringLength(50)]
         public string ContactName { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime DateTimeEntered { get; set; }
         public string NoteText { get; set; }
-        [Column("EnteredByUserID")]
+        [Column("EnteredByUserId")]
         public int? EnteredByUserId { get; set; }
         public bool CustomerToCallBack { get; set; }
         public bool Scheduled { get; set; }

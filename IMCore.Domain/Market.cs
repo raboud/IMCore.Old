@@ -51,7 +51,7 @@ namespace IMCore.Domain
         public string PhoneNumber { get; set; }
         [StringLength(13)]
         public string FaxNumber { get; set; }
-        [Column("ManagerID")]
+        [Column("ManagerId")]
         public int? ManagerId { get; set; }
         [Required]
         public bool? Active { get; set; }

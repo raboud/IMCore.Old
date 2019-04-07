@@ -8,8 +8,8 @@ namespace IMCore.Domain
     public partial class VendorNumbers
     {
         [Key]
-        [Column("VendorID")]
-        public int VendorId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [StringLength(30)]
         public string VendorNumber { get; set; }
         [StringLength(50)]

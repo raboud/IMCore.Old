@@ -13,9 +13,9 @@ namespace IMCore.Domain
             Sodocument = new HashSet<Sodocument>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         [Column("SONumber")]
         [StringLength(10)]
@@ -23,7 +23,7 @@ namespace IMCore.Domain
         [Column("SKUNumber")]
         [StringLength(12)]
         public string Skunumber { get; set; }
-        [Column("BasicLaborID")]
+        [Column("BasicLaborId")]
         public int? BasicLaborId { get; set; }
         [StringLength(100)]
         public string ShortDescription { get; set; }
@@ -37,28 +37,28 @@ namespace IMCore.Domain
         public DateTime? ExpectedArrivalDate { get; set; }
         [Column("SOLineNumber")]
         public int? SolineNumber { get; set; }
-        [Column("MaterialStatusID")]
+        [Column("MaterialStatusId")]
         public int? MaterialStatusId { get; set; }
-        [Column("EntryMethodID")]
+        [Column("EntryMethodId")]
         public int EntryMethodId { get; set; }
         public bool Deleted { get; set; }
         public int? TransferredTo { get; set; }
         public int? TransferredFrom { get; set; }
         [Column("SOMerLineNumber")]
         public int? SomerLineNumber { get; set; }
-        [Column("OriginalID")]
+        [Column("OriginalId")]
         public int? OriginalId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal? PreSplitQty { get; set; }
-        [Column("XMLStatusID")]
+        [Column("XMLStatusId")]
         public int? XmlstatusId { get; set; }
         public bool Reviewed { get; set; }
-        [Column("ReviewedByID")]
+        [Column("ReviewedById")]
         public int? ReviewedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ReviewedDate { get; set; }
         public int? WillCallLineNumber { get; set; }
-        [Column("OriginalOrderID")]
+        [Column("OriginalOrderId")]
         public int? OriginalOrderId { get; set; }
         public bool NotNeeded { get; set; }
         [Column(TypeName = "date")]

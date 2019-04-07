@@ -7,7 +7,7 @@ namespace IMCore.Domain
 {
     public partial class CompanyInfo
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(50)]
         public string Name { get; set; }

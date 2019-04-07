@@ -8,9 +8,9 @@ namespace IMCore.Domain
     [Table("SOSISentDocuments")]
     public partial class SosisentDocuments
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("DocTypeID")]
+        [Column("DocTypeId")]
         public int DocTypeId { get; set; }
         [Required]
         [StringLength(255)]

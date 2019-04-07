@@ -8,13 +8,13 @@ namespace IMCore.Domain
     [Table("POPhotos")]
     public partial class Pophotos
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(50)]
         public string FilePath { get; set; }
-        [Column("EnteredByUserID")]
+        [Column("EnteredByUserId")]
         public int? EnteredByUserId { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         public bool Deleted { get; set; }
         [Column(TypeName = "datetime")]

@@ -7,11 +7,11 @@ namespace IMCore.Domain
 {
     public partial class InstallCapacity
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? WeekStart { get; set; }
-        [Column("JobTypeID")]
+        [Column("JobTypeId")]
         public int? JobTypeId { get; set; }
         [StringLength(10)]
         public string Slot { get; set; }

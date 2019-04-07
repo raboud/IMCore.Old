@@ -7,13 +7,13 @@ namespace IMCore.Domain
 {
     public partial class OptionRetail
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("LaborID")]
+        [Column("LaborId")]
         public int LaborId { get; set; }
-        [Column("BranchID")]
+        [Column("BranchId")]
         public int? BranchId { get; set; }
-        [Column("StoreID")]
+        [Column("StoreId")]
         public int? StoreId { get; set; }
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }

@@ -12,7 +12,7 @@ namespace IMCore.Domain
             ActivityList = new HashSet<ActivityList>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [StringLength(50)]
         public string Name { get; set; }

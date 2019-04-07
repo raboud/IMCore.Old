@@ -7,7 +7,7 @@ namespace IMCore.Domain
 {
     public partial class PhoneNumberTypes
     {
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(20)]

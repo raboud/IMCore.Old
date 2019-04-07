@@ -17,7 +17,7 @@ namespace IMCore.Domain
             Orders = new HashSet<Orders>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(50)]

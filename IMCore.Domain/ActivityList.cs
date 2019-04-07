@@ -13,19 +13,19 @@ namespace IMCore.Domain
             ActivityPonoteMapping = new HashSet<ActivityPonoteMapping>();
         }
 
-        [Column("ID")]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("ActivityTypeID")]
+        [Column("ActivityTypeId")]
         public int ActivityTypeId { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; }
-        [Column("CreatedByID")]
+        [Column("CreatedById")]
         public int? CreatedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime FollowUpDate { get; set; }
-        [Column("ClosedByID")]
+        [Column("ClosedById")]
         public int? ClosedById { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ClosedDate { get; set; }

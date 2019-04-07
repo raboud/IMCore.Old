@@ -17,13 +17,13 @@ namespace IMCore.Domain
             Options = new HashSet<Options>();
         }
 
-        [Column("ItemID")]
-        public int ItemId { get; set; }
+        [Column("Id")]
+        public int Id { get; set; }
         [StringLength(255)]
         public string Description { get; set; }
         [StringLength(255)]
         public string WorkOrderDescription { get; set; }
-        [Column("UnitOfMeasureID")]
+        [Column("UnitOfMeasureId")]
         public int? UnitOfMeasureId { get; set; }
         public bool ApplyToMinimun { get; set; }
         public bool PrintOnWorkOrder { get; set; }

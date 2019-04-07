@@ -8,9 +8,9 @@ namespace IMCore.Domain
     public partial class ClientTypeReports
     {
         public int Id { get; set; }
-        [Column("ReportTypeID")]
+        [Column("ReportTypeId")]
         public int ReportTypeId { get; set; }
-        [Column("ClientTypeID")]
+        [Column("ClientTypeId")]
         public int ClientTypeId { get; set; }
         [Required]
         [StringLength(255)]

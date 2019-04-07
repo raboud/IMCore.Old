@@ -7,11 +7,11 @@ namespace IMCore.Domain
 {
     public partial class CheckDetail
     {
-        [Column("CheckDetailID")]
-        public int CheckDetailId { get; set; }
-        [Column("CheckID")]
+        [Column("Id")]
+        public int Id { get; set; }
+        [Column("CheckId")]
         public int CheckId { get; set; }
-        [Column("OrderID")]
+        [Column("OrderId")]
         public int OrderId { get; set; }
         [Column(TypeName = "numeric(19, 2)")]
         public decimal Amount { get; set; }

@@ -18,7 +18,7 @@ namespace IMCore.Domain
         }
 
         [Key]
-        [Column("OptionID")]
+        [Column("Id")]
         public int OptionId { get; set; }
         [StringLength(255)]
         public string OptionDescription { get; set; }
@@ -26,9 +26,9 @@ namespace IMCore.Domain
         public decimal? UnitPrice { get; set; }
         [Column(TypeName = "money")]
         public decimal? UnitCost { get; set; }
-        [Column("UnitOfMeasureID")]
+        [Column("UnitOfMeasureId")]
         public int? UnitOfMeasureId { get; set; }
-        [Column("MaterialTypeID")]
+        [Column("MaterialTypeId")]
         public int? MaterialTypeId { get; set; }
         [Column(TypeName = "money")]
         public decimal? RetailPrice { get; set; }
@@ -39,7 +39,7 @@ namespace IMCore.Domain
         public bool? Active { get; set; }
         [Column("ApplyToMinimumWO")]
         public bool? ApplyToMinimumWo { get; set; }
-        [Column("ItemID")]
+        [Column("ItemId")]
         public int? ItemId { get; set; }
         public bool? Size { get; set; }
 
