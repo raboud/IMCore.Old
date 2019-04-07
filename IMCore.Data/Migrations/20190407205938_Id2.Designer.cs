@@ -4,14 +4,16 @@ using IMCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IMCore.Data.Migrations
 {
     [DbContext(typeof(IMCoreContext))]
-    partial class IMCoreContextModelSnapshot : ModelSnapshot
+    [Migration("20190407205938_Id2")]
+    partial class Id2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
