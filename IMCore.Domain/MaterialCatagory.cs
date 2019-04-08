@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
     [Table("Material Catagory")]
-    public partial class MaterialCatagory
+    public partial class Material
     {
-        public MaterialCatagory()
+        public Material()
         {
             MaterialCategoryBasicLaborMappings = new HashSet<MaterialCategoryBasicLaborMappings>();
             MaterialCategoryItemMappings = new HashSet<MaterialCategoryItemMappings>();
@@ -43,7 +43,7 @@ namespace IMCore.Domain
 
         [ForeignKey("SubCatId")]
         [InverseProperty("MaterialCatagory")]
-        public virtual MatSubCat SubCat { get; set; }
+        public virtual MaterialSubCategory SubCat { get; set; }
         [ForeignKey("UnitOfMeasureId")]
         [InverseProperty("MaterialCatagory")]
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }

@@ -11,15 +11,15 @@ namespace IMCore.Domain
         {
             BasicLabor = new HashSet<BasicLabor>();
             Item = new HashSet<Item>();
-            MaterialCatagory = new HashSet<MaterialCatagory>();
-            Options = new HashSet<Options>();
-            OrderCustomDetails = new HashSet<OrderCustomDetails>();
-            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetails>();
-            OrderSomerchandiseDetails = new HashSet<OrderSomerchandiseDetails>();
+            MaterialCatagory = new HashSet<Material>();
+            Options = new HashSet<Option>();
+            OrderCustomDetails = new HashSet<OrderCustomDetail>();
+            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
+            OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
         }
 
         [Column("UnitOfMeasureId")]
-        public int UnitOfMeasureId { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(50)]
         public string Description { get; set; }
@@ -36,14 +36,14 @@ namespace IMCore.Domain
         [InverseProperty("UnitOfMeasure")]
         public virtual ICollection<Item> Item { get; set; }
         [InverseProperty("UnitOfMeasure")]
-        public virtual ICollection<MaterialCatagory> MaterialCatagory { get; set; }
+        public virtual ICollection<Material> MaterialCatagory { get; set; }
         [InverseProperty("UnitOfMeasure")]
-        public virtual ICollection<Options> Options { get; set; }
+        public virtual ICollection<Option> Options { get; set; }
         [InverseProperty("UnitOfMeasure")]
-        public virtual ICollection<OrderCustomDetails> OrderCustomDetails { get; set; }
+        public virtual ICollection<OrderCustomDetail> OrderCustomDetails { get; set; }
         [InverseProperty("Uom")]
-        public virtual ICollection<OrderRegMerchandiseDetails> OrderRegMerchandiseDetails { get; set; }
+        public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
         [InverseProperty("Uom")]
-        public virtual ICollection<OrderSomerchandiseDetails> OrderSomerchandiseDetails { get; set; }
+        public virtual ICollection<OrderSOMerchandiseDetail> OrderSomerchandiseDetails { get; set; }
     }
 }

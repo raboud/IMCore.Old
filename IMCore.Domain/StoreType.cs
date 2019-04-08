@@ -5,19 +5,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class StoreType
+	
+
+	[Table("StoreType")]
+	public partial class ClientType
     {
-        public StoreType()
+        public ClientType()
         {
-            ClientTypeReports = new HashSet<ClientTypeReports>();
-            MaterialType = new HashSet<MaterialType>();
-            Stores = new HashSet<Stores>();
+            ClientTypeReports = new HashSet<ClientTypeReport>();
+            MaterialType = new HashSet<Program>();
+            Stores = new HashSet<Client>();
         }
 
         [Column("StoreTypeId")]
-        public int StoreTypeId { get; set; }
+        public int Id { get; set; }
         [StringLength(50)]
-        public string StoreTypeName { get; set; }
+		[Column("StoreTypeName")]
+        public string Name { get; set; }
         [StringLength(50)]
         public string ImageName { get; set; }
         [Column(TypeName = "image")]
@@ -27,10 +31,10 @@ namespace IMCore.Domain
         public string Qbclass { get; set; }
 
         [InverseProperty("ClientType")]
-        public virtual ICollection<ClientTypeReports> ClientTypeReports { get; set; }
+        public virtual ICollection<ClientTypeReport> ClientTypeReports { get; set; }
         [InverseProperty("StoreType")]
-        public virtual ICollection<MaterialType> MaterialType { get; set; }
+        public virtual ICollection<Program> MaterialType { get; set; }
         [InverseProperty("StoreType")]
-        public virtual ICollection<Stores> Stores { get; set; }
+        public virtual ICollection<Client> Stores { get; set; }
     }
 }

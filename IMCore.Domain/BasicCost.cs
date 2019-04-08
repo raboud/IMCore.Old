@@ -23,9 +23,9 @@ namespace IMCore.Domain
         public DateTime? EndDate { get; set; }
 
         [ForeignKey("BranchId")]
-        [InverseProperty("BasicCost")]
+        [InverseProperty("Costs")]
         public virtual Market Branch { get; set; }
         [ForeignKey("StoreId")]
-        public virtual Stores Store { get; set; }
+        public virtual Client Store { get; set; }
     }
 }

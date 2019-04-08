@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Admins
+	[Table("Admins")]
+    public partial class Admin
     {
         [Key]
         [Column("EmployeeId")]
@@ -13,6 +14,6 @@ namespace IMCore.Domain
 
         [ForeignKey("EmployeeId")]
         [InverseProperty("Admins")]
-        public virtual Employees Employee { get; set; }
+        public virtual User Employee { get; set; }
     }
 }

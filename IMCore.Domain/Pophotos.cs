@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
     [Table("POPhotos")]
-    public partial class Pophotos
+    public partial class POPhoto
     {
         [Column("Id")]
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace IMCore.Domain
 
         [ForeignKey("OrderId")]
         [InverseProperty("Pophotos")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

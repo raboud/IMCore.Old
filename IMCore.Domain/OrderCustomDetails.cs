@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class OrderCustomDetails
+	[Table("OrderCustomDetails")]
+    public partial class OrderCustomDetail
     {
         [Key]
         [Column("OrderCustomId")]
@@ -52,14 +53,14 @@ namespace IMCore.Domain
         [InverseProperty("OrderCustomDetails")]
         public virtual EntryMethod EntryMethod { get; set; }
         [ForeignKey("OrderId")]
-        [InverseProperty("OrderCustomDetails")]
-        public virtual Orders Order { get; set; }
+        [InverseProperty("CustomLabors")]
+        public virtual Order Order { get; set; }
         [ForeignKey("ReviewedById")]
         [InverseProperty("OrderCustomDetails")]
-        public virtual Employees ReviewedBy { get; set; }
+        public virtual User ReviewedBy { get; set; }
         [ForeignKey("SubContractorId")]
         [InverseProperty("OrderCustomDetails")]
-        public virtual SubContractors SubContractor { get; set; }
+        public virtual SubContractor SubContractor { get; set; }
         [ForeignKey("UnitOfMeasureId")]
         [InverseProperty("OrderCustomDetails")]
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }

@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class MeasureCompOrderData
+	[Table("MeasureCompOrderData")]
+    public partial class MeasureCompOrder
     {
         [Column("Id")]
         public int Id { get; set; }
@@ -31,6 +32,6 @@ namespace IMCore.Domain
 
         [ForeignKey("OrderId")]
         [InverseProperty("MeasureCompOrderData")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

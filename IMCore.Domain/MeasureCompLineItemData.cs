@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class MeasureCompLineItemData
+	[Table("MeasureCompLineItemData")]
+    public partial class MeasureCompLineItem
     {
         [Column("Id")]
         public int Id { get; set; }
@@ -23,7 +24,7 @@ namespace IMCore.Domain
         public string MaterialAmount { get; set; }
 
         [ForeignKey("CalcId")]
-        [InverseProperty("MeasureCompLineItemData")]
-        public virtual MeasureCompCalcData Calc { get; set; }
+        [InverseProperty("MeasureCompLineItem")]
+        public virtual MeasureCompCalcs Calc { get; set; }
     }
 }

@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class EmailTemplates
+	[Table("EmailTemplates")]
+    public partial class EmailTemplate
     {
         [Column("Id")]
         public int Id { get; set; }

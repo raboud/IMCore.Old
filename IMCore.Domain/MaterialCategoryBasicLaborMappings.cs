@@ -17,6 +17,6 @@ namespace IMCore.Domain
         public virtual BasicLabor BasicLabor { get; set; }
         [ForeignKey("MaterialCategoryId")]
         [InverseProperty("MaterialCategoryBasicLaborMappings")]
-        public virtual MaterialCatagory MaterialCategory { get; set; }
+        public virtual Material MaterialCategory { get; set; }
     }
 }

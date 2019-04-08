@@ -5,11 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class NoteTypes
+	[Table("NoteTypes")]
+    public partial class NoteType
     {
-        public NoteTypes()
+        public NoteType()
         {
-            Ponotes = new HashSet<Ponotes>();
+            Ponotes = new HashSet<PONote>();
         }
 
         [Column("Id")]
@@ -30,6 +31,6 @@ namespace IMCore.Domain
         public byte? DisplayOrder { get; set; }
 
         [InverseProperty("NoteType")]
-        public virtual ICollection<Ponotes> Ponotes { get; set; }
+        public virtual ICollection<PONote> Ponotes { get; set; }
     }
 }

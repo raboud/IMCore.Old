@@ -32,9 +32,9 @@ namespace IMCore.Domain
 
         [ForeignKey("OrderId")]
         [InverseProperty("Payroll")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
         [ForeignKey("SubContractorId")]
         [InverseProperty("Payroll")]
-        public virtual SubContractors SubContractor { get; set; }
+        public virtual SubContractor SubContractor { get; set; }
     }
 }

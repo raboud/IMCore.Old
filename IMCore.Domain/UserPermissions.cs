@@ -29,6 +29,6 @@ namespace IMCore.Domain
         public virtual Permissions Permission { get; set; }
         [ForeignKey("UserId")]
         [InverseProperty("UserPermissions")]
-        public virtual Employees User { get; set; }
+        public virtual User User { get; set; }
     }
 }

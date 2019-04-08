@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Customers
+	[Table("Customers")]
+	public partial class Customer
     {
-        public Customers()
+        public Customer()
         {
-            MeasureCompCustData = new HashSet<MeasureCompCustData>();
-            Orders = new HashSet<Orders>();
+            MeasureCompCustData = new HashSet<MeasureCompCustomers>();
+            Orders = new HashSet<Order>();
         }
 
         [Key]
@@ -61,8 +62,8 @@ namespace IMCore.Domain
         [InverseProperty("Customers")]
         public virtual Address AddressNavigation { get; set; }
         [InverseProperty("Customer")]
-        public virtual ICollection<MeasureCompCustData> MeasureCompCustData { get; set; }
+        public virtual ICollection<MeasureCompCustomers> MeasureCompCustData { get; set; }
         [InverseProperty("Customer")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
     [Table("Order Options Details")]
-    public partial class OrderOptionsDetails
+    public partial class OrderOptionalLaborDetail
     {
         [Key]
         [Column("OrdeOptionslId")]
@@ -52,12 +52,12 @@ namespace IMCore.Domain
         public virtual EntryMethod EntryMethod { get; set; }
         [ForeignKey("OptionId")]
         [InverseProperty("OrderOptionsDetails")]
-        public virtual Options Option { get; set; }
+        public virtual Option Option { get; set; }
         [ForeignKey("OrderId")]
-        [InverseProperty("OrderOptionsDetails")]
-        public virtual Orders Order { get; set; }
+        [InverseProperty("OptionalLabors")]
+        public virtual Order Order { get; set; }
         [ForeignKey("ReviewedById")]
         [InverseProperty("OrderOptionsDetails")]
-        public virtual Employees ReviewedBy { get; set; }
+        public virtual User ReviewedBy { get; set; }
     }
 }

@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
     [Table("SPNActions")]
-    public partial class Spnactions
+    public partial class SPNActionType
     {
-        public Spnactions()
+        public SPNActionType()
         {
-            SpnactionQueue = new HashSet<SpnactionQueue>();
+            SpnactionQueue = new HashSet<SPNActionQueue>();
         }
 
         [Column("Id")]
@@ -20,6 +20,6 @@ namespace IMCore.Domain
         public string Description { get; set; }
 
         [InverseProperty("Action")]
-        public virtual ICollection<SpnactionQueue> SpnactionQueue { get; set; }
+        public virtual ICollection<SPNActionQueue> SpnactionQueue { get; set; }
     }
 }

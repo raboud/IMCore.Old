@@ -15,6 +15,10 @@
     <Compile Remove="Migrations\20190407174042_PrintOnWorkOrder.Designer.cs" />
     <Compile Remove="Migrations\20190407174213_PrintOnWorkOrder.cs" />
     <Compile Remove="Migrations\20190407174213_PrintOnWorkOrder.Designer.cs" />
+    <Compile Remove="Migrations\20190408072832_CleanUp2.cs" />
+    <Compile Remove="Migrations\20190408072832_CleanUp2.Designer.cs" />
+    <Compile Remove="Migrations\20190408073609_CleanUp2.cs" />
+    <Compile Remove="Migrations\20190408073609_CleanUp2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IMCore.Domain\IMCore.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

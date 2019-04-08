@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class ActivityList
+	[Table("ActivityList")]
+    public partial class Activity
     {
-        public ActivityList()
+        public Activity()
         {
             ActivityData = new HashSet<ActivityData>();
             ActivityPonoteMapping = new HashSet<ActivityPonoteMapping>();
@@ -35,13 +36,13 @@ namespace IMCore.Domain
         public virtual ActivityTypes ActivityType { get; set; }
         [ForeignKey("ClosedById")]
         [InverseProperty("ActivityListClosedBy")]
-        public virtual Employees ClosedBy { get; set; }
+        public virtual User ClosedBy { get; set; }
         [ForeignKey("CreatedById")]
         [InverseProperty("ActivityListCreatedBy")]
-        public virtual Employees CreatedBy { get; set; }
+        public virtual User CreatedBy { get; set; }
         [ForeignKey("OrderId")]
         [InverseProperty("ActivityList")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
         [InverseProperty("Activity")]
         public virtual ICollection<ActivityData> ActivityData { get; set; }
         [InverseProperty("Activity")]

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
     [Table("CheckCBDetail")]
-    public partial class CheckCbdetail
+    public partial class CheckCBDetail
     {
         [Column("CheckCBDetailId")]
         public int CheckCbdetailId { get; set; }
@@ -18,10 +18,10 @@ namespace IMCore.Domain
         public decimal Amount { get; set; }
 
         [ForeignKey("ChargeBackId")]
-        [InverseProperty("CheckCbdetail")]
-        public virtual ChargeBacks ChargeBack { get; set; }
+        [InverseProperty("CheckCBDetails")]
+        public virtual ChargeBack ChargeBack { get; set; }
         [ForeignKey("CheckId")]
-        [InverseProperty("CheckCbdetail")]
+        [InverseProperty("CheckCBDetails")]
         public virtual Checks Check { get; set; }
     }
 }

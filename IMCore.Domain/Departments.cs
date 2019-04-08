@@ -5,13 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Departments
+	[Table("Departments")]
+    public partial class Department
     {
-        public Departments()
+        public Department()
         {
             DepartmentsContactTitles = new HashSet<DepartmentsContactTitles>();
             DepartmentsStoresAssignments = new HashSet<DepartmentsStoresAssignments>();
-            StoreContacts = new HashSet<StoreContacts>();
+            StoreContacts = new HashSet<ClientContact>();
         }
 
         [Column("Id")]
@@ -24,6 +25,6 @@ namespace IMCore.Domain
         [InverseProperty("Department")]
         public virtual ICollection<DepartmentsStoresAssignments> DepartmentsStoresAssignments { get; set; }
         [InverseProperty("Department")]
-        public virtual ICollection<StoreContacts> StoreContacts { get; set; }
+        public virtual ICollection<ClientContact> StoreContacts { get; set; }
     }
 }

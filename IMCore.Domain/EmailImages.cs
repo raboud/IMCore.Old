@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class EmailImages
+	[Table("EmailImages")]
+    public partial class EmailImage
     {
         [Column("Id")]
         public int Id { get; set; }

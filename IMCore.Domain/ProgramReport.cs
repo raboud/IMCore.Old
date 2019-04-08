@@ -19,7 +19,7 @@ namespace IMCore.Domain
 
         [ForeignKey("ProgramId")]
         [InverseProperty("ProgramReport")]
-        public virtual MaterialType Program { get; set; }
+        public virtual Program Program { get; set; }
         [ForeignKey("ReportTypeId")]
         [InverseProperty("ProgramReport")]
         public virtual ReportType ReportType { get; set; }

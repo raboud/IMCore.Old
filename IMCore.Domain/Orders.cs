@@ -2,36 +2,38 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace IMCore.Domain
 {
-    public partial class Orders
+	[Table("Orders")]
+    public partial class Order
     {
-        public Orders()
+        public Order()
         {
-            ActionReport = new HashSet<ActionReport>();
-            ActivityList = new HashSet<ActivityList>();
+            ActionReports = new HashSet<ActionReport>();
+            ActivityList = new HashSet<Activity>();
             Calls = new HashSet<Calls>();
-            ChargeBacks = new HashSet<ChargeBacks>();
+            ChargeBacks = new HashSet<ChargeBack>();
             CheckDetail = new HashSet<CheckDetail>();
-            Discrepancies = new HashSet<Discrepancies>();
-            InversePrimaryOrder = new HashSet<Orders>();
+            Discrepancies = new HashSet<Discrepancy>();
+            AssociatedOrders = new HashSet<Order>();
             Jobs = new HashSet<Jobs>();
-            MeasureCompCalcData = new HashSet<MeasureCompCalcData>();
-            MeasureCompOrderData = new HashSet<MeasureCompOrderData>();
-            OrderBasicLaborDetails = new HashSet<OrderBasicLaborDetails>();
-            OrderCustomDetails = new HashSet<OrderCustomDetails>();
-            OrderDiagrams = new HashSet<OrderDiagrams>();
+            MeasureCompCalcData = new HashSet<MeasureCompCalcs>();
+            MeasureCompOrderData = new HashSet<MeasureCompOrder>();
+            BasicLabors = new HashSet<OrderBasicLaborDetail>();
+            CustomLabors = new HashSet<OrderCustomDetail>();
+            OrderDiagrams = new HashSet<OrderDiagram>();
             OrderDocument = new HashSet<OrderDocument>();
-            OrderOptionsDetails = new HashSet<OrderOptionsDetails>();
-            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetails>();
-            OrderSomerchandiseDetails = new HashSet<OrderSomerchandiseDetails>();
+			OptionalLabors = new HashSet<OrderOptionalLaborDetail>();
+            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
+            OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
             Payroll = new HashSet<Payroll>();
-            Ponotes = new HashSet<Ponotes>();
-            Pophotos = new HashSet<Pophotos>();
-            UserTasks = new HashSet<UserTasks>();
-            Voc = new HashSet<Voc>();
-            WorkOrder = new HashSet<WorkOrder>();
+            PONotes = new HashSet<PONote>();
+            Pophotos = new HashSet<POPhoto>();
+            UserTasks = new HashSet<UserTask>();
+            Voc = new HashSet<VOC>();
+            WorkOrders = new HashSet<WorkOrder>();
         }
 
         [Key]
@@ -68,7 +70,7 @@ namespace IMCore.Domain
         public decimal RetailAmount { get; set; }
         public bool NoMinimum { get; set; }
         [Column("ScheduledAM")]
-        public bool ScheduledAm { get; set; }
+        public bool ScheduledAM { get; set; }
         public bool Cancelled { get; set; }
         public bool Warrenty { get; set; }
         [Column("StoreId")]
@@ -128,7 +130,7 @@ namespace IMCore.Domain
         public bool Estimate { get; set; }
         [Column("NUMBER")]
         [StringLength(10)]
-        public string Number { get; set; }
+        public string NUMBER { get; set; }
         [Column("AddressId")]
         public int? AddressId { get; set; }
         [Column("JobId")]
@@ -157,13 +159,13 @@ namespace IMCore.Domain
         public virtual Address Address { get; set; }
         [ForeignKey("AssignedToId")]
         [InverseProperty("OrdersAssignedTo")]
-        public virtual Employees AssignedTo { get; set; }
+        public virtual User AssignedTo { get; set; }
         [ForeignKey("CustomerId")]
         [InverseProperty("Orders")]
-        public virtual Customers Customer { get; set; }
+        public virtual Customer Customer { get; set; }
         [ForeignKey("EnteredById")]
         [InverseProperty("OrdersEnteredBy")]
-        public virtual Employees EnteredBy { get; set; }
+        public virtual User EnteredBy { get; set; }
         [ForeignKey("EntryMethodId")]
         [InverseProperty("Orders")]
         public virtual EntryMethod EntryMethod { get; set; }
@@ -172,46 +174,165 @@ namespace IMCore.Domain
         public virtual JobStatus JobStatus { get; set; }
         [ForeignKey("MaterialTypeId")]
         [InverseProperty("Orders")]
-        public virtual MaterialType MaterialType { get; set; }
+        public virtual Program Program { get; set; }
         [ForeignKey("PrimaryOrderId")]
-        [InverseProperty("InversePrimaryOrder")]
-        public virtual Orders PrimaryOrder { get; set; }
+        [InverseProperty("AssociatedOrders")]
+        public virtual Order PrimaryOrder { get; set; }
         [ForeignKey("ReviewedById")]
         [InverseProperty("OrdersReviewedBy")]
-        public virtual Employees ReviewedBy { get; set; }
+        public virtual User ReviewedBy { get; set; }
         [ForeignKey("SalesPersonId")]
         [InverseProperty("OrdersSalesPerson")]
-        public virtual Employees SalesPerson { get; set; }
+        public virtual User SalesPerson { get; set; }
         [InverseProperty("Order")]
-        public virtual ICollection<ActionReport> ActionReport { get; set; }
+        public virtual ICollection<ActionReport> ActionReports { get; set; }
         [InverseProperty("Order")]
-        public virtual ICollection<ActivityList> ActivityList { get; set; }
+        public virtual ICollection<Activity> ActivityList { get; set; }
         [InverseProperty("Order")]
         public virtual ICollection<Calls> Calls { get; set; }
         [InverseProperty("Order")]
-        public virtual ICollection<ChargeBacks> ChargeBacks { get; set; }
+        public virtual ICollection<ChargeBack> ChargeBacks { get; set; }
         [InverseProperty("Order")]
         public virtual ICollection<CheckDetail> CheckDetail { get; set; }
         [InverseProperty("Order")]
-        public virtual ICollection<Discrepancies> Discrepancies { get; set; }
-        [InverseProperty("PrimaryOrder")]
-        public virtual ICollection<Orders> InversePrimaryOrder { get; set; }
-        [InverseProperty("PrimaryOrder")]
+        public virtual ICollection<Discrepancy> Discrepancies { get; set; }
+        public virtual ICollection<Order> AssociatedOrders { get; set; }
         public virtual ICollection<Jobs> Jobs { get; set; }
-        public virtual ICollection<MeasureCompCalcData> MeasureCompCalcData { get; set; }
-        public virtual ICollection<MeasureCompOrderData> MeasureCompOrderData { get; set; }
-        public virtual ICollection<OrderBasicLaborDetails> OrderBasicLaborDetails { get; set; }
-        public virtual ICollection<OrderCustomDetails> OrderCustomDetails { get; set; }
-        public virtual ICollection<OrderDiagrams> OrderDiagrams { get; set; }
+        public virtual ICollection<MeasureCompCalcs> MeasureCompCalcData { get; set; }
+        public virtual ICollection<MeasureCompOrder> MeasureCompOrderData { get; set; }
+        public virtual ICollection<OrderBasicLaborDetail> BasicLabors { get; set; }
+        public virtual ICollection<OrderCustomDetail> CustomLabors { get; set; }
+        public virtual ICollection<OrderDiagram> OrderDiagrams { get; set; }
         public virtual ICollection<OrderDocument> OrderDocument { get; set; }
-        public virtual ICollection<OrderOptionsDetails> OrderOptionsDetails { get; set; }
-        public virtual ICollection<OrderRegMerchandiseDetails> OrderRegMerchandiseDetails { get; set; }
-        public virtual ICollection<OrderSomerchandiseDetails> OrderSomerchandiseDetails { get; set; }
+        public virtual ICollection<OrderOptionalLaborDetail> OptionalLabors { get; set; }
+        public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
+        public virtual ICollection<OrderSOMerchandiseDetail> OrderSomerchandiseDetails { get; set; }
         public virtual ICollection<Payroll> Payroll { get; set; }
-        public virtual ICollection<Ponotes> Ponotes { get; set; }
-        public virtual ICollection<Pophotos> Pophotos { get; set; }
-        public virtual ICollection<UserTasks> UserTasks { get; set; }
-        public virtual ICollection<Voc> Voc { get; set; }
-        public virtual ICollection<WorkOrder> WorkOrder { get; set; }
-    }
+        public virtual ICollection<PONote> PONotes { get; set; }
+        public virtual ICollection<POPhoto> Pophotos { get; set; }
+        public virtual ICollection<UserTask> UserTasks { get; set; }
+        public virtual ICollection<VOC> Voc { get; set; }
+        public virtual ICollection<WorkOrder> WorkOrders { get; set; }
+
+		[ForeignKey("StoreId")]
+//		[InverseProperty("Orders")]
+		public virtual Client Client { get; set; }
+		public string FormatStoreAndPONumber()
+		{
+			return String.Format("{0} / {1}", this.Client.StoreNumber, this.NUMBER);
+		}
+
+		public bool HasAlerts()
+		{
+			bool hasAlerts = false;
+
+			if (!hasAlerts && this.BasicLabors.Any(l => !l.Reviewed))
+			{
+				hasAlerts = true;
+			}
+
+			if (!hasAlerts && this.OptionalLabors.Any(l => !l.Reviewed))
+			{
+				hasAlerts = true;
+			}
+
+			if (!hasAlerts && this.CustomLabors.Any(l => !(l.Reviewed ?? false)))
+			{
+				hasAlerts = true;
+			}
+
+			if (!hasAlerts && this.OrderSomerchandiseDetails.Any(l => !l.Reviewed))
+			{
+				hasAlerts = true;
+			}
+
+			if (!hasAlerts && this.OrderRegMerchandiseDetails.Any(l => !l.Reviewed))
+			{
+				hasAlerts = true;
+			}
+
+			if (!hasAlerts)
+			{
+				hasAlerts = this.Discrepancies != null && this.Discrepancies.Count > 0;
+			}
+
+			return hasAlerts;
+		}
+
+		[NotMapped]
+		public decimal Total
+		{
+			get
+			{
+				decimal t = 0.0M;
+
+				t += (from b in this.BasicLabors
+					  where (
+					  (!b.Deleted) &&
+					  ((b.BasicLabor.Size != null && b.BasicLabor.Size.Value) || (b.BasicLabor.Size == null && b.BasicLabor.Item != null && b.BasicLabor.Item.Size)))
+					  select b.InstallQuantity).Sum();
+
+				t += (from b in this.OptionalLabors
+					  where (
+					  (!b.Deleted) &&
+					  ((b.Option.Size != null && b.Option.Size.Value) || (b.Option.Size == null && b.Option.Item != null && b.Option.Item.Size)))
+					  select b.Quantity).Sum();
+
+				return t;
+			}
+		}
+
+		public void GetTotalLabor(out decimal applyToMin, out decimal noMinApplied)
+		{
+			applyToMin = 0;
+			noMinApplied = 0;
+			foreach (OrderBasicLaborDetail bl in this.BasicLabors)
+			{
+				if (bl.BasicLabor.PrintOnWorkOrder ?? true && !bl.Deleted)
+				{
+					applyToMin += bl.ExtendedCost;
+				}
+			}
+			foreach (OrderCustomDetail cl in this.CustomLabors)
+			{
+				if (cl.PrintOnWorkOrder && !(cl.Deleted ?? false))
+				{
+					noMinApplied += cl.ExtendedCost;
+				}
+			}
+			foreach (OrderOptionalLaborDetail ol in this.OptionalLabors)
+			{
+				if (ol.PrintOnWorkOrder ?? true && !ol.Deleted)
+				{
+					if (ol.Option.ApplyToMinimumWO ?? false)
+					{
+						applyToMin += ol.ExtendedCost;
+					}
+					else
+					{
+						noMinApplied += ol.ExtendedCost;
+					}
+				}
+			}
+		}
+
+
+		[NotMapped]
+		public decimal TotalLabor
+		{
+			get
+			{
+				decimal value = 0;
+				decimal applyToMin = 0;
+				decimal noMinApplied = 0;
+				GetTotalLabor(out applyToMin, out noMinApplied);
+				if ((Program != null) && ((Program.MinimumCost ?? 0) > applyToMin))
+				{
+					applyToMin = Program.MinimumCost.Value;
+				}
+				return value;
+			}
+		}
+
+	}
 }

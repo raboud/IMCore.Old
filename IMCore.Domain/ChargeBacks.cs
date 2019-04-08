@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class ChargeBacks
+	[Table("ChargeBacks")]
+    public partial class ChargeBack
     {
-        public ChargeBacks()
+        public ChargeBack()
         {
-            BillDetails = new HashSet<BillDetails>();
-            CheckCbdetail = new HashSet<CheckCbdetail>();
+            BillDetails = new HashSet<BillDetail>();
+            CheckCBDetails = new HashSet<CheckCBDetail>();
         }
 
         [Key]
@@ -44,10 +45,10 @@ namespace IMCore.Domain
 
         [ForeignKey("OrderId")]
         [InverseProperty("ChargeBacks")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
         [InverseProperty("ChargeBack")]
-        public virtual ICollection<BillDetails> BillDetails { get; set; }
+        public virtual ICollection<BillDetail> BillDetails { get; set; }
         [InverseProperty("ChargeBack")]
-        public virtual ICollection<CheckCbdetail> CheckCbdetail { get; set; }
+        public virtual ICollection<CheckCBDetail> CheckCBDetails { get; set; }
     }
 }

@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class UserTasks
+	[Table("UserTasks")]
+    public partial class UserTask
     {
         [Key]
         [Column("Id")]
@@ -31,18 +32,18 @@ namespace IMCore.Domain
 
         [ForeignKey("AddedById")]
         [InverseProperty("UserTasksAddedBy")]
-        public virtual Employees AddedBy { get; set; }
+        public virtual User AddedBy { get; set; }
         [ForeignKey("AssignedToId")]
         [InverseProperty("UserTasksAssignedTo")]
-        public virtual Employees AssignedTo { get; set; }
+        public virtual User AssignedTo { get; set; }
         [ForeignKey("CompletedById")]
         [InverseProperty("UserTasksCompletedBy")]
-        public virtual Employees CompletedBy { get; set; }
+        public virtual User CompletedBy { get; set; }
         [ForeignKey("OrderId")]
         [InverseProperty("UserTasks")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
         [ForeignKey("UserTaskTypeId")]
         [InverseProperty("UserTasks")]
-        public virtual UserTaskTypes UserTaskType { get; set; }
+        public virtual UserTaskType UserTaskType { get; set; }
     }
 }

@@ -1,37 +1,39 @@
-﻿using System;
+﻿using IMCore.TypesAndInterfaces.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Employees
+	[Table("Employees")]
+	public partial class User
     {
-        public Employees()
+        public User()
         {
-            ActivityListClosedBy = new HashSet<ActivityList>();
-            ActivityListCreatedBy = new HashSet<ActivityList>();
-            Discrepancies = new HashSet<Discrepancies>();
+            ActivityListClosedBy = new HashSet<Activity>();
+            ActivityListCreatedBy = new HashSet<Activity>();
+            Discrepancies = new HashSet<Discrepancy>();
             JobsAssignedTo = new HashSet<Jobs>();
             JobsCreatedBy = new HashSet<Jobs>();
             Market = new HashSet<Market>();
-            OrderBasicLaborDetails = new HashSet<OrderBasicLaborDetails>();
-            OrderCustomDetails = new HashSet<OrderCustomDetails>();
-            OrderOptionsDetails = new HashSet<OrderOptionsDetails>();
-            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetails>();
-            OrderSomerchandiseDetails = new HashSet<OrderSomerchandiseDetails>();
-            OrdersAssignedTo = new HashSet<Orders>();
-            OrdersEnteredBy = new HashSet<Orders>();
-            OrdersReviewedBy = new HashSet<Orders>();
-            OrdersSalesPerson = new HashSet<Orders>();
-            Ponotes = new HashSet<Ponotes>();
-            StoresAccountCoor = new HashSet<Stores>();
-            StoresAccountRep = new HashSet<Stores>();
+            OrderBasicLaborDetails = new HashSet<OrderBasicLaborDetail>();
+            OrderCustomDetails = new HashSet<OrderCustomDetail>();
+            OrderOptionsDetails = new HashSet<OrderOptionalLaborDetail>();
+            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
+            OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
+            OrdersAssignedTo = new HashSet<Order>();
+            OrdersEnteredBy = new HashSet<Order>();
+            OrdersReviewedBy = new HashSet<Order>();
+            OrdersSalesPerson = new HashSet<Order>();
+            Ponotes = new HashSet<PONote>();
+            StoresAccountCoor = new HashSet<Client>();
+            StoresAccountRep = new HashSet<Client>();
             UserMarketDivisionAssignments = new HashSet<UserMarketDivisionAssignments>();
             UserPermissions = new HashSet<UserPermissions>();
-            UserTasksAddedBy = new HashSet<UserTasks>();
-            UserTasksAssignedTo = new HashSet<UserTasks>();
-            UserTasksCompletedBy = new HashSet<UserTasks>();
+            UserTasksAddedBy = new HashSet<UserTask>();
+            UserTasksAssignedTo = new HashSet<UserTask>();
+            UserTasksCompletedBy = new HashSet<UserTask>();
         }
 
         [Column("Id")]
@@ -76,13 +78,13 @@ namespace IMCore.Domain
         public bool? Active { get; set; }
 
         [InverseProperty("Employee")]
-        public virtual Admins Admins { get; set; }
+        public virtual Admin Admins { get; set; }
         [InverseProperty("ClosedBy")]
-        public virtual ICollection<ActivityList> ActivityListClosedBy { get; set; }
+        public virtual ICollection<Activity> ActivityListClosedBy { get; set; }
         [InverseProperty("CreatedBy")]
-        public virtual ICollection<ActivityList> ActivityListCreatedBy { get; set; }
+        public virtual ICollection<Activity> ActivityListCreatedBy { get; set; }
         [InverseProperty("ReviewedBy")]
-        public virtual ICollection<Discrepancies> Discrepancies { get; set; }
+        public virtual ICollection<Discrepancy> Discrepancies { get; set; }
         [InverseProperty("AssignedTo")]
         public virtual ICollection<Jobs> JobsAssignedTo { get; set; }
         [InverseProperty("CreatedBy")]
@@ -90,38 +92,57 @@ namespace IMCore.Domain
         [InverseProperty("Manager")]
         public virtual ICollection<Market> Market { get; set; }
         [InverseProperty("ReviewedBy")]
-        public virtual ICollection<OrderBasicLaborDetails> OrderBasicLaborDetails { get; set; }
+        public virtual ICollection<OrderBasicLaborDetail> OrderBasicLaborDetails { get; set; }
         [InverseProperty("ReviewedBy")]
-        public virtual ICollection<OrderCustomDetails> OrderCustomDetails { get; set; }
+        public virtual ICollection<OrderCustomDetail> OrderCustomDetails { get; set; }
         [InverseProperty("ReviewedBy")]
-        public virtual ICollection<OrderOptionsDetails> OrderOptionsDetails { get; set; }
+        public virtual ICollection<OrderOptionalLaborDetail> OrderOptionsDetails { get; set; }
         [InverseProperty("ReviewedBy")]
-        public virtual ICollection<OrderRegMerchandiseDetails> OrderRegMerchandiseDetails { get; set; }
+        public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
         [InverseProperty("ReviewedBy")]
-        public virtual ICollection<OrderSomerchandiseDetails> OrderSomerchandiseDetails { get; set; }
+        public virtual ICollection<OrderSOMerchandiseDetail> OrderSomerchandiseDetails { get; set; }
         [InverseProperty("AssignedTo")]
-        public virtual ICollection<Orders> OrdersAssignedTo { get; set; }
+        public virtual ICollection<Order> OrdersAssignedTo { get; set; }
         [InverseProperty("EnteredBy")]
-        public virtual ICollection<Orders> OrdersEnteredBy { get; set; }
+        public virtual ICollection<Order> OrdersEnteredBy { get; set; }
         [InverseProperty("ReviewedBy")]
-        public virtual ICollection<Orders> OrdersReviewedBy { get; set; }
+        public virtual ICollection<Order> OrdersReviewedBy { get; set; }
         [InverseProperty("SalesPerson")]
-        public virtual ICollection<Orders> OrdersSalesPerson { get; set; }
+        public virtual ICollection<Order> OrdersSalesPerson { get; set; }
         [InverseProperty("EnteredByUser")]
-        public virtual ICollection<Ponotes> Ponotes { get; set; }
+        public virtual ICollection<PONote> Ponotes { get; set; }
         [InverseProperty("AccountCoor")]
-        public virtual ICollection<Stores> StoresAccountCoor { get; set; }
+        public virtual ICollection<Client> StoresAccountCoor { get; set; }
         [InverseProperty("AccountRep")]
-        public virtual ICollection<Stores> StoresAccountRep { get; set; }
+        public virtual ICollection<Client> StoresAccountRep { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<UserMarketDivisionAssignments> UserMarketDivisionAssignments { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<UserPermissions> UserPermissions { get; set; }
         [InverseProperty("AddedBy")]
-        public virtual ICollection<UserTasks> UserTasksAddedBy { get; set; }
+        public virtual ICollection<UserTask> UserTasksAddedBy { get; set; }
         [InverseProperty("AssignedTo")]
-        public virtual ICollection<UserTasks> UserTasksAssignedTo { get; set; }
+        public virtual ICollection<UserTask> UserTasksAssignedTo { get; set; }
         [InverseProperty("CompletedBy")]
-        public virtual ICollection<UserTasks> UserTasksCompletedBy { get; set; }
-    }
+        public virtual ICollection<UserTask> UserTasksCompletedBy { get; set; }
+
+		[NotMapped]
+		public string LastNameCommaFirstName
+		{
+			get
+			{
+				return LastName.SafeTrim() + ", " + FirstName.SafeTrim();
+			}
+		}
+
+		[NotMapped]
+		public string FirstNameSpaceLastName
+		{
+			get
+			{
+				return FirstName.SafeTrim() + " " + LastName.SafeTrim();
+			}
+		}
+
+	}
 }

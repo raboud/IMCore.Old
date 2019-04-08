@@ -17,6 +17,6 @@ namespace IMCore.Domain
         public virtual Item Item { get; set; }
         [ForeignKey("MaterialCategoryId")]
         [InverseProperty("MaterialCategoryItemMappings")]
-        public virtual MaterialCatagory MaterialCategory { get; set; }
+        public virtual Material MaterialCategory { get; set; }
     }
 }

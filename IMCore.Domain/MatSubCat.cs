@@ -5,11 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class MatSubCat
+	[Table("MatSubCat")]
+    public partial class MaterialSubCategory
     {
-        public MatSubCat()
+        public MaterialSubCategory()
         {
-            MaterialCatagory = new HashSet<MaterialCatagory>();
+            MaterialCatagory = new HashSet<Material>();
         }
 
         [Key]
@@ -19,6 +20,6 @@ namespace IMCore.Domain
         public string Description { get; set; }
 
         [InverseProperty("SubCat")]
-        public virtual ICollection<MaterialCatagory> MaterialCatagory { get; set; }
+        public virtual ICollection<Material> MaterialCatagory { get; set; }
     }
 }

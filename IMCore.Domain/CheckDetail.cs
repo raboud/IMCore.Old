@@ -17,10 +17,10 @@ namespace IMCore.Domain
         public decimal Amount { get; set; }
 
         [ForeignKey("CheckId")]
-        [InverseProperty("CheckDetail")]
+        [InverseProperty("CheckDetails")]
         public virtual Checks Check { get; set; }
         [ForeignKey("OrderId")]
         [InverseProperty("CheckDetail")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

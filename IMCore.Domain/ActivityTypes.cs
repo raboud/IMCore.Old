@@ -9,7 +9,7 @@ namespace IMCore.Domain
     {
         public ActivityTypes()
         {
-            ActivityList = new HashSet<ActivityList>();
+            ActivityList = new HashSet<Activity>();
         }
 
         [Column("Id")]
@@ -21,6 +21,6 @@ namespace IMCore.Domain
         public bool RequirePermissionToView { get; set; }
 
         [InverseProperty("ActivityType")]
-        public virtual ICollection<ActivityList> ActivityList { get; set; }
+        public virtual ICollection<Activity> ActivityList { get; set; }
     }
 }

@@ -15,9 +15,9 @@ namespace IMCore.Domain
 
         [ForeignKey("ActivityId")]
         [InverseProperty("ActivityPonoteMapping")]
-        public virtual ActivityList Activity { get; set; }
+        public virtual Activity Activity { get; set; }
         [ForeignKey("PonoteId")]
         [InverseProperty("ActivityPonoteMapping")]
-        public virtual Ponotes Ponote { get; set; }
+        public virtual PONote Ponote { get; set; }
     }
 }

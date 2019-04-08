@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
     [Table("SPNActionQueue")]
-    public partial class SpnactionQueue
+    public partial class SPNActionQueue
     {
         [Column("Id")]
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace IMCore.Domain
 
         [ForeignKey("ActionId")]
         [InverseProperty("SpnactionQueue")]
-        public virtual Spnactions Action { get; set; }
+        public virtual SPNActionType Action { get; set; }
     }
 }

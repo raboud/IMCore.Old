@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class MaterialTypesMarketMapping
+	[Table("MaterialTypesMarketMapping")]
+    public partial class ProgramBranchMapping
     {
         [Column("MaterialTypeId")]
         public int MaterialTypeId { get; set; }
@@ -18,6 +19,6 @@ namespace IMCore.Domain
         public virtual Market Market { get; set; }
         [ForeignKey("MaterialTypeId")]
         [InverseProperty("MaterialTypesMarketMapping")]
-        public virtual MaterialType MaterialType { get; set; }
+        public virtual Program MaterialType { get; set; }
     }
 }

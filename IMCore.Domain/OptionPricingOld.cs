@@ -31,8 +31,8 @@ namespace IMCore.Domain
         public virtual Market Market { get; set; }
         [ForeignKey("OptionId")]
         [InverseProperty("OptionPricingOld")]
-        public virtual Options Option { get; set; }
+        public virtual Option Option { get; set; }
         [ForeignKey("StoreId")]
-        public virtual Stores Store { get; set; }
+        public virtual Client Store { get; set; }
     }
 }

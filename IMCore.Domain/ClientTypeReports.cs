@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class ClientTypeReports
+	[Table("ClientTypeReports")]
+    public partial class ClientTypeReport
     {
         public int Id { get; set; }
         [Column("ReportTypeId")]
@@ -18,7 +19,7 @@ namespace IMCore.Domain
 
         [ForeignKey("ClientTypeId")]
         [InverseProperty("ClientTypeReports")]
-        public virtual StoreType ClientType { get; set; }
+        public virtual ClientType ClientType { get; set; }
         [ForeignKey("ReportTypeId")]
         [InverseProperty("ClientTypeReports")]
         public virtual ReportType ReportType { get; set; }

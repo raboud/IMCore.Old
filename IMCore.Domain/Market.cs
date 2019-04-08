@@ -9,27 +9,28 @@ namespace IMCore.Domain
     {
         public Market()
         {
-            BasicCost = new HashSet<BasicCost>();
-            BasicPrice = new HashSet<BasicPrice>();
+            Costs = new HashSet<BasicCost>();
+            Prices = new HashSet<BasicPrice>();
             BasicPricingOld = new HashSet<BasicPricingOld>();
-            BasicRetail = new HashSet<BasicRetail>();
+            Retails = new HashSet<BasicRetail>();
             InstallationCrew = new HashSet<InstallationCrew>();
             ItemCosting = new HashSet<ItemCosting>();
             ItemMatCosting = new HashSet<ItemMatCosting>();
             ItemPricing = new HashSet<ItemPricing>();
             MaterialCost = new HashSet<MaterialCost>();
             MaterialPrice = new HashSet<MaterialPrice>();
-            MaterialTypesMarketMapping = new HashSet<MaterialTypesMarketMapping>();
+            MaterialTypesMarketMapping = new HashSet<ProgramBranchMapping>();
             OptionCost = new HashSet<OptionCost>();
             OptionPrice = new HashSet<OptionPrice>();
             OptionPricingOld = new HashSet<OptionPricingOld>();
             OptionRetail = new HashSet<OptionRetail>();
-            Stores = new HashSet<Stores>();
+            Stores = new HashSet<Client>();
             UserMarketDivisionAssignments = new HashSet<UserMarketDivisionAssignments>();
             UserPermissions = new HashSet<UserPermissions>();
         }
 
-        public int MarketId { get; set; }
+		[Column("MarketId")]
+        public int Id { get; set; }
         [Required]
         [StringLength(40)]
         public string MarketName { get; set; }
@@ -61,15 +62,15 @@ namespace IMCore.Domain
 
         [ForeignKey("ManagerId")]
         [InverseProperty("Market")]
-        public virtual Employees Manager { get; set; }
+        public virtual User Manager { get; set; }
         [InverseProperty("Branch")]
-        public virtual ICollection<BasicCost> BasicCost { get; set; }
+        public virtual ICollection<BasicCost> Costs { get; set; }
         [InverseProperty("Branch")]
-        public virtual ICollection<BasicPrice> BasicPrice { get; set; }
+        public virtual ICollection<BasicPrice> Prices { get; set; }
         [InverseProperty("Market")]
         public virtual ICollection<BasicPricingOld> BasicPricingOld { get; set; }
         [InverseProperty("Branch")]
-        public virtual ICollection<BasicRetail> BasicRetail { get; set; }
+        public virtual ICollection<BasicRetail> Retails { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<InstallationCrew> InstallationCrew { get; set; }
         [InverseProperty("Market")]
@@ -83,7 +84,7 @@ namespace IMCore.Domain
         [InverseProperty("Market")]
         public virtual ICollection<MaterialPrice> MaterialPrice { get; set; }
         [InverseProperty("Market")]
-        public virtual ICollection<MaterialTypesMarketMapping> MaterialTypesMarketMapping { get; set; }
+        public virtual ICollection<ProgramBranchMapping> MaterialTypesMarketMapping { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<OptionCost> OptionCost { get; set; }
         [InverseProperty("Branch")]
@@ -93,7 +94,7 @@ namespace IMCore.Domain
         [InverseProperty("Branch")]
         public virtual ICollection<OptionRetail> OptionRetail { get; set; }
         [InverseProperty("Market")]
-        public virtual ICollection<Stores> Stores { get; set; }
+        public virtual ICollection<Client> Stores { get; set; }
         [InverseProperty("Market")]
         public virtual ICollection<UserMarketDivisionAssignments> UserMarketDivisionAssignments { get; set; }
         [InverseProperty("Market")]

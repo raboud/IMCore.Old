@@ -29,11 +29,11 @@ namespace IMCore.Domain
         public virtual Market Market { get; set; }
         [ForeignKey("MaterialCatId")]
         [InverseProperty("MaterialPrice")]
-        public virtual MaterialCatagory MaterialCat { get; set; }
+        public virtual Material MaterialCat { get; set; }
         [ForeignKey("ProgramId")]
         [InverseProperty("MaterialPrice")]
-        public virtual MaterialType Program { get; set; }
+        public virtual Program Program { get; set; }
         [ForeignKey("StoreId")]
-        public virtual Stores Store { get; set; }
+        public virtual Client Store { get; set; }
     }
 }

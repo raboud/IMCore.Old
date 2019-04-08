@@ -36,6 +36,6 @@ namespace IMCore.Domain
 
         [ForeignKey("OrderId")]
         [InverseProperty("Calls")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

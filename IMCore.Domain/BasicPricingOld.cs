@@ -33,6 +33,6 @@ namespace IMCore.Domain
         [InverseProperty("BasicPricingOld")]
         public virtual Market Market { get; set; }
         [ForeignKey("StoreId")]
-        public virtual Stores Store { get; set; }
+        public virtual Client Store { get; set; }
     }
 }

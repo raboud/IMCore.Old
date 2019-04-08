@@ -5,11 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class MeasureCompCalcData
+	
+	[Table("MeasureCompCalcData")]
+	public partial class MeasureCompCalcs
     {
-        public MeasureCompCalcData()
+        public MeasureCompCalcs()
         {
-            MeasureCompLineItemData = new HashSet<MeasureCompLineItemData>();
+            MeasureCompLineItem = new HashSet<MeasureCompLineItem>();
         }
 
         [Column("Id")]
@@ -22,8 +24,8 @@ namespace IMCore.Domain
 
         [ForeignKey("OrderId")]
         [InverseProperty("MeasureCompCalcData")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
         [InverseProperty("Calc")]
-        public virtual ICollection<MeasureCompLineItemData> MeasureCompLineItemData { get; set; }
+        public virtual ICollection<MeasureCompLineItem> MeasureCompLineItem { get; set; }
     }
 }

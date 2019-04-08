@@ -17,6 +17,6 @@ namespace IMCore.Domain
         public virtual Document Document { get; set; }
         [ForeignKey("OrderId")]
         [InverseProperty("OrderDocument")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

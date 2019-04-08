@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
     [Table("PONotes")]
-    public partial class Ponotes
+    public partial class PONote
     {
-        public Ponotes()
+        public PONote()
         {
             ActivityPonoteMapping = new HashSet<ActivityPonoteMapping>();
         }
@@ -32,7 +32,7 @@ namespace IMCore.Domain
         public bool Scheduled { get; set; }
         public bool UnScheduled { get; set; }
         [Column("ScheduledAM")]
-        public bool? ScheduledAm { get; set; }
+        public bool? ScheduledAM { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ScheduledDate { get; set; }
         public bool Deleted { get; set; }
@@ -43,13 +43,13 @@ namespace IMCore.Domain
 
         [ForeignKey("EnteredByUserId")]
         [InverseProperty("Ponotes")]
-        public virtual Employees EnteredByUser { get; set; }
+        public virtual User EnteredByUser { get; set; }
         [ForeignKey("NoteTypeId")]
         [InverseProperty("Ponotes")]
-        public virtual NoteTypes NoteType { get; set; }
+        public virtual NoteType NoteType { get; set; }
         [ForeignKey("OrderId")]
         [InverseProperty("Ponotes")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
         [InverseProperty("Ponote")]
         public virtual ICollection<ActivityPonoteMapping> ActivityPonoteMapping { get; set; }
     }

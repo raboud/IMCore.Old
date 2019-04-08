@@ -10,7 +10,7 @@ namespace IMCore.Domain
         public Division()
         {
             ItemCosting = new HashSet<ItemCosting>();
-            MaterialType = new HashSet<MaterialType>();
+            MaterialType = new HashSet<Program>();
             UserMarketDivisionAssignments = new HashSet<UserMarketDivisionAssignments>();
             UserPermissions = new HashSet<UserPermissions>();
         }
@@ -19,7 +19,7 @@ namespace IMCore.Domain
         public int Id { get; set; }
         [Column("Division")]
         [StringLength(20)]
-        public string Division1 { get; set; }
+        public string Name { get; set; }
         [Column("VendorId")]
         public int? VendorId { get; set; }
         [Column("DivisionGroupId")]
@@ -37,7 +37,7 @@ namespace IMCore.Domain
         [InverseProperty("Division")]
         public virtual ICollection<ItemCosting> ItemCosting { get; set; }
         [InverseProperty("Division")]
-        public virtual ICollection<MaterialType> MaterialType { get; set; }
+        public virtual ICollection<Program> MaterialType { get; set; }
         [InverseProperty("Division")]
         public virtual ICollection<UserMarketDivisionAssignments> UserMarketDivisionAssignments { get; set; }
         [InverseProperty("Division")]

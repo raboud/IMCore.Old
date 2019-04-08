@@ -9,12 +9,12 @@ namespace IMCore.Domain
     {
         public EntryMethod()
         {
-            OrderBasicLaborDetails = new HashSet<OrderBasicLaborDetails>();
-            OrderCustomDetails = new HashSet<OrderCustomDetails>();
-            OrderOptionsDetails = new HashSet<OrderOptionsDetails>();
-            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetails>();
-            OrderSomerchandiseDetails = new HashSet<OrderSomerchandiseDetails>();
-            Orders = new HashSet<Orders>();
+            OrderBasicLaborDetails = new HashSet<OrderBasicLaborDetail>();
+            OrderCustomDetails = new HashSet<OrderCustomDetail>();
+            OrderOptionsDetails = new HashSet<OrderOptionalLaborDetail>();
+            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
+            OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
+            Orders = new HashSet<Order>();
         }
 
         [Column("Id")]
@@ -24,16 +24,16 @@ namespace IMCore.Domain
         public string Description { get; set; }
 
         [InverseProperty("EntryMethod")]
-        public virtual ICollection<OrderBasicLaborDetails> OrderBasicLaborDetails { get; set; }
+        public virtual ICollection<OrderBasicLaborDetail> OrderBasicLaborDetails { get; set; }
         [InverseProperty("EntryMethod")]
-        public virtual ICollection<OrderCustomDetails> OrderCustomDetails { get; set; }
+        public virtual ICollection<OrderCustomDetail> OrderCustomDetails { get; set; }
         [InverseProperty("EntryMethod")]
-        public virtual ICollection<OrderOptionsDetails> OrderOptionsDetails { get; set; }
+        public virtual ICollection<OrderOptionalLaborDetail> OrderOptionsDetails { get; set; }
         [InverseProperty("EntryMethod")]
-        public virtual ICollection<OrderRegMerchandiseDetails> OrderRegMerchandiseDetails { get; set; }
+        public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
         [InverseProperty("EntryMethod")]
-        public virtual ICollection<OrderSomerchandiseDetails> OrderSomerchandiseDetails { get; set; }
+        public virtual ICollection<OrderSOMerchandiseDetail> OrderSomerchandiseDetails { get; set; }
         [InverseProperty("EntryMethod")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

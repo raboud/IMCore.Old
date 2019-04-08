@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class OrderBasicLaborDetails
+	[Table("OrderBasicLaborDetails")]
+    public partial class OrderBasicLaborDetail
     {
         [Column("Id")]
         public int Id { get; set; }
@@ -51,6 +52,6 @@ namespace IMCore.Domain
         [ForeignKey("MaterialStatusId")]
         public virtual MaterialStatus MaterialStatus { get; set; }
         [ForeignKey("ReviewedById")]
-        public virtual Employees ReviewedBy { get; set; }
+        public virtual User ReviewedBy { get; set; }
     }
 }

@@ -32,15 +32,15 @@ namespace IMCore.Domain
 
         [ForeignKey("AssignedToId")]
         [InverseProperty("JobsAssignedTo")]
-        public virtual Employees AssignedTo { get; set; }
+        public virtual User AssignedTo { get; set; }
         [ForeignKey("CreatedById")]
         [InverseProperty("JobsCreatedBy")]
-        public virtual Employees CreatedBy { get; set; }
+        public virtual User CreatedBy { get; set; }
         [ForeignKey("JobStatusId")]
         [InverseProperty("Jobs")]
         public virtual JobStatus JobStatus { get; set; }
         [ForeignKey("PrimaryOrderId")]
         [InverseProperty("Jobs")]
-        public virtual Orders PrimaryOrder { get; set; }
+        public virtual Order PrimaryOrder { get; set; }
     }
 }

@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Discrepancies
+	[Table("Discrepancies")]
+    public partial class Discrepancy
     {
         [Column("Id")]
         public int Id { get; set; }
@@ -39,9 +40,13 @@ namespace IMCore.Domain
         public virtual DiscrepancyType DiscrepancyType { get; set; }
         [ForeignKey("OrderId")]
         [InverseProperty("Discrepancies")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
         [ForeignKey("ReviewedById")]
         [InverseProperty("Discrepancies")]
-        public virtual Employees ReviewedBy { get; set; }
-    }
+        public virtual User ReviewedBy { get; set; }
+
+		[ForeignKey("DiscrepancySubTypeId")]
+		public virtual DiscrepancySubType DiscrepancySubType { get; set; }
+
+	}
 }

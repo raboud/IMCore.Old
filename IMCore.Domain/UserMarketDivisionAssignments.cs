@@ -24,6 +24,6 @@ namespace IMCore.Domain
         public virtual Market Market { get; set; }
         [ForeignKey("UserId")]
         [InverseProperty("UserMarketDivisionAssignments")]
-        public virtual Employees User { get; set; }
+        public virtual User User { get; set; }
     }
 }

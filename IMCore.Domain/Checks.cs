@@ -9,8 +9,8 @@ namespace IMCore.Domain
     {
         public Checks()
         {
-            CheckCbdetail = new HashSet<CheckCbdetail>();
-            CheckDetail = new HashSet<CheckDetail>();
+            CheckCBDetails = new HashSet<CheckCBDetail>();
+            CheckDetails = new HashSet<CheckDetail>();
         }
 
         [Key]
@@ -29,8 +29,8 @@ namespace IMCore.Domain
         public string QbtxnId { get; set; }
 
         [InverseProperty("Check")]
-        public virtual ICollection<CheckCbdetail> CheckCbdetail { get; set; }
+        public virtual ICollection<CheckCBDetail> CheckCBDetails { get; set; }
         [InverseProperty("Check")]
-        public virtual ICollection<CheckDetail> CheckDetail { get; set; }
+        public virtual ICollection<CheckDetail> CheckDetails { get; set; }
     }
 }

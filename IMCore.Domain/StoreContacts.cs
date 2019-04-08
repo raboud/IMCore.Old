@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class StoreContacts
+	[Table("StoreContacts")]
+    public partial class ClientContact
     {
         [Column("Id")]
         public int Id { get; set; }
@@ -31,9 +32,9 @@ namespace IMCore.Domain
 
         [ForeignKey("DepartmentId")]
         [InverseProperty("StoreContacts")]
-        public virtual Departments Department { get; set; }
+        public virtual Department Department { get; set; }
         [ForeignKey("StoreId")]
         [InverseProperty("StoreContacts")]
-        public virtual Stores Store { get; set; }
+        public virtual Client Store { get; set; }
     }
 }

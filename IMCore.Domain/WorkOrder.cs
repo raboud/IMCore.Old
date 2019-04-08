@@ -33,10 +33,10 @@ namespace IMCore.Domain
         [InverseProperty("WorkOrder")]
         public virtual InstallationCrew Crew { get; set; }
         [ForeignKey("OrderId")]
+        [InverseProperty("WorkOrders")]
+        public virtual Order Order { get; set; }
         [InverseProperty("WorkOrder")]
-        public virtual Orders Order { get; set; }
-        [InverseProperty("WorkOrder")]
-        public virtual BillDetails BillDetails { get; set; }
+        public virtual BillDetail BillDetails { get; set; }
         [InverseProperty("WorkOrder")]
         public virtual ICollection<WorkOrderDocument> WorkOrderDocument { get; set; }
         [InverseProperty("WorkOrder")]

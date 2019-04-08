@@ -9,7 +9,7 @@ namespace IMCore.Domain
     {
         public Bill()
         {
-            BillDetails = new HashSet<BillDetails>();
+            BillDetails = new HashSet<BillDetail>();
         }
 
         public int BillId { get; set; }
@@ -29,8 +29,8 @@ namespace IMCore.Domain
 
         [ForeignKey("OwnerId")]
         [InverseProperty("Bill")]
-        public virtual SubContractors Owner { get; set; }
+        public virtual SubContractor Owner { get; set; }
         [InverseProperty("Bill")]
-        public virtual ICollection<BillDetails> BillDetails { get; set; }
+        public virtual ICollection<BillDetail> BillDetails { get; set; }
     }
 }

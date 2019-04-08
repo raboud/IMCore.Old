@@ -5,11 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class UserTaskTypes
+	[Table("UserTaskTypes")]
+    public partial class UserTaskType
     {
-        public UserTaskTypes()
+        public UserTaskType()
         {
-            UserTasks = new HashSet<UserTasks>();
+            UserTasks = new HashSet<UserTask>();
         }
 
         [Key]
@@ -20,6 +21,6 @@ namespace IMCore.Domain
         public int? Priority { get; set; }
 
         [InverseProperty("UserTaskType")]
-        public virtual ICollection<UserTasks> UserTasks { get; set; }
+        public virtual ICollection<UserTask> UserTasks { get; set; }
     }
 }

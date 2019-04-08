@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class BillDetails
+	[Table("BillDetails")]
+    public partial class BillDetail
     {
 		[Column("Id")]
 		public int Id { get; set; }
@@ -32,13 +33,13 @@ namespace IMCore.Domain
 
         [ForeignKey("BackChargeOwnerId")]
         [InverseProperty("BillDetails")]
-        public virtual SubContractors BackChargeOwner { get; set; }
+        public virtual SubContractor BackChargeOwner { get; set; }
         [ForeignKey("BillId")]
         [InverseProperty("BillDetails")]
         public virtual Bill Bill { get; set; }
         [ForeignKey("ChargeBackId")]
         [InverseProperty("BillDetails")]
-        public virtual ChargeBacks ChargeBack { get; set; }
+        public virtual ChargeBack ChargeBack { get; set; }
         [ForeignKey("WorkOrderId")]
         [InverseProperty("BillDetails")]
         public virtual WorkOrder WorkOrder { get; set; }

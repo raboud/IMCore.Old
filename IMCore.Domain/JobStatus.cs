@@ -10,7 +10,7 @@ namespace IMCore.Domain
         public JobStatus()
         {
             Jobs = new HashSet<Jobs>();
-            Orders = new HashSet<Orders>();
+            Orders = new HashSet<Order>();
         }
 
         [Column("Id")]
@@ -21,6 +21,6 @@ namespace IMCore.Domain
         [InverseProperty("JobStatus")]
         public virtual ICollection<Jobs> Jobs { get; set; }
         [InverseProperty("JobStatus")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

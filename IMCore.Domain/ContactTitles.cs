@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class ContactTitles
+	[Table("ContactTitles")]
+    public partial class ContactTitle
     {
-        public ContactTitles()
+        public ContactTitle()
         {
             DepartmentsContactTitles = new HashSet<DepartmentsContactTitles>();
         }

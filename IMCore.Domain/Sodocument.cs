@@ -18,6 +18,6 @@ namespace IMCore.Domain
         public virtual Document Document { get; set; }
         [ForeignKey("Soid")]
         [InverseProperty("Sodocument")]
-        public virtual OrderSomerchandiseDetails So { get; set; }
+        public virtual OrderSOMerchandiseDetail So { get; set; }
     }
 }

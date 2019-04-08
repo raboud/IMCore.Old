@@ -9,8 +9,8 @@ namespace IMCore.Domain
     {
         public Address()
         {
-            Customers = new HashSet<Customers>();
-            Orders = new HashSet<Orders>();
+            Customers = new HashSet<Customer>();
+            Orders = new HashSet<Order>();
         }
 
         [Column("Id")]
@@ -40,8 +40,8 @@ namespace IMCore.Domain
         public string EmailAddress { get; set; }
 
         [InverseProperty("AddressNavigation")]
-        public virtual ICollection<Customers> Customers { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
         [InverseProperty("Address")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

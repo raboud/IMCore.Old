@@ -9,7 +9,7 @@ namespace IMCore.Domain
     {
         public DiscrepancyType()
         {
-            Discrepancies = new HashSet<Discrepancies>();
+            Discrepancies = new HashSet<Discrepancy>();
         }
 
         [Column("Id")]
@@ -19,6 +19,6 @@ namespace IMCore.Domain
         public string Description { get; set; }
 
         [InverseProperty("DiscrepancyType")]
-        public virtual ICollection<Discrepancies> Discrepancies { get; set; }
+        public virtual ICollection<Discrepancy> Discrepancies { get; set; }
     }
 }

@@ -23,12 +23,12 @@ namespace IMCore.Domain
         public DateTime? EndDate { get; set; }
 
         [ForeignKey("ItemId")]
-        [InverseProperty("ItemPricing")]
+        [InverseProperty("Prices")]
         public virtual Item Item { get; set; }
         [ForeignKey("MarketId")]
         [InverseProperty("ItemPricing")]
         public virtual Market Market { get; set; }
         [ForeignKey("StoreId")]
-        public virtual Stores Store { get; set; }
+        public virtual Client Store { get; set; }
     }
 }

@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
     [Table("OrderSOMerchandiseDetails")]
-    public partial class OrderSomerchandiseDetails
+    public partial class OrderSOMerchandiseDetail
     {
-        public OrderSomerchandiseDetails()
+        public OrderSOMerchandiseDetail()
         {
             Sodocument = new HashSet<Sodocument>();
         }
@@ -19,7 +19,7 @@ namespace IMCore.Domain
         public int OrderId { get; set; }
         [Column("SONumber")]
         [StringLength(10)]
-        public string Sonumber { get; set; }
+        public string SONumber { get; set; }
         [Column("SKUNumber")]
         [StringLength(12)]
         public string Skunumber { get; set; }
@@ -72,10 +72,10 @@ namespace IMCore.Domain
         public virtual MaterialStatus MaterialStatus { get; set; }
         [ForeignKey("OrderId")]
         [InverseProperty("OrderSomerchandiseDetails")]
-        public virtual Orders Order { get; set; }
+        public virtual Order Order { get; set; }
         [ForeignKey("ReviewedById")]
         [InverseProperty("OrderSomerchandiseDetails")]
-        public virtual Employees ReviewedBy { get; set; }
+        public virtual User ReviewedBy { get; set; }
         [ForeignKey("Uomid")]
         [InverseProperty("OrderSomerchandiseDetails")]
         public virtual UnitOfMeasure Uom { get; set; }

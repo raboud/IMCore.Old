@@ -23,9 +23,9 @@ namespace IMCore.Domain
 
         [ForeignKey("DepartmentId")]
         [InverseProperty("DepartmentsStoresAssignments")]
-        public virtual Departments Department { get; set; }
+        public virtual Department Department { get; set; }
         [ForeignKey("StoreId")]
         [InverseProperty("DepartmentsStoresAssignments")]
-        public virtual Stores Store { get; set; }
+        public virtual Client Store { get; set; }
     }
 }

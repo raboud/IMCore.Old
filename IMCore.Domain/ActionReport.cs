@@ -38,7 +38,7 @@ namespace IMCore.Domain
         public int? LastEditedBy { get; set; }
 
         [ForeignKey("OrderId")]
-        [InverseProperty("ActionReport")]
-        public virtual Orders Order { get; set; }
+        [InverseProperty("ActionReports")]
+        public virtual Order Order { get; set; }
     }
 }

@@ -97,27 +97,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("ActionReport");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.ActivityData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ActivityId")
-                        .HasColumnName("ActivityId");
-
-                    b.Property<string>("Data")
-                        .HasMaxLength(1024);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActivityId");
-
-                    b.ToTable("ActivityData");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.ActivityList", b =>
+            modelBuilder.Entity("IMCore.Domain.Activity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,6 +142,26 @@ namespace IMCore.Data.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("ActivityList");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.ActivityData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ActivityId")
+                        .HasColumnName("ActivityId");
+
+                    b.Property<string>("Data")
+                        .HasMaxLength(1024);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.ToTable("ActivityData");
                 });
 
             modelBuilder.Entity("IMCore.Domain.ActivityPonoteMapping", b =>
@@ -247,7 +247,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Admins", b =>
+            modelBuilder.Entity("IMCore.Domain.Admin", b =>
                 {
                     b.Property<int>("EmployeeId")
                         .HasColumnName("EmployeeId");
@@ -528,7 +528,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("BillClassification");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.BillDetails", b =>
+            modelBuilder.Entity("IMCore.Domain.BillDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -732,7 +732,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("CapacityPools");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.ChargeBacks", b =>
+            modelBuilder.Entity("IMCore.Domain.ChargeBack", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -793,7 +793,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("ChargeBacks");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.CheckCbdetail", b =>
+            modelBuilder.Entity("IMCore.Domain.CheckCBDetail", b =>
                 {
                     b.Property<int>("CheckCbdetailId")
                         .ValueGeneratedOnAdd()
@@ -875,7 +875,167 @@ namespace IMCore.Data.Migrations
                     b.ToTable("Checks");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.ClientTypeReports", b =>
+            modelBuilder.Entity("IMCore.Domain.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AccountCoorId")
+                        .HasColumnName("AccountCoorId");
+
+                    b.Property<int?>("AccountRepId")
+                        .HasColumnName("AccountRepId");
+
+                    b.Property<bool?>("Active")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<string>("BillingAddress")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("BranchId")
+                        .HasColumnName("MarketId");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("DirectPhoneNumber")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Extension")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("FaxNumber")
+                        .HasMaxLength(30);
+
+                    b.Property<bool?>("IncludeInStatusReportAll")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<double?>("Latitude");
+
+                    b.Property<double?>("Longitude");
+
+                    b.Property<short?>("MarketNumber");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("ntext");
+
+                    b.Property<string>("State")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("StoreNickName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("StoreNumber")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("StorePhoneNumber")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("StoreTypeId")
+                        .HasColumnName("StoreTypeId");
+
+                    b.Property<int>("XmlsourceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("XMLSourceId")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<string>("ZipCode")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("AccountCoorId");
+
+                    b.HasIndex("AccountRepId");
+
+                    b.HasIndex("BranchId");
+
+                    b.HasIndex("StoreTypeId");
+
+                    b.ToTable("Stores");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.ClientContact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AltPhoneNumber")
+                        .HasMaxLength(30);
+
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnName("DepartmentId");
+
+                    b.Property<string>("EmailAddress")
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("EmailBilling");
+
+                    b.Property<bool>("EmailNotes");
+
+                    b.Property<bool>("EmailStatusReport");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(30);
+
+                    b.Property<int?>("StoreId")
+                        .HasColumnName("StoreId");
+
+                    b.Property<int?>("TitleId")
+                        .HasColumnName("TitleId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("StoreId");
+
+                    b.ToTable("StoreContacts");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.ClientType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("StoreTypeId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageName")
+                        .HasMaxLength(50);
+
+                    b.Property<byte[]>("Logo")
+                        .HasColumnType("image");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("StoreTypeName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Qbclass")
+                        .HasColumnName("QBClass")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("StoreType");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.ClientTypeReport", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -972,7 +1132,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("CompanyInfo");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.ContactTitles", b =>
+            modelBuilder.Entity("IMCore.Domain.ContactTitle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -987,7 +1147,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("ContactTitles");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Customers", b =>
+            modelBuilder.Entity("IMCore.Domain.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1092,7 +1252,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("DaysOfYear");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Departments", b =>
+            modelBuilder.Entity("IMCore.Domain.Department", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1162,7 +1322,47 @@ namespace IMCore.Data.Migrations
                     b.ToTable("DepartmentsStoresAssignments");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Discrepancies", b =>
+            modelBuilder.Entity("IMCore.Domain.DiscrepanciesPrice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal?>("CurrentPrice")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(18, 4)")
+                        .HasDefaultValueSql("(0)");
+
+                    b.Property<DateTime>("DateFound")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("DiscrepancyTypeId")
+                        .HasColumnName("DiscrepancyTypeId");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnName("ItemId");
+
+                    b.Property<int>("MarketId")
+                        .HasColumnName("MarketId");
+
+                    b.Property<decimal?>("NewPrice")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(18, 4)")
+                        .HasDefaultValueSql("(0)");
+
+                    b.Property<string>("XmlfilePath")
+                        .HasColumnName("XMLFilePath")
+                        .IsFixedLength(true)
+                        .HasMaxLength(1024)
+                        .IsUnicode(false);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DiscrepanciesPrice");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.Discrepancy", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1214,6 +1414,8 @@ namespace IMCore.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DiscrepancySubTypeId");
+
                     b.HasIndex("DiscrepancyTypeId");
 
                     b.HasIndex("OrderId");
@@ -1221,46 +1423,6 @@ namespace IMCore.Data.Migrations
                     b.HasIndex("ReviewedById");
 
                     b.ToTable("Discrepancies");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.DiscrepanciesPrice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal?>("CurrentPrice")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18, 4)")
-                        .HasDefaultValueSql("(0)");
-
-                    b.Property<DateTime>("DateFound")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("DiscrepancyTypeId")
-                        .HasColumnName("DiscrepancyTypeId");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnName("ItemId");
-
-                    b.Property<int>("MarketId")
-                        .HasColumnName("MarketId");
-
-                    b.Property<decimal?>("NewPrice")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18, 4)")
-                        .HasDefaultValueSql("(0)");
-
-                    b.Property<string>("XmlfilePath")
-                        .HasColumnName("XMLFilePath")
-                        .IsFixedLength(true)
-                        .HasMaxLength(1024)
-                        .IsUnicode(false);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DiscrepanciesPrice");
                 });
 
             modelBuilder.Entity("IMCore.Domain.DiscrepancySubType", b =>
@@ -1307,12 +1469,6 @@ namespace IMCore.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((1))");
 
-                    b.Property<string>("Division1")
-                        .HasColumnName("Division")
-                        .IsFixedLength(true)
-                        .HasMaxLength(20)
-                        .IsUnicode(false);
-
                     b.Property<int>("DivisionGroupId")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("DivisionGroupId")
@@ -1322,6 +1478,12 @@ namespace IMCore.Data.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("(0)");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("Division")
+                        .IsFixedLength(true)
+                        .HasMaxLength(20)
+                        .IsUnicode(false);
 
                     b.Property<bool?>("PrintStatusReport")
                         .IsRequired()
@@ -1371,7 +1533,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("Document");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.EmailImages", b =>
+            modelBuilder.Entity("IMCore.Domain.EmailImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1389,7 +1551,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("EmailImages");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.EmailTemplates", b =>
+            modelBuilder.Entity("IMCore.Domain.EmailTemplate", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1405,77 +1567,6 @@ namespace IMCore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EmailTemplates");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.Employees", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool?>("Active")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(1)");
-
-                    b.Property<string>("Address1")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Address2")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("City")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(30);
-
-                    b.Property<DateTime?>("HireDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<string>("HomeNumber")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("MobileNumber")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("NickName")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("PagerNumber")
-                        .HasMaxLength(30);
-
-                    b.Property<bool>("ReceiveCallNotes");
-
-                    b.Property<string>("Smtpemail")
-                        .HasColumnName("SMTPEmail")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Ssn")
-                        .HasColumnName("SSN")
-                        .HasMaxLength(11);
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .IsFixedLength(true)
-                        .HasMaxLength(2);
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Zip")
-                        .HasMaxLength(10);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("IMCore.Domain.EntryMethod", b =>
@@ -1898,7 +1989,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("JobStatus");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.JobTypes", b =>
+            modelBuilder.Entity("IMCore.Domain.JobType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1997,8 +2088,9 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.Market", b =>
                 {
-                    b.Property<int>("MarketId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("MarketId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool?>("Active")
@@ -2050,30 +2142,14 @@ namespace IMCore.Data.Migrations
                         .IsFixedLength(true)
                         .HasMaxLength(10);
 
-                    b.HasKey("MarketId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ManagerId");
 
                     b.ToTable("Market");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MatSubCat", b =>
-                {
-                    b.Property<int>("SubCatId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.HasKey("SubCatId");
-
-                    b.ToTable("MatSubCat");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.MaterialCatagory", b =>
+            modelBuilder.Entity("IMCore.Domain.Material", b =>
                 {
                     b.Property<int>("CatId")
                         .ValueGeneratedOnAdd()
@@ -2282,133 +2358,23 @@ namespace IMCore.Data.Migrations
                     b.ToTable("Material Status");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MaterialType", b =>
+            modelBuilder.Entity("IMCore.Domain.MaterialSubCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SubCatId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool?>("Active");
-
-                    b.Property<bool>("AllowMaterialStatusUpdate");
-
-                    b.Property<double?>("CostMultiplier")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0.5))");
-
-                    b.Property<bool?>("CustomCostByRetail")
+                    b.Property<string>("Description")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<double?>("CustomMultiplier");
-
-                    b.Property<int?>("DivisionId")
-                        .HasColumnName("DivisionId");
-
-                    b.Property<bool>("Furnish");
-
-                    b.Property<string>("Hdtype")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("HDType")
-                        .HasDefaultValueSql("('')")
-                        .IsFixedLength(true)
-                        .HasMaxLength(1);
-
-                    b.Property<bool>("InsuranceReplacement");
-
-                    b.Property<int?>("JobTypeId")
-                        .HasColumnName("JobTypeId");
-
-                    b.Property<int?>("MarkDown");
-
-                    b.Property<int?>("MarkDownMax");
-
-                    b.Property<int?>("MarkDownMin");
-
-                    b.Property<string>("MaterialTypeName")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasComputedColumnSql("(((case when [HDType]='I' then 'INSTALL: ' else 'MEASURE: ' end+[SKU])+' ')+[SKUDesc])")
-                        .HasMaxLength(277)
+                        .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<decimal?>("MinimumCost")
-                        .HasColumnType("money");
+                    b.HasKey("SubCatId");
 
-                    b.Property<decimal?>("MinimumPrice")
-                        .HasColumnType("money");
-
-                    b.Property<decimal?>("MinimumRetail")
-                        .HasColumnType("money");
-
-                    b.Property<bool?>("OnlyBasicToMinimum");
-
-                    b.Property<string>("ShortName")
-                        .HasMaxLength(20)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Sku")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("SKU")
-                        .HasDefaultValueSql("('')")
-                        .HasMaxLength(12)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Skudesc")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("SKUDesc")
-                        .HasDefaultValueSql("('')")
-                        .HasMaxLength(255)
-                        .IsUnicode(false);
-
-                    b.Property<int?>("StoreTypeId")
-                        .HasColumnName("StoreTypeId");
-
-                    b.Property<double?>("TripChargeMultiplier")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0.999))");
-
-                    b.Property<bool?>("Valid")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<bool>("WoodWaiver");
-
-                    b.HasKey("Id")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
-                    b.HasIndex("DivisionId");
-
-                    b.HasIndex("JobTypeId");
-
-                    b.HasIndex("StoreTypeId");
-
-                    b.ToTable("MaterialType");
+                    b.ToTable("MatSubCat");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MaterialTypesMarketMapping", b =>
-                {
-                    b.Property<int>("MaterialTypeId")
-                        .HasColumnName("MaterialTypeId");
-
-                    b.Property<int>("MarketId")
-                        .HasColumnName("MarketId");
-
-                    b.Property<bool>("AllowEntry");
-
-                    b.HasKey("MaterialTypeId", "MarketId");
-
-                    b.HasIndex("MarketId");
-
-                    b.ToTable("MaterialTypesMarketMapping");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.MeasureCompCalcData", b =>
+            modelBuilder.Entity("IMCore.Domain.MeasureCompCalcs", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2430,7 +2396,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("MeasureCompCalcData");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MeasureCompCustData", b =>
+            modelBuilder.Entity("IMCore.Domain.MeasureCompCustomers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2511,7 +2477,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("MeasureCompCustData");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MeasureCompLineItemData", b =>
+            modelBuilder.Entity("IMCore.Domain.MeasureCompLineItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2548,7 +2514,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("MeasureCompLineItemData");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MeasureCompOrderData", b =>
+            modelBuilder.Entity("IMCore.Domain.MeasureCompOrder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2631,7 +2597,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("Mill Error");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.NoteTypes", b =>
+            modelBuilder.Entity("IMCore.Domain.NoteType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2708,6 +2674,68 @@ namespace IMCore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OldCarpet");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.Option", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool?>("Active")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("ApplyToMinimum")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<bool?>("ApplyToMinimumWO")
+                        .HasColumnName("ApplyToMinimumWO");
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnName("ItemId");
+
+                    b.Property<int?>("MaterialTypeId")
+                        .HasColumnName("MaterialTypeId");
+
+                    b.Property<string>("OptionDescription")
+                        .HasMaxLength(255);
+
+                    b.Property<bool?>("PrintOnInvoice")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("PrintOnWorkOrder")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<decimal?>("RetailPrice")
+                        .HasColumnType("money");
+
+                    b.Property<bool?>("Size");
+
+                    b.Property<decimal?>("UnitCost")
+                        .HasColumnType("money");
+
+                    b.Property<int?>("UnitOfMeasureId")
+                        .HasColumnName("UnitOfMeasureId");
+
+                    b.Property<decimal?>("UnitPrice")
+                        .HasColumnType("money");
+
+                    b.HasKey("Id")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("MaterialTypeId");
+
+                    b.HasIndex("UnitOfMeasureId");
+
+                    b.ToTable("Options");
                 });
 
             modelBuilder.Entity("IMCore.Domain.OptionCost", b =>
@@ -2875,580 +2903,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("OptionRetail");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Options", b =>
-                {
-                    b.Property<int>("OptionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool?>("Active")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<bool?>("ApplyToMinimum")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<bool?>("ApplyToMinimumWo")
-                        .HasColumnName("ApplyToMinimumWO");
-
-                    b.Property<int?>("ItemId")
-                        .HasColumnName("ItemId");
-
-                    b.Property<int?>("MaterialTypeId")
-                        .HasColumnName("MaterialTypeId");
-
-                    b.Property<string>("OptionDescription")
-                        .HasMaxLength(255);
-
-                    b.Property<bool?>("PrintOnInvoice")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<bool?>("PrintOnWorkOrder")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<decimal?>("RetailPrice")
-                        .HasColumnType("money");
-
-                    b.Property<bool?>("Size");
-
-                    b.Property<decimal?>("UnitCost")
-                        .HasColumnType("money");
-
-                    b.Property<int?>("UnitOfMeasureId")
-                        .HasColumnName("UnitOfMeasureId");
-
-                    b.Property<decimal?>("UnitPrice")
-                        .HasColumnType("money");
-
-                    b.HasKey("OptionId")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("MaterialTypeId");
-
-                    b.HasIndex("UnitOfMeasureId");
-
-                    b.ToTable("Options");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.OrderBasicLaborDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BasicLaborId")
-                        .HasColumnName("BasicLaborId");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int>("EntryMethodId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("EntryMethodId")
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<decimal>("ExtendedCost")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(37, 8)")
-                        .HasComputedColumnSql("(isnull(case when [PrintOnWorkOrder]='1' then [UnitCost]*[InstallQuantity] else (0) end,(0.0)))");
-
-                    b.Property<decimal>("ExtendedPrice")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(37, 8)")
-                        .HasComputedColumnSql("(isnull(case when [PrintOnInvoice]='1' then [UnitPrice]*[InstallQuantity] else (0) end,(0.0)))");
-
-                    b.Property<decimal>("InstallQuantity")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal>("MaterialCost")
-                        .HasColumnType("money");
-
-                    b.Property<int?>("MaterialStatusId")
-                        .HasColumnName("MaterialStatusId");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.Property<int?>("OrdersId");
-
-                    b.Property<bool?>("PrintOnInvoice")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<bool?>("PrintOnWorkOrder")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("PrintOnWorkOrder")
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<bool>("Reviewed");
-
-                    b.Property<int?>("ReviewedById")
-                        .HasColumnName("ReviewedById");
-
-                    b.Property<DateTime?>("ReviewedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<int?>("ServiceLineNumber");
-
-                    b.Property<decimal>("UnitCost")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal?>("UnitRetail")
-                        .HasColumnType("money");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BasicLaborId");
-
-                    b.HasIndex("EntryMethodId");
-
-                    b.HasIndex("MaterialStatusId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("OrdersId");
-
-                    b.HasIndex("ReviewedById");
-
-                    b.ToTable("OrderBasicLaborDetails");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.OrderCustomDetails", b =>
-                {
-                    b.Property<int>("OrderCustomId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("OrderCustomId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CustomItemNumber");
-
-                    b.Property<bool?>("Deleted")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(0)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1024)
-                        .IsUnicode(false);
-
-                    b.Property<int>("EntryMethodId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("EntryMethodId")
-                        .HasDefaultValueSql("(1)");
-
-                    b.Property<decimal>("ExtendedCost")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(37, 8)")
-                        .HasComputedColumnSql("(isnull(case when [NotOnWorkOrder]='0' then [UnitCost]*[Quanity] else (0) end,(0.0)))");
-
-                    b.Property<decimal>("ExtendedPrice")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(37, 8)")
-                        .HasComputedColumnSql("(isnull(case when [NotOnInvoice]='0' then [UnitPrice]*[Quanity] else (0) end,(0.0)))");
-
-                    b.Property<bool?>("NotOnInvoice")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(0)");
-
-                    b.Property<bool?>("NotOnWorkOrder")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(0)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.Property<bool>("PrintOnInvoice")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasComputedColumnSql("(isnull(CONVERT([bit],case when [NotOnInvoice]=(1) then (0) else (1) end),(0)))");
-
-                    b.Property<bool>("PrintOnWorkOrder")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasComputedColumnSql("(isnull(CONVERT([bit],case when [NotOnWorkOrder]=(1) then (0) else (1) end),(0)))");
-
-                    b.Property<decimal>("Quanity")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal?>("RetailPrice")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<bool?>("Reviewed")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(0)");
-
-                    b.Property<int?>("ReviewedById")
-                        .HasColumnName("ReviewedById");
-
-                    b.Property<DateTime?>("ReviewedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<int?>("SubContractorId")
-                        .HasColumnName("SubContractorId");
-
-                    b.Property<bool?>("SubContractorPaid");
-
-                    b.Property<double?>("SubContractorPay");
-
-                    b.Property<decimal>("UnitCost")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<int?>("UnitOfMeasureId")
-                        .HasColumnName("UnitOfMeasureId");
-
-                    b.Property<decimal>("UnitPrice")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18, 4)")
-                        .HasDefaultValueSql("(0)");
-
-                    b.HasKey("OrderCustomId")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
-                    b.HasIndex("EntryMethodId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ReviewedById");
-
-                    b.HasIndex("SubContractorId");
-
-                    b.HasIndex("UnitOfMeasureId");
-
-                    b.ToTable("OrderCustomDetails");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.OrderDiagrams", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("DiagramDateTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("DiagramFileName")
-                        .HasMaxLength(255)
-                        .IsUnicode(false);
-
-                    b.Property<string>("DiagramNumber")
-                        .HasMaxLength(20)
-                        .IsUnicode(false);
-
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDiagrams");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.OrderDocument", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.Property<int>("DocumentId")
-                        .HasColumnName("DocumentId");
-
-                    b.HasKey("OrderId", "DocumentId");
-
-                    b.HasIndex("DocumentId");
-
-                    b.ToTable("OrderDocument");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.OrderOptionsDetails", b =>
-                {
-                    b.Property<int>("OrdeOptionslId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("OrdeOptionslId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int>("EntryMethodId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("EntryMethodId")
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<decimal>("ExtendedCost")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(37, 8)")
-                        .HasComputedColumnSql("(isnull(case when [PrintOnWorkOrder]='1' then [UnitCost]*[Quantity] else (0) end,(0.0)))");
-
-                    b.Property<decimal>("ExtendedPrice")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(37, 8)")
-                        .HasComputedColumnSql("(isnull(case when [PrintOnInvoice]='1' then [UnitPrice]*[Quantity] else (0) end,(0.0)))");
-
-                    b.Property<decimal>("MaterialCost")
-                        .HasColumnType("money");
-
-                    b.Property<int>("OptionId")
-                        .HasColumnName("OptionId");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.Property<bool?>("PrintOnInvoice")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<bool?>("PrintOnWorkOrder")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("PrintOnWorkOrder")
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<bool>("Reviewed");
-
-                    b.Property<int?>("ReviewedById")
-                        .HasColumnName("ReviewedById");
-
-                    b.Property<DateTime?>("ReviewedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<int?>("SubContractorId")
-                        .HasColumnName("SubContractorId");
-
-                    b.Property<bool?>("SubContractorPaid");
-
-                    b.Property<double?>("SubContractorPay");
-
-                    b.Property<decimal>("UnitCost")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal?>("UnitRetail")
-                        .HasColumnType("money");
-
-                    b.HasKey("OrdeOptionslId")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
-                    b.HasIndex("EntryMethodId");
-
-                    b.HasIndex("OptionId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ReviewedById");
-
-                    b.ToTable("Order Options Details");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.OrderRegMerchandiseDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1024)
-                        .IsUnicode(false);
-
-                    b.Property<int>("EntryMethodId")
-                        .HasColumnName("EntryMethodId");
-
-                    b.Property<int?>("HdlineNumber")
-                        .HasColumnName("HDLineNumber");
-
-                    b.Property<string>("Notes")
-                        .HasMaxLength(1024)
-                        .IsUnicode(false);
-
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.Property<int?>("OriginalOrderId")
-                        .HasColumnName("OriginalOrderId");
-
-                    b.Property<decimal?>("Price")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal?>("Quantity")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal?>("Retail")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<bool>("Reviewed");
-
-                    b.Property<int?>("ReviewedById")
-                        .HasColumnName("ReviewedById");
-
-                    b.Property<DateTime?>("ReviewedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("ShortDescription")
-                        .HasMaxLength(100)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Skunumber")
-                        .HasColumnName("SKUNumber")
-                        .HasMaxLength(12)
-                        .IsUnicode(false);
-
-                    b.Property<int?>("StatusId")
-                        .HasColumnName("StatusId");
-
-                    b.Property<int?>("TransferredFrom");
-
-                    b.Property<int?>("TransferredTo");
-
-                    b.Property<int?>("Uomid")
-                        .HasColumnName("UOMId");
-
-                    b.Property<int?>("XmlstatusId")
-                        .HasColumnName("XMLStatusId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EntryMethodId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ReviewedById");
-
-                    b.HasIndex("StatusId");
-
-                    b.HasIndex("Uomid");
-
-                    b.ToTable("OrderRegMerchandiseDetails");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.OrderSomerchandiseDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("BasicLaborId")
-                        .HasColumnName("BasicLaborId");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1024)
-                        .IsUnicode(false);
-
-                    b.Property<int>("EntryMethodId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("EntryMethodId")
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<DateTime?>("ExpectedArrivalDate")
-                        .HasColumnType("date");
-
-                    b.Property<int?>("MaterialStatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("MaterialStatusId")
-                        .HasDefaultValueSql("((16))");
-
-                    b.Property<bool>("NotNeeded");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.Property<int?>("OriginalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("OriginalId")
-                        .HasDefaultValueSql("((-1))");
-
-                    b.Property<int?>("OriginalOrderId")
-                        .HasColumnName("OriginalOrderId");
-
-                    b.Property<decimal?>("PreSplitQty")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal?>("Quantity")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<DateTime?>("Received")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("Reviewed");
-
-                    b.Property<int?>("ReviewedById")
-                        .HasColumnName("ReviewedById");
-
-                    b.Property<DateTime?>("ReviewedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("ShortDescription")
-                        .HasMaxLength(100)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Skunumber")
-                        .HasColumnName("SKUNumber")
-                        .HasMaxLength(12)
-                        .IsUnicode(false);
-
-                    b.Property<int?>("SolineNumber")
-                        .HasColumnName("SOLineNumber");
-
-                    b.Property<int?>("SomerLineNumber")
-                        .HasColumnName("SOMerLineNumber");
-
-                    b.Property<string>("Sonumber")
-                        .HasColumnName("SONumber")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
-
-                    b.Property<int?>("TransferredFrom");
-
-                    b.Property<int?>("TransferredTo");
-
-                    b.Property<int?>("Uomid")
-                        .HasColumnName("UOMId");
-
-                    b.Property<int?>("WillCallLineNumber");
-
-                    b.Property<int?>("XmlstatusId")
-                        .HasColumnName("XMLStatusId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EntryMethodId");
-
-                    b.HasIndex("MaterialStatusId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ReviewedById");
-
-                    b.HasIndex("Sonumber")
-                        .HasName("OrderSOMerchandiseDetailsSONumber");
-
-                    b.HasIndex("Uomid");
-
-                    b.ToTable("OrderSOMerchandiseDetails");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.Orders", b =>
+            modelBuilder.Entity("IMCore.Domain.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3553,16 +3008,16 @@ namespace IMCore.Data.Migrations
                     b.Property<int>("MaterialTypeId")
                         .HasColumnName("MaterialTypeId");
 
-                    b.Property<bool>("NoMinimum");
-
-                    b.Property<string>("Notes")
-                        .IsUnicode(false);
-
-                    b.Property<string>("Number")
+                    b.Property<string>("NUMBER")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnName("NUMBER")
                         .HasComputedColumnSql("(case when [Estimate]='1' OR len([PurchaseOrderNumber])<>(8) OR [PurchaseOrderNumber] IS NULL then str([OrderID]) else [PurchaseOrderNumber] end)")
                         .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<bool>("NoMinimum");
+
+                    b.Property<string>("Notes")
                         .IsUnicode(false);
 
                     b.Property<decimal>("OrderAmount")
@@ -3618,7 +3073,7 @@ namespace IMCore.Data.Migrations
 
                     b.Property<bool>("Scheduled");
 
-                    b.Property<bool>("ScheduledAm")
+                    b.Property<bool>("ScheduledAM")
                         .HasColumnName("ScheduledAM");
 
                     b.Property<int?>("ServiceLineNo");
@@ -3677,6 +3132,513 @@ namespace IMCore.Data.Migrations
                     b.HasIndex("StoreId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.OrderBasicLaborDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BasicLaborId")
+                        .HasColumnName("BasicLaborId");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("EntryMethodId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("EntryMethodId")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<decimal>("ExtendedCost")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(37, 8)")
+                        .HasComputedColumnSql("(isnull(case when [PrintOnWorkOrder]='1' then [UnitCost]*[InstallQuantity] else (0) end,(0.0)))");
+
+                    b.Property<decimal>("ExtendedPrice")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(37, 8)")
+                        .HasComputedColumnSql("(isnull(case when [PrintOnInvoice]='1' then [UnitPrice]*[InstallQuantity] else (0) end,(0.0)))");
+
+                    b.Property<decimal>("InstallQuantity")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal>("MaterialCost")
+                        .HasColumnType("money");
+
+                    b.Property<int?>("MaterialStatusId")
+                        .HasColumnName("MaterialStatusId");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.Property<bool?>("PrintOnInvoice")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("PrintOnWorkOrder")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("PrintOnWorkOrder")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool>("Reviewed");
+
+                    b.Property<int?>("ReviewedById")
+                        .HasColumnName("ReviewedById");
+
+                    b.Property<DateTime?>("ReviewedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("ServiceLineNumber");
+
+                    b.Property<decimal>("UnitCost")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal?>("UnitRetail")
+                        .HasColumnType("money");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasicLaborId");
+
+                    b.HasIndex("EntryMethodId");
+
+                    b.HasIndex("MaterialStatusId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ReviewedById");
+
+                    b.ToTable("OrderBasicLaborDetails");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.OrderCustomDetail", b =>
+                {
+                    b.Property<int>("OrderCustomId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("OrderCustomId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CustomItemNumber");
+
+                    b.Property<bool?>("Deleted")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("(0)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1024)
+                        .IsUnicode(false);
+
+                    b.Property<int>("EntryMethodId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("EntryMethodId")
+                        .HasDefaultValueSql("(1)");
+
+                    b.Property<decimal>("ExtendedCost")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(37, 8)")
+                        .HasComputedColumnSql("(isnull(case when [NotOnWorkOrder]='0' then [UnitCost]*[Quanity] else (0) end,(0.0)))");
+
+                    b.Property<decimal>("ExtendedPrice")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(37, 8)")
+                        .HasComputedColumnSql("(isnull(case when [NotOnInvoice]='0' then [UnitPrice]*[Quanity] else (0) end,(0.0)))");
+
+                    b.Property<bool?>("NotOnInvoice")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("(0)");
+
+                    b.Property<bool?>("NotOnWorkOrder")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("(0)");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.Property<bool>("PrintOnInvoice")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasComputedColumnSql("(isnull(CONVERT([bit],case when [NotOnInvoice]=(1) then (0) else (1) end),(0)))");
+
+                    b.Property<bool>("PrintOnWorkOrder")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasComputedColumnSql("(isnull(CONVERT([bit],case when [NotOnWorkOrder]=(1) then (0) else (1) end),(0)))");
+
+                    b.Property<decimal>("Quanity")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal?>("RetailPrice")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<bool?>("Reviewed")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("(0)");
+
+                    b.Property<int?>("ReviewedById")
+                        .HasColumnName("ReviewedById");
+
+                    b.Property<DateTime?>("ReviewedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("SubContractorId")
+                        .HasColumnName("SubContractorId");
+
+                    b.Property<bool?>("SubContractorPaid");
+
+                    b.Property<double?>("SubContractorPay");
+
+                    b.Property<decimal>("UnitCost")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<int?>("UnitOfMeasureId")
+                        .HasColumnName("UnitOfMeasureId");
+
+                    b.Property<decimal>("UnitPrice")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(18, 4)")
+                        .HasDefaultValueSql("(0)");
+
+                    b.HasKey("OrderCustomId")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("EntryMethodId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ReviewedById");
+
+                    b.HasIndex("SubContractorId");
+
+                    b.HasIndex("UnitOfMeasureId");
+
+                    b.ToTable("OrderCustomDetails");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.OrderDiagram", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("DiagramDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("DiagramFileName")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.Property<string>("DiagramNumber")
+                        .HasMaxLength(20)
+                        .IsUnicode(false);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDiagrams");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.OrderDocument", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.Property<int>("DocumentId")
+                        .HasColumnName("DocumentId");
+
+                    b.HasKey("OrderId", "DocumentId");
+
+                    b.HasIndex("DocumentId");
+
+                    b.ToTable("OrderDocument");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.OrderOptionalLaborDetail", b =>
+                {
+                    b.Property<int>("OrdeOptionslId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("OrdeOptionslId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("EntryMethodId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("EntryMethodId")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<decimal>("ExtendedCost")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(37, 8)")
+                        .HasComputedColumnSql("(isnull(case when [PrintOnWorkOrder]='1' then [UnitCost]*[Quantity] else (0) end,(0.0)))");
+
+                    b.Property<decimal>("ExtendedPrice")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(37, 8)")
+                        .HasComputedColumnSql("(isnull(case when [PrintOnInvoice]='1' then [UnitPrice]*[Quantity] else (0) end,(0.0)))");
+
+                    b.Property<decimal>("MaterialCost")
+                        .HasColumnType("money");
+
+                    b.Property<int>("OptionId")
+                        .HasColumnName("OptionId");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.Property<bool?>("PrintOnInvoice")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("PrintOnWorkOrder")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("PrintOnWorkOrder")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<bool>("Reviewed");
+
+                    b.Property<int?>("ReviewedById")
+                        .HasColumnName("ReviewedById");
+
+                    b.Property<DateTime?>("ReviewedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("SubContractorId")
+                        .HasColumnName("SubContractorId");
+
+                    b.Property<bool?>("SubContractorPaid");
+
+                    b.Property<double?>("SubContractorPay");
+
+                    b.Property<decimal>("UnitCost")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal?>("UnitRetail")
+                        .HasColumnType("money");
+
+                    b.HasKey("OrdeOptionslId")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("EntryMethodId");
+
+                    b.HasIndex("OptionId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ReviewedById");
+
+                    b.ToTable("Order Options Details");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.OrderRegMerchandiseDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1024)
+                        .IsUnicode(false);
+
+                    b.Property<int>("EntryMethodId")
+                        .HasColumnName("EntryMethodId");
+
+                    b.Property<int?>("HdlineNumber")
+                        .HasColumnName("HDLineNumber");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(1024)
+                        .IsUnicode(false);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.Property<int?>("OriginalOrderId")
+                        .HasColumnName("OriginalOrderId");
+
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal?>("Quantity")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal?>("Retail")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<bool>("Reviewed");
+
+                    b.Property<int?>("ReviewedById")
+                        .HasColumnName("ReviewedById");
+
+                    b.Property<DateTime?>("ReviewedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("ShortDescription")
+                        .HasMaxLength(100)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Skunumber")
+                        .HasColumnName("SKUNumber")
+                        .HasMaxLength(12)
+                        .IsUnicode(false);
+
+                    b.Property<int?>("StatusId")
+                        .HasColumnName("StatusId");
+
+                    b.Property<int?>("TransferredFrom");
+
+                    b.Property<int?>("TransferredTo");
+
+                    b.Property<int?>("Uomid")
+                        .HasColumnName("UOMId");
+
+                    b.Property<int?>("XmlstatusId")
+                        .HasColumnName("XMLStatusId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntryMethodId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ReviewedById");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("Uomid");
+
+                    b.ToTable("OrderRegMerchandiseDetails");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.OrderSOMerchandiseDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("BasicLaborId")
+                        .HasColumnName("BasicLaborId");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1024)
+                        .IsUnicode(false);
+
+                    b.Property<int>("EntryMethodId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("EntryMethodId")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<DateTime?>("ExpectedArrivalDate")
+                        .HasColumnType("date");
+
+                    b.Property<int?>("MaterialStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MaterialStatusId")
+                        .HasDefaultValueSql("((16))");
+
+                    b.Property<bool>("NotNeeded");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.Property<int?>("OriginalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("OriginalId")
+                        .HasDefaultValueSql("((-1))");
+
+                    b.Property<int?>("OriginalOrderId")
+                        .HasColumnName("OriginalOrderId");
+
+                    b.Property<decimal?>("PreSplitQty")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal?>("Quantity")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<DateTime?>("Received")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("Reviewed");
+
+                    b.Property<int?>("ReviewedById")
+                        .HasColumnName("ReviewedById");
+
+                    b.Property<DateTime?>("ReviewedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("SONumber")
+                        .HasColumnName("SONumber")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("ShortDescription")
+                        .HasMaxLength(100)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Skunumber")
+                        .HasColumnName("SKUNumber")
+                        .HasMaxLength(12)
+                        .IsUnicode(false);
+
+                    b.Property<int?>("SolineNumber")
+                        .HasColumnName("SOLineNumber");
+
+                    b.Property<int?>("SomerLineNumber")
+                        .HasColumnName("SOMerLineNumber");
+
+                    b.Property<int?>("TransferredFrom");
+
+                    b.Property<int?>("TransferredTo");
+
+                    b.Property<int?>("Uomid")
+                        .HasColumnName("UOMId");
+
+                    b.Property<int?>("WillCallLineNumber");
+
+                    b.Property<int?>("XmlstatusId")
+                        .HasColumnName("XMLStatusId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntryMethodId");
+
+                    b.HasIndex("MaterialStatusId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ReviewedById");
+
+                    b.HasIndex("SONumber")
+                        .HasName("OrderSOMerchandiseDetailsSONumber");
+
+                    b.HasIndex("Uomid");
+
+                    b.ToTable("OrderSOMerchandiseDetails");
                 });
 
             modelBuilder.Entity("IMCore.Domain.OrdersDeleted", b =>
@@ -3799,6 +3761,98 @@ namespace IMCore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OrdersDeleted");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.PONote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ContactName")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<bool>("CustomerToCallBack");
+
+                    b.Property<DateTime>("DateTimeEntered")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DateTimeSent")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int?>("EnteredByUserId")
+                        .HasColumnName("EnteredByUserId");
+
+                    b.Property<string>("NoteText")
+                        .IsUnicode(false);
+
+                    b.Property<int>("NoteTypeId")
+                        .HasColumnName("NoteTypeId");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.Property<bool>("Scheduled");
+
+                    b.Property<bool?>("ScheduledAM")
+                        .HasColumnName("ScheduledAM");
+
+                    b.Property<DateTime?>("ScheduledDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("SentViaXml")
+                        .HasColumnName("SentViaXML");
+
+                    b.Property<int>("SpokeWithId")
+                        .HasColumnName("SpokeWithId");
+
+                    b.Property<bool>("UnScheduled");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnteredByUserId");
+
+                    b.HasIndex("NoteTypeId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("PONotes");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.POPhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateTimeEntered")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int?>("EnteredByUserId")
+                        .HasColumnName("EnteredByUserId");
+
+                    b.Property<string>("FilePath")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnName("OrderId");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("POPhotos");
                 });
 
             modelBuilder.Entity("IMCore.Domain.Payroll", b =>
@@ -3926,98 +3980,6 @@ namespace IMCore.Data.Migrations
                     b.ToTable("PhoneNumberTypes");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Ponotes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ContactName")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.Property<bool>("CustomerToCallBack");
-
-                    b.Property<DateTime>("DateTimeEntered")
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("DateTimeSent")
-                        .HasColumnType("datetime");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int?>("EnteredByUserId")
-                        .HasColumnName("EnteredByUserId");
-
-                    b.Property<string>("NoteText")
-                        .IsUnicode(false);
-
-                    b.Property<int>("NoteTypeId")
-                        .HasColumnName("NoteTypeId");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.Property<bool>("Scheduled");
-
-                    b.Property<bool?>("ScheduledAm")
-                        .HasColumnName("ScheduledAM");
-
-                    b.Property<DateTime?>("ScheduledDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<bool>("SentViaXml")
-                        .HasColumnName("SentViaXML");
-
-                    b.Property<int>("SpokeWithId")
-                        .HasColumnName("SpokeWithId");
-
-                    b.Property<bool>("UnScheduled");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EnteredByUserId");
-
-                    b.HasIndex("NoteTypeId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("PONotes");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.Pophotos", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateTimeEntered")
-                        .HasColumnType("datetime");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int?>("EnteredByUserId")
-                        .HasColumnName("EnteredByUserId");
-
-                    b.Property<string>("FilePath")
-                        .HasMaxLength(50);
-
-                    b.Property<int>("OrderId")
-                        .HasColumnName("OrderId");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("POPhotos");
-                });
-
             modelBuilder.Entity("IMCore.Domain.PostatusValues", b =>
                 {
                     b.Property<int>("Id")
@@ -4065,6 +4027,132 @@ namespace IMCore.Data.Migrations
                     b.ToTable("PrintedPOData");
                 });
 
+            modelBuilder.Entity("IMCore.Domain.Program", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool?>("Active");
+
+                    b.Property<bool>("AllowMaterialStatusUpdate");
+
+                    b.Property<double?>("CostMultiplier")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0.5))");
+
+                    b.Property<bool?>("CustomCostByRetail")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<double?>("CustomMultiplier");
+
+                    b.Property<int?>("DivisionId")
+                        .HasColumnName("DivisionId");
+
+                    b.Property<bool>("Furnish");
+
+                    b.Property<string>("Hdtype")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("HDType")
+                        .HasDefaultValueSql("('')")
+                        .IsFixedLength(true)
+                        .HasMaxLength(1);
+
+                    b.Property<bool>("InsuranceReplacement");
+
+                    b.Property<int?>("JobTypeId")
+                        .HasColumnName("JobTypeId");
+
+                    b.Property<int?>("MarkDown");
+
+                    b.Property<int?>("MarkDownMax");
+
+                    b.Property<int?>("MarkDownMin");
+
+                    b.Property<string>("MaterialTypeName")
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasComputedColumnSql("(((case when [HDType]='I' then 'INSTALL: ' else 'MEASURE: ' end+[SKU])+' ')+[SKUDesc])")
+                        .HasMaxLength(277)
+                        .IsUnicode(false);
+
+                    b.Property<decimal?>("MinimumCost")
+                        .HasColumnType("money");
+
+                    b.Property<decimal?>("MinimumPrice")
+                        .HasColumnType("money");
+
+                    b.Property<decimal?>("MinimumRetail")
+                        .HasColumnType("money");
+
+                    b.Property<bool?>("OnlyBasicToMinimum");
+
+                    b.Property<string>("ShortName")
+                        .HasMaxLength(20)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Sku")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("SKU")
+                        .HasDefaultValueSql("('')")
+                        .HasMaxLength(12)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Skudesc")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("SKUDesc")
+                        .HasDefaultValueSql("('')")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.Property<int?>("StoreTypeId")
+                        .HasColumnName("StoreTypeId");
+
+                    b.Property<double?>("TripChargeMultiplier")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0.999))");
+
+                    b.Property<bool?>("Valid")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool>("WoodWaiver");
+
+                    b.HasKey("Id")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("DivisionId");
+
+                    b.HasIndex("JobTypeId");
+
+                    b.HasIndex("StoreTypeId");
+
+                    b.ToTable("MaterialType");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.ProgramBranchMapping", b =>
+                {
+                    b.Property<int>("MaterialTypeId")
+                        .HasColumnName("MaterialTypeId");
+
+                    b.Property<int>("MarketId")
+                        .HasColumnName("MarketId");
+
+                    b.Property<bool>("AllowEntry");
+
+                    b.HasKey("MaterialTypeId", "MarketId");
+
+                    b.HasIndex("MarketId");
+
+                    b.ToTable("MaterialTypesMarketMapping");
+                });
+
             modelBuilder.Entity("IMCore.Domain.ProgramReport", b =>
                 {
                     b.Property<int>("Id")
@@ -4106,6 +4194,57 @@ namespace IMCore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReportType");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.SPNActionQueue", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ActionId")
+                        .HasColumnName("ActionId");
+
+                    b.Property<string>("DataField1")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("DataField2")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("DataField3")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("DataField4")
+                        .HasMaxLength(50);
+
+                    b.Property<bool?>("Processed")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("(1)");
+
+                    b.Property<DateTime?>("SendAfter")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActionId");
+
+                    b.ToTable("SPNActionQueue");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.SPNActionType", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SPNActions");
                 });
 
             modelBuilder.Entity("IMCore.Domain.ScheduleChangeReasonCodes", b =>
@@ -4259,57 +4398,6 @@ namespace IMCore.Data.Migrations
                     b.ToTable("SOSISentDocuments");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.SpnactionQueue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ActionId")
-                        .HasColumnName("ActionId");
-
-                    b.Property<string>("DataField1")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("DataField2")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("DataField3")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("DataField4")
-                        .HasMaxLength(50);
-
-                    b.Property<bool?>("Processed")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(1)");
-
-                    b.Property<DateTime?>("SendAfter")
-                        .HasColumnType("datetime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActionId");
-
-                    b.ToTable("SPNActionQueue");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.Spnactions", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnName("Id");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SPNActions");
-                });
-
             modelBuilder.Entity("IMCore.Domain.SpnimportedPos", b =>
                 {
                     b.Property<int>("Id")
@@ -4347,7 +4435,7 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.SpokeWith", b =>
                 {
-                    b.Property<int>("SpokeWith1")
+                    b.Property<int>("Id")
                         .HasColumnName("SpokeWith");
 
                     b.Property<byte>("DisplayOrder")
@@ -4370,7 +4458,7 @@ namespace IMCore.Data.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.HasKey("SpokeWith1");
+                    b.HasKey("Id");
 
                     b.ToTable("SpokeWith");
                 });
@@ -4391,52 +4479,6 @@ namespace IMCore.Data.Migrations
                     b.ToTable("States");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.StoreContacts", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AltPhoneNumber")
-                        .HasMaxLength(30);
-
-                    b.Property<int?>("DepartmentId")
-                        .HasColumnName("DepartmentId");
-
-                    b.Property<string>("EmailAddress")
-                        .HasMaxLength(50);
-
-                    b.Property<bool>("EmailBilling");
-
-                    b.Property<bool>("EmailNotes");
-
-                    b.Property<bool>("EmailStatusReport");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(30);
-
-                    b.Property<int?>("StoreId")
-                        .HasColumnName("StoreId");
-
-                    b.Property<int?>("TitleId")
-                        .HasColumnName("TitleId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("StoreContacts");
-                });
-
             modelBuilder.Entity("IMCore.Domain.StoreError", b =>
                 {
                     b.Property<int>("Id");
@@ -4451,119 +4493,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("Store Error");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.StoreType", b =>
-                {
-                    b.Property<int>("StoreTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("StoreTypeId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ImageName")
-                        .HasMaxLength(50);
-
-                    b.Property<byte[]>("Logo")
-                        .HasColumnType("image");
-
-                    b.Property<string>("Qbclass")
-                        .HasColumnName("QBClass")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("StoreTypeName")
-                        .HasMaxLength(50);
-
-                    b.HasKey("StoreTypeId")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
-                    b.ToTable("StoreType");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.Stores", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AccountCoorId")
-                        .HasColumnName("AccountCoorId");
-
-                    b.Property<int?>("AccountRepId")
-                        .HasColumnName("AccountRepId");
-
-                    b.Property<bool?>("Active")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<string>("BillingAddress")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("City")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("DirectPhoneNumber")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Extension")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("FaxNumber")
-                        .HasMaxLength(30);
-
-                    b.Property<bool?>("IncludeInStatusReportAll")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<double?>("Latitude");
-
-                    b.Property<double?>("Longitude");
-
-                    b.Property<int>("MarketId");
-
-                    b.Property<short?>("MarketNumber");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("ntext");
-
-                    b.Property<string>("State")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("StoreNickName")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("StoreNumber")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("StorePhoneNumber")
-                        .HasMaxLength(30);
-
-                    b.Property<int>("StoreTypeId")
-                        .HasColumnName("StoreTypeId");
-
-                    b.Property<int>("XmlsourceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("XMLSourceId")
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<string>("ZipCode")
-                        .HasMaxLength(20);
-
-                    b.HasKey("Id")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
-                    b.HasIndex("AccountCoorId");
-
-                    b.HasIndex("AccountRepId");
-
-                    b.HasIndex("MarketId");
-
-                    b.HasIndex("StoreTypeId");
-
-                    b.ToTable("Stores");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.SubContractors", b =>
+            modelBuilder.Entity("IMCore.Domain.SubContractor", b =>
                 {
                     b.Property<int>("SubContractorId")
                         .ValueGeneratedOnAdd()
@@ -4725,7 +4655,7 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.UnitOfMeasure", b =>
                 {
-                    b.Property<int>("UnitOfMeasureId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("UnitOfMeasureId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -4745,10 +4675,81 @@ namespace IMCore.Data.Migrations
 
                     b.Property<int?>("NumberOfDecimals");
 
-                    b.HasKey("UnitOfMeasureId")
+                    b.HasKey("Id")
                         .HasAnnotation("SqlServer:Clustered", false);
 
                     b.ToTable("UnitOfMeasure");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool?>("Active")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("(1)");
+
+                    b.Property<string>("Address1")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Address2")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("City")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(30);
+
+                    b.Property<DateTime?>("HireDate")
+                        .HasColumnType("smalldatetime");
+
+                    b.Property<string>("HomeNumber")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("MobileNumber")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("NickName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("PagerNumber")
+                        .HasMaxLength(30);
+
+                    b.Property<bool>("ReceiveCallNotes");
+
+                    b.Property<string>("Smtpemail")
+                        .HasColumnName("SMTPEmail")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Ssn")
+                        .HasColumnName("SSN")
+                        .HasMaxLength(11);
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .IsFixedLength(true)
+                        .HasMaxLength(2);
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Zip")
+                        .HasMaxLength(10);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("IMCore.Domain.UserMarketDivisionAssignments", b =>
@@ -4810,24 +4811,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("UserPermissions");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.UserTaskTypes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(50);
-
-                    b.Property<int?>("Priority");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserTaskTypes");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.UserTasks", b =>
+            modelBuilder.Entity("IMCore.Domain.UserTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -4878,7 +4862,7 @@ namespace IMCore.Data.Migrations
                     b.ToTable("UserTasks");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.VendorNumbers", b =>
+            modelBuilder.Entity("IMCore.Domain.UserTaskType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -4888,37 +4872,14 @@ namespace IMCore.Data.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(50);
 
-                    b.Property<string>("Hddescription")
-                        .HasColumnName("HDDescription")
-                        .HasMaxLength(50);
-
-                    b.Property<bool?>("PaySubWhenPaid");
-
-                    b.Property<string>("VendorNumber")
-                        .HasMaxLength(30);
+                    b.Property<int?>("Priority");
 
                     b.HasKey("Id");
 
-                    b.ToTable("VendorNumbers");
+                    b.ToTable("UserTaskTypes");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Version", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnName("Id");
-
-                    b.Property<int?>("MinimumVersionMajor");
-
-                    b.Property<int?>("MinimumVersionMinor");
-
-                    b.Property<int?>("VersionNo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Version");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.Voc", b =>
+            modelBuilder.Entity("IMCore.Domain.VOC", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -5136,6 +5097,46 @@ namespace IMCore.Data.Migrations
                     b.ToTable("VOC");
                 });
 
+            modelBuilder.Entity("IMCore.Domain.VendorNumbers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Hddescription")
+                        .HasColumnName("HDDescription")
+                        .HasMaxLength(50);
+
+                    b.Property<bool?>("PaySubWhenPaid");
+
+                    b.Property<string>("VendorNumber")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VendorNumbers");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.Version", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnName("Id");
+
+                    b.Property<int?>("MinimumVersionMajor");
+
+                    b.Property<int?>("MinimumVersionMinor");
+
+                    b.Property<int?>("VersionNo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Version");
+                });
+
             modelBuilder.Entity("IMCore.Domain.Weeks", b =>
                 {
                     b.Property<int>("Weeks1")
@@ -5239,76 +5240,76 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.ActionReport", b =>
                 {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
-                        .WithMany("ActionReport")
+                    b.HasOne("IMCore.Domain.Order", "Order")
+                        .WithMany("ActionReports")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_ActionReport_Orders")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("IMCore.Domain.ActivityData", b =>
-                {
-                    b.HasOne("IMCore.Domain.ActivityList", "Activity")
-                        .WithMany("ActivityData")
-                        .HasForeignKey("ActivityId")
-                        .HasConstraintName("FK_ActivityData_ActivityList");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.ActivityList", b =>
+            modelBuilder.Entity("IMCore.Domain.Activity", b =>
                 {
                     b.HasOne("IMCore.Domain.ActivityTypes", "ActivityType")
                         .WithMany("ActivityList")
                         .HasForeignKey("ActivityTypeId")
                         .HasConstraintName("FK_ActivityList_ActivityTypes");
 
-                    b.HasOne("IMCore.Domain.Employees", "ClosedBy")
+                    b.HasOne("IMCore.Domain.User", "ClosedBy")
                         .WithMany("ActivityListClosedBy")
                         .HasForeignKey("ClosedById");
 
-                    b.HasOne("IMCore.Domain.Employees", "CreatedBy")
+                    b.HasOne("IMCore.Domain.User", "CreatedBy")
                         .WithMany("ActivityListCreatedBy")
                         .HasForeignKey("CreatedById")
                         .HasConstraintName("FK_ActivityList_Employees");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("ActivityList")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_ActivityList_Orders");
                 });
 
+            modelBuilder.Entity("IMCore.Domain.ActivityData", b =>
+                {
+                    b.HasOne("IMCore.Domain.Activity", "Activity")
+                        .WithMany("ActivityData")
+                        .HasForeignKey("ActivityId")
+                        .HasConstraintName("FK_ActivityData_ActivityList");
+                });
+
             modelBuilder.Entity("IMCore.Domain.ActivityPonoteMapping", b =>
                 {
-                    b.HasOne("IMCore.Domain.ActivityList", "Activity")
+                    b.HasOne("IMCore.Domain.Activity", "Activity")
                         .WithMany("ActivityPonoteMapping")
                         .HasForeignKey("ActivityId")
                         .HasConstraintName("FK_ActivityPONoteMapping_ActivityList");
 
-                    b.HasOne("IMCore.Domain.Ponotes", "Ponote")
+                    b.HasOne("IMCore.Domain.PONote", "Ponote")
                         .WithMany("ActivityPonoteMapping")
                         .HasForeignKey("PonoteId")
                         .HasConstraintName("FK_ActivityPONoteMapping_PONotes");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Admins", b =>
+            modelBuilder.Entity("IMCore.Domain.Admin", b =>
                 {
-                    b.HasOne("IMCore.Domain.Employees", "Employee")
+                    b.HasOne("IMCore.Domain.User", "Employee")
                         .WithOne("Admins")
-                        .HasForeignKey("IMCore.Domain.Admins", "EmployeeId")
+                        .HasForeignKey("IMCore.Domain.Admin", "EmployeeId")
                         .HasConstraintName("FK_Admins_Employees");
                 });
 
             modelBuilder.Entity("IMCore.Domain.BasicCost", b =>
                 {
                     b.HasOne("IMCore.Domain.BasicLabor")
-                        .WithMany("BasicCost")
+                        .WithMany("Costs")
                         .HasForeignKey("BasicLaborId");
 
                     b.HasOne("IMCore.Domain.Market", "Branch")
-                        .WithMany("BasicCost")
+                        .WithMany("Costs")
                         .HasForeignKey("BranchId")
                         .HasConstraintName("FK_BasicCost_Market");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5320,7 +5321,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("ItemId")
                         .HasConstraintName("FK_BasicLabor_Item");
 
-                    b.HasOne("IMCore.Domain.MaterialType", "MaterialType")
+                    b.HasOne("IMCore.Domain.Program", "MaterialType")
                         .WithMany("BasicLabor")
                         .HasForeignKey("MaterialTypeId")
                         .HasConstraintName("FK_BasicLabor_MaterialType");
@@ -5334,16 +5335,16 @@ namespace IMCore.Data.Migrations
             modelBuilder.Entity("IMCore.Domain.BasicPrice", b =>
                 {
                     b.HasOne("IMCore.Domain.Market", "Branch")
-                        .WithMany("BasicPrice")
+                        .WithMany("Prices")
                         .HasForeignKey("BranchId")
                         .HasConstraintName("FK_BasicPrice_Market");
 
                     b.HasOne("IMCore.Domain.BasicLabor", "Labor")
-                        .WithMany("BasicPrice")
+                        .WithMany("Prices")
                         .HasForeignKey("LaborId")
                         .HasConstraintName("FK_BasicPrice_Labor");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5360,7 +5361,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_BasicPricing_Market");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5368,31 +5369,31 @@ namespace IMCore.Data.Migrations
             modelBuilder.Entity("IMCore.Domain.BasicRetail", b =>
                 {
                     b.HasOne("IMCore.Domain.Market", "Branch")
-                        .WithMany("BasicRetail")
+                        .WithMany("Retails")
                         .HasForeignKey("BranchId")
                         .HasConstraintName("FK_BasicRetail_Market");
 
                     b.HasOne("IMCore.Domain.BasicLabor", "Labor")
-                        .WithMany("BasicRetail")
+                        .WithMany("Retails")
                         .HasForeignKey("LaborId")
                         .HasConstraintName("FK_BasicRetail_Labor");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
 
             modelBuilder.Entity("IMCore.Domain.Bill", b =>
                 {
-                    b.HasOne("IMCore.Domain.SubContractors", "Owner")
+                    b.HasOne("IMCore.Domain.SubContractor", "Owner")
                         .WithMany("Bill")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_Bill_SubContractors");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.BillDetails", b =>
+            modelBuilder.Entity("IMCore.Domain.BillDetail", b =>
                 {
-                    b.HasOne("IMCore.Domain.SubContractors", "BackChargeOwner")
+                    b.HasOne("IMCore.Domain.SubContractor", "BackChargeOwner")
                         .WithMany("BillDetails")
                         .HasForeignKey("BackChargeOwnerId")
                         .HasConstraintName("FK_BillDetails_InstallationCrew");
@@ -5402,44 +5403,44 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("BillId")
                         .HasConstraintName("FK_BillDetails_Bill");
 
-                    b.HasOne("IMCore.Domain.ChargeBacks", "ChargeBack")
+                    b.HasOne("IMCore.Domain.ChargeBack", "ChargeBack")
                         .WithMany("BillDetails")
                         .HasForeignKey("ChargeBackId")
                         .HasConstraintName("FK_BillDetails_ChargeBacks");
 
                     b.HasOne("IMCore.Domain.WorkOrder", "WorkOrder")
                         .WithOne("BillDetails")
-                        .HasForeignKey("IMCore.Domain.BillDetails", "WorkOrderId")
+                        .HasForeignKey("IMCore.Domain.BillDetail", "WorkOrderId")
                         .HasConstraintName("FK_BillDetails_WorkOrders");
                 });
 
             modelBuilder.Entity("IMCore.Domain.Calls", b =>
                 {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("Calls")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_Calls_Orders")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("IMCore.Domain.ChargeBacks", b =>
+            modelBuilder.Entity("IMCore.Domain.ChargeBack", b =>
                 {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("ChargeBacks")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_ChargeBacks_Orders");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.CheckCbdetail", b =>
+            modelBuilder.Entity("IMCore.Domain.CheckCBDetail", b =>
                 {
-                    b.HasOne("IMCore.Domain.ChargeBacks", "ChargeBack")
-                        .WithMany("CheckCbdetail")
+                    b.HasOne("IMCore.Domain.ChargeBack", "ChargeBack")
+                        .WithMany("CheckCBDetails")
                         .HasForeignKey("ChargeBackId")
                         .HasConstraintName("FK_CheckCBDetail_ChargeBacks")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("IMCore.Domain.Checks", "Check")
-                        .WithMany("CheckCbdetail")
+                        .WithMany("CheckCBDetails")
                         .HasForeignKey("CheckId")
                         .HasConstraintName("FK_CheckCBDetail_Checks")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -5448,20 +5449,56 @@ namespace IMCore.Data.Migrations
             modelBuilder.Entity("IMCore.Domain.CheckDetail", b =>
                 {
                     b.HasOne("IMCore.Domain.Checks", "Check")
-                        .WithMany("CheckDetail")
+                        .WithMany("CheckDetails")
                         .HasForeignKey("CheckId")
                         .HasConstraintName("FK_CheckDetail_Checks");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("CheckDetail")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_CheckDetail_Orders")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("IMCore.Domain.ClientTypeReports", b =>
+            modelBuilder.Entity("IMCore.Domain.Client", b =>
                 {
-                    b.HasOne("IMCore.Domain.StoreType", "ClientType")
+                    b.HasOne("IMCore.Domain.User", "AccountCoor")
+                        .WithMany("StoresAccountCoor")
+                        .HasForeignKey("AccountCoorId")
+                        .HasConstraintName("FK_Stores_AccountCoor");
+
+                    b.HasOne("IMCore.Domain.User", "AccountRep")
+                        .WithMany("StoresAccountRep")
+                        .HasForeignKey("AccountRepId")
+                        .HasConstraintName("FK_Stores_AccountRep");
+
+                    b.HasOne("IMCore.Domain.Market", "Market")
+                        .WithMany("Stores")
+                        .HasForeignKey("BranchId")
+                        .HasConstraintName("FK_Stores_Market");
+
+                    b.HasOne("IMCore.Domain.ClientType", "StoreType")
+                        .WithMany("Stores")
+                        .HasForeignKey("StoreTypeId")
+                        .HasConstraintName("FK_Stores_StoreType");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.ClientContact", b =>
+                {
+                    b.HasOne("IMCore.Domain.Department", "Department")
+                        .WithMany("StoreContacts")
+                        .HasForeignKey("DepartmentId")
+                        .HasConstraintName("FK_StoreContacts_Departments");
+
+                    b.HasOne("IMCore.Domain.Client", "Store")
+                        .WithMany("StoreContacts")
+                        .HasForeignKey("StoreId")
+                        .HasConstraintName("FK_StoreContacts_Stores");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.ClientTypeReport", b =>
+                {
+                    b.HasOne("IMCore.Domain.ClientType", "ClientType")
                         .WithMany("ClientTypeReports")
                         .HasForeignKey("ClientTypeId")
                         .HasConstraintName("FK_ClientTypeReports_ClientType");
@@ -5472,7 +5509,7 @@ namespace IMCore.Data.Migrations
                         .HasConstraintName("FK_ClientTypeReports_ReportTypes");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Customers", b =>
+            modelBuilder.Entity("IMCore.Domain.Customer", b =>
                 {
                     b.HasOne("IMCore.Domain.Address", "AddressNavigation")
                         .WithMany("Customers")
@@ -5482,12 +5519,12 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.DepartmentsContactTitles", b =>
                 {
-                    b.HasOne("IMCore.Domain.ContactTitles", "ContactTitles")
+                    b.HasOne("IMCore.Domain.ContactTitle", "ContactTitles")
                         .WithMany("DepartmentsContactTitles")
                         .HasForeignKey("ContactTitlesId")
                         .HasConstraintName("FK_DepartmentsContactTitles_ContactTitles");
 
-                    b.HasOne("IMCore.Domain.Departments", "Departments")
+                    b.HasOne("IMCore.Domain.Department", "Departments")
                         .WithMany("DepartmentsContactTitles")
                         .HasForeignKey("DepartmentsId")
                         .HasConstraintName("FK_DepartmentsContactTitles_Departments");
@@ -5495,30 +5532,34 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.DepartmentsStoresAssignments", b =>
                 {
-                    b.HasOne("IMCore.Domain.Departments", "Department")
+                    b.HasOne("IMCore.Domain.Department", "Department")
                         .WithMany("DepartmentsStoresAssignments")
                         .HasForeignKey("DepartmentId")
                         .HasConstraintName("FK_DepartmentsStoresAssignments_Departments");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany("DepartmentsStoresAssignments")
                         .HasForeignKey("StoreId")
                         .HasConstraintName("FK_DepartmentsStoresAssignments_Stores");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Discrepancies", b =>
+            modelBuilder.Entity("IMCore.Domain.Discrepancy", b =>
                 {
+                    b.HasOne("IMCore.Domain.DiscrepancySubType", "DiscrepancySubType")
+                        .WithMany()
+                        .HasForeignKey("DiscrepancySubTypeId");
+
                     b.HasOne("IMCore.Domain.DiscrepancyType", "DiscrepancyType")
                         .WithMany("Discrepancies")
                         .HasForeignKey("DiscrepancyTypeId")
                         .HasConstraintName("FK_Discrepancies_DiscrepancyType");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("Discrepancies")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_Discrepancies_Orders");
 
-                    b.HasOne("IMCore.Domain.Employees", "ReviewedBy")
+                    b.HasOne("IMCore.Domain.User", "ReviewedBy")
                         .WithMany("Discrepancies")
                         .HasForeignKey("ReviewedById")
                         .HasConstraintName("FK_Discrepancies_Employees");
@@ -5539,12 +5580,12 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("BranchId")
                         .HasConstraintName("FK_InstallationCrew_Branch");
 
-                    b.HasOne("IMCore.Domain.SubContractors", "Lead")
+                    b.HasOne("IMCore.Domain.SubContractor", "Lead")
                         .WithMany("InstallationCrewLead")
                         .HasForeignKey("LeadId")
                         .HasConstraintName("FK_InstallationCrew_Lead");
 
-                    b.HasOne("IMCore.Domain.SubContractors", "Owner")
+                    b.HasOne("IMCore.Domain.SubContractor", "Owner")
                         .WithMany("InstallationCrewOwner")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_InstallationCrew_Owner");
@@ -5557,7 +5598,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("Id")
                         .HasConstraintName("FK_InstallationCrewType_InstallationCrew");
 
-                    b.HasOne("IMCore.Domain.JobTypes", "JobType")
+                    b.HasOne("IMCore.Domain.JobType", "JobType")
                         .WithMany("InstallationCrewType")
                         .HasForeignKey("JobTypeId")
                         .HasConstraintName("FK_InstallationCrewType_JobType");
@@ -5579,7 +5620,7 @@ namespace IMCore.Data.Migrations
                         .HasConstraintName("FK_ItemCosting_Division");
 
                     b.HasOne("IMCore.Domain.Item", "Item")
-                        .WithMany("ItemCosting")
+                        .WithMany("Costs")
                         .HasForeignKey("ItemId")
                         .HasConstraintName("FK_ItemCosting_Item");
 
@@ -5588,7 +5629,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_ItemCosting_Market");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5605,7 +5646,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_ItemMatCosting_Market");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5613,7 +5654,7 @@ namespace IMCore.Data.Migrations
             modelBuilder.Entity("IMCore.Domain.ItemPricing", b =>
                 {
                     b.HasOne("IMCore.Domain.Item", "Item")
-                        .WithMany("ItemPricing")
+                        .WithMany("Prices")
                         .HasForeignKey("ItemId")
                         .HasConstraintName("FK_ItemPricing_Item");
 
@@ -5622,19 +5663,19 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_ItemPricing_Market");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
 
             modelBuilder.Entity("IMCore.Domain.Jobs", b =>
                 {
-                    b.HasOne("IMCore.Domain.Employees", "AssignedTo")
+                    b.HasOne("IMCore.Domain.User", "AssignedTo")
                         .WithMany("JobsAssignedTo")
                         .HasForeignKey("AssignedToId")
                         .HasConstraintName("FK_Job_AssignedTo");
 
-                    b.HasOne("IMCore.Domain.Employees", "CreatedBy")
+                    b.HasOne("IMCore.Domain.User", "CreatedBy")
                         .WithMany("JobsCreatedBy")
                         .HasForeignKey("CreatedById")
                         .HasConstraintName("FK_Job_CreatedBy");
@@ -5644,7 +5685,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("JobStatusId")
                         .HasConstraintName("FK_Jobs_JobStatus");
 
-                    b.HasOne("IMCore.Domain.Orders", "PrimaryOrder")
+                    b.HasOne("IMCore.Domain.Order", "PrimaryOrder")
                         .WithMany("Jobs")
                         .HasForeignKey("PrimaryOrderId")
                         .HasConstraintName("FK_Jobs_Orders");
@@ -5652,15 +5693,15 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.Market", b =>
                 {
-                    b.HasOne("IMCore.Domain.Employees", "Manager")
+                    b.HasOne("IMCore.Domain.User", "Manager")
                         .WithMany("Market")
                         .HasForeignKey("ManagerId")
                         .HasConstraintName("FK_Branch_Manager");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MaterialCatagory", b =>
+            modelBuilder.Entity("IMCore.Domain.Material", b =>
                 {
-                    b.HasOne("IMCore.Domain.MatSubCat", "SubCat")
+                    b.HasOne("IMCore.Domain.MaterialSubCategory", "SubCat")
                         .WithMany("MaterialCatagory")
                         .HasForeignKey("SubCatId")
                         .HasConstraintName("FK_Material Catagory_MatSubCat");
@@ -5678,7 +5719,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("BasicLaborId")
                         .HasConstraintName("FK_MaterialCategoryBasicLaborMappings_BasicLabor");
 
-                    b.HasOne("IMCore.Domain.MaterialCatagory", "MaterialCategory")
+                    b.HasOne("IMCore.Domain.Material", "MaterialCategory")
                         .WithMany("MaterialCategoryBasicLaborMappings")
                         .HasForeignKey("MaterialCategoryId")
                         .HasConstraintName("FK_MaterialCategoryBasicLaborMappings_MaterialCategory");
@@ -5691,7 +5732,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("ItemId")
                         .HasConstraintName("FK_MaterilCategoryItemMappings_Item");
 
-                    b.HasOne("IMCore.Domain.MaterialCatagory", "MaterialCategory")
+                    b.HasOne("IMCore.Domain.Material", "MaterialCategory")
                         .WithMany("MaterialCategoryItemMappings")
                         .HasForeignKey("MaterialCategoryId")
                         .HasConstraintName("FK_MaterilCategoryItemMappings_MaterialCategory");
@@ -5699,12 +5740,12 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.MaterialCategoryOptionsMappings", b =>
                 {
-                    b.HasOne("IMCore.Domain.MaterialCatagory", "MaterialCategory")
+                    b.HasOne("IMCore.Domain.Material", "MaterialCategory")
                         .WithMany("MaterialCategoryOptionsMappings")
                         .HasForeignKey("MaterialCategoryId")
                         .HasConstraintName("FK_MaterialCategoryOptionsMappings_MaterialCategory");
 
-                    b.HasOne("IMCore.Domain.Options", "Option")
+                    b.HasOne("IMCore.Domain.Option", "Option")
                         .WithMany("MaterialCategoryOptionsMappings")
                         .HasForeignKey("OptionId")
                         .HasConstraintName("FK_MaterialCategoryOptionsMappings_Options");
@@ -5717,17 +5758,17 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_MaterialCost_Market");
 
-                    b.HasOne("IMCore.Domain.MaterialCatagory", "MaterialCat")
+                    b.HasOne("IMCore.Domain.Material", "MaterialCat")
                         .WithMany("MaterialCost")
                         .HasForeignKey("MaterialCatId")
                         .HasConstraintName("FK_MaterialCost_Material Catagory");
 
-                    b.HasOne("IMCore.Domain.MaterialType", "Program")
+                    b.HasOne("IMCore.Domain.Program", "Program")
                         .WithMany("MaterialCost")
                         .HasForeignKey("ProgramId")
                         .HasConstraintName("FK_MaterialCost_Program");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5739,83 +5780,70 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_MaterialPrice_Market");
 
-                    b.HasOne("IMCore.Domain.MaterialCatagory", "MaterialCat")
+                    b.HasOne("IMCore.Domain.Material", "MaterialCat")
                         .WithMany("MaterialPrice")
                         .HasForeignKey("MaterialCatId")
                         .HasConstraintName("FK_MaterialPrice_Material Catagory");
 
-                    b.HasOne("IMCore.Domain.MaterialType", "Program")
+                    b.HasOne("IMCore.Domain.Program", "Program")
                         .WithMany("MaterialPrice")
                         .HasForeignKey("ProgramId")
                         .HasConstraintName("FK_MaterialPrice_MaterialType");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MaterialType", b =>
+            modelBuilder.Entity("IMCore.Domain.MeasureCompCalcs", b =>
                 {
-                    b.HasOne("IMCore.Domain.Division", "Division")
-                        .WithMany("MaterialType")
-                        .HasForeignKey("DivisionId")
-                        .HasConstraintName("FK_MaterialType_Division");
-
-                    b.HasOne("IMCore.Domain.JobTypes", "JobType")
-                        .WithMany("MaterialType")
-                        .HasForeignKey("JobTypeId")
-                        .HasConstraintName("FK_MaterialType_JobType");
-
-                    b.HasOne("IMCore.Domain.StoreType", "StoreType")
-                        .WithMany("MaterialType")
-                        .HasForeignKey("StoreTypeId")
-                        .HasConstraintName("FK_MaterialType_StoreType");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.MaterialTypesMarketMapping", b =>
-                {
-                    b.HasOne("IMCore.Domain.Market", "Market")
-                        .WithMany("MaterialTypesMarketMapping")
-                        .HasForeignKey("MarketId")
-                        .HasConstraintName("FK_MaterialTypesMarketMapping_Market");
-
-                    b.HasOne("IMCore.Domain.MaterialType", "MaterialType")
-                        .WithMany("MaterialTypesMarketMapping")
-                        .HasForeignKey("MaterialTypeId")
-                        .HasConstraintName("FK_MaterialTypesMarketMapping_MaterialType");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.MeasureCompCalcData", b =>
-                {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("MeasureCompCalcData")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_MeasureCompCalcData_Orders");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MeasureCompCustData", b =>
+            modelBuilder.Entity("IMCore.Domain.MeasureCompCustomers", b =>
                 {
-                    b.HasOne("IMCore.Domain.Customers", "Customer")
+                    b.HasOne("IMCore.Domain.Customer", "Customer")
                         .WithMany("MeasureCompCustData")
                         .HasForeignKey("CustomerId")
                         .HasConstraintName("FK_MeasureCompCustData_Customers")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MeasureCompLineItemData", b =>
+            modelBuilder.Entity("IMCore.Domain.MeasureCompLineItem", b =>
                 {
-                    b.HasOne("IMCore.Domain.MeasureCompCalcData", "Calc")
-                        .WithMany("MeasureCompLineItemData")
+                    b.HasOne("IMCore.Domain.MeasureCompCalcs", "Calc")
+                        .WithMany("MeasureCompLineItem")
                         .HasForeignKey("CalcId")
                         .HasConstraintName("FK_MeasureCompLineItemData_MeasureCompCalcData");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.MeasureCompOrderData", b =>
+            modelBuilder.Entity("IMCore.Domain.MeasureCompOrder", b =>
                 {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("MeasureCompOrderData")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_MeasureCompOrderData_Orders");
+                });
+
+            modelBuilder.Entity("IMCore.Domain.Option", b =>
+                {
+                    b.HasOne("IMCore.Domain.Item", "Item")
+                        .WithMany("Options")
+                        .HasForeignKey("ItemId")
+                        .HasConstraintName("FK_Options_Item");
+
+                    b.HasOne("IMCore.Domain.Program", "MaterialType")
+                        .WithMany("Options")
+                        .HasForeignKey("MaterialTypeId")
+                        .HasConstraintName("FK_Options_MaterialType");
+
+                    b.HasOne("IMCore.Domain.UnitOfMeasure", "UnitOfMeasure")
+                        .WithMany("Options")
+                        .HasForeignKey("UnitOfMeasureId")
+                        .HasConstraintName("FK_Options_UnitOfMeasure");
                 });
 
             modelBuilder.Entity("IMCore.Domain.OptionCost", b =>
@@ -5825,12 +5853,12 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("BranchId")
                         .HasConstraintName("FK_OptionCost_Market");
 
-                    b.HasOne("IMCore.Domain.Options", "Labor")
-                        .WithMany("OptionCost")
+                    b.HasOne("IMCore.Domain.Option", "Labor")
+                        .WithMany("Costs")
                         .HasForeignKey("LaborId")
                         .HasConstraintName("FK_OptionCost_Labor");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5842,12 +5870,12 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("BranchId")
                         .HasConstraintName("FK_OptionPrice_Market");
 
-                    b.HasOne("IMCore.Domain.Options", "Labor")
-                        .WithMany("OptionPrice")
+                    b.HasOne("IMCore.Domain.Option", "Labor")
+                        .WithMany("Prices")
                         .HasForeignKey("LaborId")
                         .HasConstraintName("FK_OptionPrice_Labor");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5859,12 +5887,12 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_OptionPricing_Market");
 
-                    b.HasOne("IMCore.Domain.Options", "Option")
+                    b.HasOne("IMCore.Domain.Option", "Option")
                         .WithMany("OptionPricingOld")
                         .HasForeignKey("OptionId")
                         .HasConstraintName("FK_OptionPricing_Options");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
@@ -5876,35 +5904,75 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("BranchId")
                         .HasConstraintName("FK_OptionRetail_Market");
 
-                    b.HasOne("IMCore.Domain.Options", "Labor")
-                        .WithMany("OptionRetail")
+                    b.HasOne("IMCore.Domain.Option", "Labor")
+                        .WithMany("Retails")
                         .HasForeignKey("LaborId")
                         .HasConstraintName("FK_OptionRetail_Labor");
 
-                    b.HasOne("IMCore.Domain.Stores", "Store")
+                    b.HasOne("IMCore.Domain.Client", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Options", b =>
+            modelBuilder.Entity("IMCore.Domain.Order", b =>
                 {
-                    b.HasOne("IMCore.Domain.Item", "Item")
-                        .WithMany("Options")
-                        .HasForeignKey("ItemId")
-                        .HasConstraintName("FK_Options_Item");
+                    b.HasOne("IMCore.Domain.Address", "Address")
+                        .WithMany("Orders")
+                        .HasForeignKey("AddressId")
+                        .HasConstraintName("FK_Orders_Address");
 
-                    b.HasOne("IMCore.Domain.MaterialType", "MaterialType")
-                        .WithMany("Options")
+                    b.HasOne("IMCore.Domain.User", "AssignedTo")
+                        .WithMany("OrdersAssignedTo")
+                        .HasForeignKey("AssignedToId")
+                        .HasConstraintName("FK_Orders_AssignedTo");
+
+                    b.HasOne("IMCore.Domain.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .HasConstraintName("FK_Orders_Customers");
+
+                    b.HasOne("IMCore.Domain.User", "EnteredBy")
+                        .WithMany("OrdersEnteredBy")
+                        .HasForeignKey("EnteredById")
+                        .HasConstraintName("FK_Orders_EnteredBy");
+
+                    b.HasOne("IMCore.Domain.EntryMethod", "EntryMethod")
+                        .WithMany("Orders")
+                        .HasForeignKey("EntryMethodId")
+                        .HasConstraintName("FK_Orders_EntryMethod");
+
+                    b.HasOne("IMCore.Domain.JobStatus", "JobStatus")
+                        .WithMany("Orders")
+                        .HasForeignKey("JobStatusId")
+                        .HasConstraintName("FK_Orders_JobStatus");
+
+                    b.HasOne("IMCore.Domain.Program", "Program")
+                        .WithMany("Orders")
                         .HasForeignKey("MaterialTypeId")
-                        .HasConstraintName("FK_Options_MaterialType");
+                        .HasConstraintName("FK_Orders_MaterialType");
 
-                    b.HasOne("IMCore.Domain.UnitOfMeasure", "UnitOfMeasure")
-                        .WithMany("Options")
-                        .HasForeignKey("UnitOfMeasureId")
-                        .HasConstraintName("FK_Options_UnitOfMeasure");
+                    b.HasOne("IMCore.Domain.Order", "PrimaryOrder")
+                        .WithMany("AssociatedOrders")
+                        .HasForeignKey("PrimaryOrderId")
+                        .HasConstraintName("FK_Orders_Orders");
+
+                    b.HasOne("IMCore.Domain.User", "ReviewedBy")
+                        .WithMany("OrdersReviewedBy")
+                        .HasForeignKey("ReviewedById")
+                        .HasConstraintName("FK_Orders_ReviewedBy");
+
+                    b.HasOne("IMCore.Domain.User", "SalesPerson")
+                        .WithMany("OrdersSalesPerson")
+                        .HasForeignKey("SalesPersonId")
+                        .HasConstraintName("FK_Orders_SalesPerson");
+
+                    b.HasOne("IMCore.Domain.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("IMCore.Domain.OrderBasicLaborDetails", b =>
+            modelBuilder.Entity("IMCore.Domain.OrderBasicLaborDetail", b =>
                 {
                     b.HasOne("IMCore.Domain.BasicLabor", "BasicLabor")
                         .WithMany()
@@ -5921,35 +5989,36 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MaterialStatusId")
                         .HasConstraintName("FK_OrderBasicLaborDetail_MaterialStatus");
 
-                    b.HasOne("IMCore.Domain.Orders")
-                        .WithMany("OrderBasicLaborDetails")
-                        .HasForeignKey("OrdersId");
+                    b.HasOne("IMCore.Domain.Order")
+                        .WithMany("BasicLabors")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("IMCore.Domain.Employees", "ReviewedBy")
+                    b.HasOne("IMCore.Domain.User", "ReviewedBy")
                         .WithMany("OrderBasicLaborDetails")
                         .HasForeignKey("ReviewedById")
                         .HasConstraintName("FK_OrderBasicLaborDetail_ReviewedBy");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.OrderCustomDetails", b =>
+            modelBuilder.Entity("IMCore.Domain.OrderCustomDetail", b =>
                 {
                     b.HasOne("IMCore.Domain.EntryMethod", "EntryMethod")
                         .WithMany("OrderCustomDetails")
                         .HasForeignKey("EntryMethodId")
                         .HasConstraintName("FK_OrderCustomDetails_EntryMethod");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
-                        .WithMany("OrderCustomDetails")
+                    b.HasOne("IMCore.Domain.Order", "Order")
+                        .WithMany("CustomLabors")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_OrderCustomDetails_Orders")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("IMCore.Domain.Employees", "ReviewedBy")
+                    b.HasOne("IMCore.Domain.User", "ReviewedBy")
                         .WithMany("OrderCustomDetails")
                         .HasForeignKey("ReviewedById")
                         .HasConstraintName("FK_OrderCustomDetails_Employees");
 
-                    b.HasOne("IMCore.Domain.SubContractors", "SubContractor")
+                    b.HasOne("IMCore.Domain.SubContractor", "SubContractor")
                         .WithMany("OrderCustomDetails")
                         .HasForeignKey("SubContractorId")
                         .HasConstraintName("FK_OrderCustomDetails_SubContractor");
@@ -5960,9 +6029,9 @@ namespace IMCore.Data.Migrations
                         .HasConstraintName("FK_OrderCustomDetails_UnitOfMeasure");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.OrderDiagrams", b =>
+            modelBuilder.Entity("IMCore.Domain.OrderDiagram", b =>
                 {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("OrderDiagrams")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_OrderDiagrams_Orders");
@@ -5975,50 +6044,50 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("DocumentId")
                         .HasConstraintName("FK_OrderDocument_Document");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("OrderDocument")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_OrderDocument_Order");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.OrderOptionsDetails", b =>
+            modelBuilder.Entity("IMCore.Domain.OrderOptionalLaborDetail", b =>
                 {
                     b.HasOne("IMCore.Domain.EntryMethod", "EntryMethod")
                         .WithMany("OrderOptionsDetails")
                         .HasForeignKey("EntryMethodId")
                         .HasConstraintName("FK_OrderOptionsDetails_EntryMethod");
 
-                    b.HasOne("IMCore.Domain.Options", "Option")
+                    b.HasOne("IMCore.Domain.Option", "Option")
                         .WithMany("OrderOptionsDetails")
                         .HasForeignKey("OptionId")
                         .HasConstraintName("FK_Order Options Details_Options");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
-                        .WithMany("OrderOptionsDetails")
+                    b.HasOne("IMCore.Domain.Order", "Order")
+                        .WithMany("OptionalLabors")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_Order Options Details_Orders")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("IMCore.Domain.Employees", "ReviewedBy")
+                    b.HasOne("IMCore.Domain.User", "ReviewedBy")
                         .WithMany("OrderOptionsDetails")
                         .HasForeignKey("ReviewedById")
                         .HasConstraintName("FK_OrderOptionsDetails_Employees");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.OrderRegMerchandiseDetails", b =>
+            modelBuilder.Entity("IMCore.Domain.OrderRegMerchandiseDetail", b =>
                 {
                     b.HasOne("IMCore.Domain.EntryMethod", "EntryMethod")
                         .WithMany("OrderRegMerchandiseDetails")
                         .HasForeignKey("EntryMethodId")
                         .HasConstraintName("FK_OrderRegMerchandiseDetails_EntryMethod");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("OrderRegMerchandiseDetails")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_OrderRegMerchandiseDetails_Orders")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("IMCore.Domain.Employees", "ReviewedBy")
+                    b.HasOne("IMCore.Domain.User", "ReviewedBy")
                         .WithMany("OrderRegMerchandiseDetails")
                         .HasForeignKey("ReviewedById")
                         .HasConstraintName("FK_OrderRegMerchandiseDetails_ReviewedBy");
@@ -6034,7 +6103,7 @@ namespace IMCore.Data.Migrations
                         .HasConstraintName("FK_OrderRegMerchandiseDetails_UnitOfMeasure");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.OrderSomerchandiseDetails", b =>
+            modelBuilder.Entity("IMCore.Domain.OrderSOMerchandiseDetail", b =>
                 {
                     b.HasOne("IMCore.Domain.EntryMethod", "EntryMethod")
                         .WithMany("OrderSomerchandiseDetails")
@@ -6046,13 +6115,13 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MaterialStatusId")
                         .HasConstraintName("FK_OrderSOMerchandiseDetails_Material Status");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("OrderSomerchandiseDetails")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_OrderSOMerchandiseDetails_Orders")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("IMCore.Domain.Employees", "ReviewedBy")
+                    b.HasOne("IMCore.Domain.User", "ReviewedBy")
                         .WithMany("OrderSomerchandiseDetails")
                         .HasForeignKey("ReviewedById")
                         .HasConstraintName("FK_OrderSOMerchandiseDetails_ReviewedBy");
@@ -6063,67 +6132,40 @@ namespace IMCore.Data.Migrations
                         .HasConstraintName("FK_OrderSOMerchandiseDetails_UnitOfMeasure");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Orders", b =>
+            modelBuilder.Entity("IMCore.Domain.PONote", b =>
                 {
-                    b.HasOne("IMCore.Domain.Address", "Address")
-                        .WithMany("Orders")
-                        .HasForeignKey("AddressId")
-                        .HasConstraintName("FK_Orders_Address");
+                    b.HasOne("IMCore.Domain.User", "EnteredByUser")
+                        .WithMany("Ponotes")
+                        .HasForeignKey("EnteredByUserId")
+                        .HasConstraintName("FK_PONote_EnteredBy");
 
-                    b.HasOne("IMCore.Domain.Employees", "AssignedTo")
-                        .WithMany("OrdersAssignedTo")
-                        .HasForeignKey("AssignedToId")
-                        .HasConstraintName("FK_Orders_AssignedTo");
+                    b.HasOne("IMCore.Domain.NoteType", "NoteType")
+                        .WithMany("Ponotes")
+                        .HasForeignKey("NoteTypeId")
+                        .HasConstraintName("FK_PONotes_NoteTypes");
 
-                    b.HasOne("IMCore.Domain.Customers", "Customer")
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerId")
-                        .HasConstraintName("FK_Orders_Customers");
+                    b.HasOne("IMCore.Domain.Order", "Order")
+                        .WithMany("PONotes")
+                        .HasForeignKey("OrderId")
+                        .HasConstraintName("FK_PONotes_Orders");
+                });
 
-                    b.HasOne("IMCore.Domain.Employees", "EnteredBy")
-                        .WithMany("OrdersEnteredBy")
-                        .HasForeignKey("EnteredById")
-                        .HasConstraintName("FK_Orders_EnteredBy");
-
-                    b.HasOne("IMCore.Domain.EntryMethod", "EntryMethod")
-                        .WithMany("Orders")
-                        .HasForeignKey("EntryMethodId")
-                        .HasConstraintName("FK_Orders_EntryMethod");
-
-                    b.HasOne("IMCore.Domain.JobStatus", "JobStatus")
-                        .WithMany("Orders")
-                        .HasForeignKey("JobStatusId")
-                        .HasConstraintName("FK_Orders_JobStatus");
-
-                    b.HasOne("IMCore.Domain.MaterialType", "MaterialType")
-                        .WithMany("Orders")
-                        .HasForeignKey("MaterialTypeId")
-                        .HasConstraintName("FK_Orders_MaterialType");
-
-                    b.HasOne("IMCore.Domain.Orders", "PrimaryOrder")
-                        .WithMany("InversePrimaryOrder")
-                        .HasForeignKey("PrimaryOrderId")
-                        .HasConstraintName("FK_Orders_Orders");
-
-                    b.HasOne("IMCore.Domain.Employees", "ReviewedBy")
-                        .WithMany("OrdersReviewedBy")
-                        .HasForeignKey("ReviewedById")
-                        .HasConstraintName("FK_Orders_ReviewedBy");
-
-                    b.HasOne("IMCore.Domain.Employees", "SalesPerson")
-                        .WithMany("OrdersSalesPerson")
-                        .HasForeignKey("SalesPersonId")
-                        .HasConstraintName("FK_Orders_SalesPerson");
+            modelBuilder.Entity("IMCore.Domain.POPhoto", b =>
+                {
+                    b.HasOne("IMCore.Domain.Order", "Order")
+                        .WithMany("Pophotos")
+                        .HasForeignKey("OrderId")
+                        .HasConstraintName("FK_POPhotos_Orders");
                 });
 
             modelBuilder.Entity("IMCore.Domain.Payroll", b =>
                 {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("Payroll")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_Payroll_Orders");
 
-                    b.HasOne("IMCore.Domain.SubContractors", "SubContractor")
+                    b.HasOne("IMCore.Domain.SubContractor", "SubContractor")
                         .WithMany("Payroll")
                         .HasForeignKey("SubContractorId")
                         .HasConstraintName("FK_Payroll_SubContractors");
@@ -6137,35 +6179,40 @@ namespace IMCore.Data.Migrations
                         .HasConstraintName("FK_Permissions_ToTable");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Ponotes", b =>
+            modelBuilder.Entity("IMCore.Domain.Program", b =>
                 {
-                    b.HasOne("IMCore.Domain.Employees", "EnteredByUser")
-                        .WithMany("Ponotes")
-                        .HasForeignKey("EnteredByUserId")
-                        .HasConstraintName("FK_PONote_EnteredBy");
+                    b.HasOne("IMCore.Domain.Division", "Division")
+                        .WithMany("MaterialType")
+                        .HasForeignKey("DivisionId")
+                        .HasConstraintName("FK_MaterialType_Division");
 
-                    b.HasOne("IMCore.Domain.NoteTypes", "NoteType")
-                        .WithMany("Ponotes")
-                        .HasForeignKey("NoteTypeId")
-                        .HasConstraintName("FK_PONotes_NoteTypes");
+                    b.HasOne("IMCore.Domain.JobType", "JobType")
+                        .WithMany("MaterialType")
+                        .HasForeignKey("JobTypeId")
+                        .HasConstraintName("FK_MaterialType_JobType");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
-                        .WithMany("Ponotes")
-                        .HasForeignKey("OrderId")
-                        .HasConstraintName("FK_PONotes_Orders");
+                    b.HasOne("IMCore.Domain.ClientType", "StoreType")
+                        .WithMany("MaterialType")
+                        .HasForeignKey("StoreTypeId")
+                        .HasConstraintName("FK_MaterialType_StoreType");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Pophotos", b =>
+            modelBuilder.Entity("IMCore.Domain.ProgramBranchMapping", b =>
                 {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
-                        .WithMany("Pophotos")
-                        .HasForeignKey("OrderId")
-                        .HasConstraintName("FK_POPhotos_Orders");
+                    b.HasOne("IMCore.Domain.Market", "Market")
+                        .WithMany("MaterialTypesMarketMapping")
+                        .HasForeignKey("MarketId")
+                        .HasConstraintName("FK_MaterialTypesMarketMapping_Market");
+
+                    b.HasOne("IMCore.Domain.Program", "MaterialType")
+                        .WithMany("MaterialTypesMarketMapping")
+                        .HasForeignKey("MaterialTypeId")
+                        .HasConstraintName("FK_MaterialTypesMarketMapping_MaterialType");
                 });
 
             modelBuilder.Entity("IMCore.Domain.ProgramReport", b =>
                 {
-                    b.HasOne("IMCore.Domain.MaterialType", "Program")
+                    b.HasOne("IMCore.Domain.Program", "Program")
                         .WithMany("ProgramReport")
                         .HasForeignKey("ProgramId")
                         .HasConstraintName("FK_ProgramReport_Program");
@@ -6176,6 +6223,14 @@ namespace IMCore.Data.Migrations
                         .HasConstraintName("FK_ProgramReport_ReportTypes");
                 });
 
+            modelBuilder.Entity("IMCore.Domain.SPNActionQueue", b =>
+                {
+                    b.HasOne("IMCore.Domain.SPNActionType", "Action")
+                        .WithMany("SpnactionQueue")
+                        .HasForeignKey("ActionId")
+                        .HasConstraintName("FK_SPNActionQueue_SPNActions");
+                });
+
             modelBuilder.Entity("IMCore.Domain.Sodocument", b =>
                 {
                     b.HasOne("IMCore.Domain.Document", "Document")
@@ -6183,54 +6238,10 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("DocumentId")
                         .HasConstraintName("FK_SODocument_Document");
 
-                    b.HasOne("IMCore.Domain.OrderSomerchandiseDetails", "So")
+                    b.HasOne("IMCore.Domain.OrderSOMerchandiseDetail", "So")
                         .WithMany("Sodocument")
                         .HasForeignKey("Soid")
                         .HasConstraintName("FK_SODocument_Order");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.SpnactionQueue", b =>
-                {
-                    b.HasOne("IMCore.Domain.Spnactions", "Action")
-                        .WithMany("SpnactionQueue")
-                        .HasForeignKey("ActionId")
-                        .HasConstraintName("FK_SPNActionQueue_SPNActions");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.StoreContacts", b =>
-                {
-                    b.HasOne("IMCore.Domain.Departments", "Department")
-                        .WithMany("StoreContacts")
-                        .HasForeignKey("DepartmentId")
-                        .HasConstraintName("FK_StoreContacts_Departments");
-
-                    b.HasOne("IMCore.Domain.Stores", "Store")
-                        .WithMany("StoreContacts")
-                        .HasForeignKey("StoreId")
-                        .HasConstraintName("FK_StoreContacts_Stores");
-                });
-
-            modelBuilder.Entity("IMCore.Domain.Stores", b =>
-                {
-                    b.HasOne("IMCore.Domain.Employees", "AccountCoor")
-                        .WithMany("StoresAccountCoor")
-                        .HasForeignKey("AccountCoorId")
-                        .HasConstraintName("FK_Stores_AccountCoor");
-
-                    b.HasOne("IMCore.Domain.Employees", "AccountRep")
-                        .WithMany("StoresAccountRep")
-                        .HasForeignKey("AccountRepId")
-                        .HasConstraintName("FK_Stores_AccountRep");
-
-                    b.HasOne("IMCore.Domain.Market", "Market")
-                        .WithMany("Stores")
-                        .HasForeignKey("MarketId")
-                        .HasConstraintName("FK_Stores_Market");
-
-                    b.HasOne("IMCore.Domain.StoreType", "StoreType")
-                        .WithMany("Stores")
-                        .HasForeignKey("StoreTypeId")
-                        .HasConstraintName("FK_Stores_StoreType");
                 });
 
             modelBuilder.Entity("IMCore.Domain.UserMarketDivisionAssignments", b =>
@@ -6245,7 +6256,7 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_UserMarketDivisionAssignments_Market");
 
-                    b.HasOne("IMCore.Domain.Employees", "User")
+                    b.HasOne("IMCore.Domain.User", "User")
                         .WithMany("UserMarketDivisionAssignments")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_UserMarketDivisionAssignments_Employees");
@@ -6268,43 +6279,43 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("PermissionId")
                         .HasConstraintName("FK_UserPermissions_Permissions");
 
-                    b.HasOne("IMCore.Domain.Employees", "User")
+                    b.HasOne("IMCore.Domain.User", "User")
                         .WithMany("UserPermissions")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_UserPermissions_Employees");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.UserTasks", b =>
+            modelBuilder.Entity("IMCore.Domain.UserTask", b =>
                 {
-                    b.HasOne("IMCore.Domain.Employees", "AddedBy")
+                    b.HasOne("IMCore.Domain.User", "AddedBy")
                         .WithMany("UserTasksAddedBy")
                         .HasForeignKey("AddedById")
                         .HasConstraintName("FK_UserTasks_AddedBy");
 
-                    b.HasOne("IMCore.Domain.Employees", "AssignedTo")
+                    b.HasOne("IMCore.Domain.User", "AssignedTo")
                         .WithMany("UserTasksAssignedTo")
                         .HasForeignKey("AssignedToId")
                         .HasConstraintName("FK_UserTasks_AssignedTo");
 
-                    b.HasOne("IMCore.Domain.Employees", "CompletedBy")
+                    b.HasOne("IMCore.Domain.User", "CompletedBy")
                         .WithMany("UserTasksCompletedBy")
                         .HasForeignKey("CompletedById")
                         .HasConstraintName("FK_UserTasks_CompletedBy");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("UserTasks")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_UserTasks_Orders");
 
-                    b.HasOne("IMCore.Domain.UserTaskTypes", "UserTaskType")
+                    b.HasOne("IMCore.Domain.UserTaskType", "UserTaskType")
                         .WithMany("UserTasks")
                         .HasForeignKey("UserTaskTypeId")
                         .HasConstraintName("FK_UserTasks_UserTaskTypes");
                 });
 
-            modelBuilder.Entity("IMCore.Domain.Voc", b =>
+            modelBuilder.Entity("IMCore.Domain.VOC", b =>
                 {
-                    b.HasOne("IMCore.Domain.Orders", "Order")
+                    b.HasOne("IMCore.Domain.Order", "Order")
                         .WithMany("Voc")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_VOC_Orders");
@@ -6317,8 +6328,8 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("CrewId")
                         .HasConstraintName("FK_WorkOrder_Crews");
 
-                    b.HasOne("IMCore.Domain.Orders", "Order")
-                        .WithMany("WorkOrder")
+                    b.HasOne("IMCore.Domain.Order", "Order")
+                        .WithMany("WorkOrders")
                         .HasForeignKey("OrderId")
                         .HasConstraintName("FK_WorkOrder_Orders");
                 });

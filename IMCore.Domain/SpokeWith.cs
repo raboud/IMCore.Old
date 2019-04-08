@@ -9,7 +9,7 @@ namespace IMCore.Domain
     {
         [Key]
         [Column("SpokeWith")]
-        public int SpokeWith1 { get; set; }
+        public int Id { get; set; }
         [Required]
         [Column("SW_Text")]
         [StringLength(50)]

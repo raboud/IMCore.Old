@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class JobTypes
+	[Table("JobTypes")]
+    public partial class JobType
     {
-        public JobTypes()
+        public JobType()
         {
             InstallationCrewType = new HashSet<InstallationCrewType>();
-            MaterialType = new HashSet<MaterialType>();
+            MaterialType = new HashSet<Program>();
         }
 
         [Key]
@@ -23,6 +24,6 @@ namespace IMCore.Domain
         [InverseProperty("JobType")]
         public virtual ICollection<InstallationCrewType> InstallationCrewType { get; set; }
         [InverseProperty("JobType")]
-        public virtual ICollection<MaterialType> MaterialType { get; set; }
+        public virtual ICollection<Program> MaterialType { get; set; }
     }
 }

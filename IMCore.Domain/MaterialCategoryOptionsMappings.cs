@@ -14,9 +14,9 @@ namespace IMCore.Domain
 
         [ForeignKey("MaterialCategoryId")]
         [InverseProperty("MaterialCategoryOptionsMappings")]
-        public virtual MaterialCatagory MaterialCategory { get; set; }
+        public virtual Material MaterialCategory { get; set; }
         [ForeignKey("OptionId")]
         [InverseProperty("MaterialCategoryOptionsMappings")]
-        public virtual Options Option { get; set; }
+        public virtual Option Option { get; set; }
     }
 }

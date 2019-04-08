@@ -5,16 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class MaterialType
+	[Table("MaterialType")]
+    public partial class Program
     {
-        public MaterialType()
+        public Program()
         {
             BasicLabor = new HashSet<BasicLabor>();
             MaterialCost = new HashSet<MaterialCost>();
             MaterialPrice = new HashSet<MaterialPrice>();
-            MaterialTypesMarketMapping = new HashSet<MaterialTypesMarketMapping>();
-            Options = new HashSet<Options>();
-            Orders = new HashSet<Orders>();
+            MaterialTypesMarketMapping = new HashSet<ProgramBranchMapping>();
+            Options = new HashSet<Option>();
+            Orders = new HashSet<Order>();
             ProgramReport = new HashSet<ProgramReport>();
         }
 
@@ -70,10 +71,10 @@ namespace IMCore.Domain
         public virtual Division Division { get; set; }
         [ForeignKey("JobTypeId")]
         [InverseProperty("MaterialType")]
-        public virtual JobTypes JobType { get; set; }
+        public virtual JobType JobType { get; set; }
         [ForeignKey("StoreTypeId")]
         [InverseProperty("MaterialType")]
-        public virtual StoreType StoreType { get; set; }
+        public virtual ClientType StoreType { get; set; }
         [InverseProperty("MaterialType")]
         public virtual ICollection<BasicLabor> BasicLabor { get; set; }
         [InverseProperty("Program")]
@@ -81,11 +82,11 @@ namespace IMCore.Domain
         [InverseProperty("Program")]
         public virtual ICollection<MaterialPrice> MaterialPrice { get; set; }
         [InverseProperty("MaterialType")]
-        public virtual ICollection<MaterialTypesMarketMapping> MaterialTypesMarketMapping { get; set; }
+        public virtual ICollection<ProgramBranchMapping> MaterialTypesMarketMapping { get; set; }
         [InverseProperty("MaterialType")]
-        public virtual ICollection<Options> Options { get; set; }
-        [InverseProperty("MaterialType")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Option> Options { get; set; }
+        [InverseProperty("Program")]
+        public virtual ICollection<Order> Orders { get; set; }
         [InverseProperty("Program")]
         public virtual ICollection<ProgramReport> ProgramReport { get; set; }
     }

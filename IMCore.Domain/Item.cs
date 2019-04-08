@@ -10,11 +10,11 @@ namespace IMCore.Domain
         public Item()
         {
             BasicLabor = new HashSet<BasicLabor>();
-            ItemCosting = new HashSet<ItemCosting>();
+            Costs = new HashSet<ItemCosting>();
             ItemMatCosting = new HashSet<ItemMatCosting>();
-            ItemPricing = new HashSet<ItemPricing>();
+            Prices = new HashSet<ItemPricing>();
             MaterialCategoryItemMappings = new HashSet<MaterialCategoryItemMappings>();
-            Options = new HashSet<Options>();
+            Options = new HashSet<Option>();
         }
 
         [Column("Id")]
@@ -39,14 +39,14 @@ namespace IMCore.Domain
         [InverseProperty("Item")]
         public virtual ICollection<BasicLabor> BasicLabor { get; set; }
         [InverseProperty("Item")]
-        public virtual ICollection<ItemCosting> ItemCosting { get; set; }
+        public virtual ICollection<ItemCosting> Costs { get; set; }
         [InverseProperty("Item")]
         public virtual ICollection<ItemMatCosting> ItemMatCosting { get; set; }
         [InverseProperty("Item")]
-        public virtual ICollection<ItemPricing> ItemPricing { get; set; }
+        public virtual ICollection<ItemPricing> Prices { get; set; }
         [InverseProperty("Item")]
         public virtual ICollection<MaterialCategoryItemMappings> MaterialCategoryItemMappings { get; set; }
         [InverseProperty("Item")]
-        public virtual ICollection<Options> Options { get; set; }
+        public virtual ICollection<Option> Options { get; set; }
     }
 }

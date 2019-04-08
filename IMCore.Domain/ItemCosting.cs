@@ -28,12 +28,12 @@ namespace IMCore.Domain
         [InverseProperty("ItemCosting")]
         public virtual Division Division { get; set; }
         [ForeignKey("ItemId")]
-        [InverseProperty("ItemCosting")]
+        [InverseProperty("Costs")]
         public virtual Item Item { get; set; }
         [ForeignKey("MarketId")]
         [InverseProperty("ItemCosting")]
         public virtual Market Market { get; set; }
         [ForeignKey("StoreId")]
-        public virtual Stores Store { get; set; }
+        public virtual Client Store { get; set; }
     }
 }

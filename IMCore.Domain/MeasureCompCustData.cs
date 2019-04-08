@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class MeasureCompCustData
+	[Table("MeasureCompCustData")]
+    public partial class MeasureCompCustomers
     {
-        [Column("Id")]
+		[Column("Id")]
         public int Id { get; set; }
         [Column("CustomerId")]
         public int CustomerId { get; set; }
@@ -46,6 +47,6 @@ namespace IMCore.Domain
 
         [ForeignKey("CustomerId")]
         [InverseProperty("MeasureCompCustData")]
-        public virtual Customers Customer { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

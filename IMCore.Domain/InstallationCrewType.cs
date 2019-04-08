@@ -20,6 +20,6 @@ namespace IMCore.Domain
         public virtual InstallationCrew Crew { get; set; }
         [ForeignKey("JobTypeId")]
         [InverseProperty("InstallationCrewType")]
-        public virtual JobTypes JobType { get; set; }
+        public virtual JobType JobType { get; set; }
     }
 }

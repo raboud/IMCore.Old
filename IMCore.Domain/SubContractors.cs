@@ -1,19 +1,21 @@
-﻿using System;
+﻿using IMCore.TypesAndInterfaces.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class SubContractors
+	[Table("SubContractors")]
+    public partial class SubContractor
     {
-        public SubContractors()
+        public SubContractor()
         {
             Bill = new HashSet<Bill>();
-            BillDetails = new HashSet<BillDetails>();
+            BillDetails = new HashSet<BillDetail>();
             InstallationCrewLead = new HashSet<InstallationCrew>();
             InstallationCrewOwner = new HashSet<InstallationCrew>();
-            OrderCustomDetails = new HashSet<OrderCustomDetails>();
+            OrderCustomDetails = new HashSet<OrderCustomDetail>();
             Payroll = new HashSet<Payroll>();
         }
 
@@ -88,14 +90,42 @@ namespace IMCore.Domain
         [InverseProperty("Owner")]
         public virtual ICollection<Bill> Bill { get; set; }
         [InverseProperty("BackChargeOwner")]
-        public virtual ICollection<BillDetails> BillDetails { get; set; }
+        public virtual ICollection<BillDetail> BillDetails { get; set; }
         [InverseProperty("Lead")]
         public virtual ICollection<InstallationCrew> InstallationCrewLead { get; set; }
         [InverseProperty("Owner")]
         public virtual ICollection<InstallationCrew> InstallationCrewOwner { get; set; }
         [InverseProperty("SubContractor")]
-        public virtual ICollection<OrderCustomDetails> OrderCustomDetails { get; set; }
+        public virtual ICollection<OrderCustomDetail> OrderCustomDetails { get; set; }
         [InverseProperty("SubContractor")]
         public virtual ICollection<Payroll> Payroll { get; set; }
-    }
+
+		[NotMapped]
+		public string LastNameCommaFirstName
+		{
+			get
+			{
+				return (LastName.IsEmpty() ? "" : (LastName + ", ")) + (FirstName.IsEmpty() ? "" : FirstName);
+			}
+		}
+
+		[NotMapped]
+		public bool LiabilityExpired
+		{
+			get
+			{
+				return this.LiabilityInsuranceDate == null || (this.LiabilityInsuranceDate.Value < DateTime.Now) || !(this.LiabilityInsuranceOk ?? false);
+			}
+		}
+
+		[NotMapped]
+		public bool WorkmansCompExpired
+		{
+			get
+			{
+				return this.WorkmansCompInsuranceDate == null || (this.WorkmansCompInsuranceDate < DateTime.Now) || !(this.WorkmansCompInsuranceOk ?? false);
+			}
+		}
+
+	}
 }

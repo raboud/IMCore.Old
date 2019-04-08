@@ -16,6 +16,6 @@ namespace IMCore.Domain
 
         [ForeignKey("ActivityId")]
         [InverseProperty("ActivityData")]
-        public virtual ActivityList Activity { get; set; }
+        public virtual Activity Activity { get; set; }
     }
 }

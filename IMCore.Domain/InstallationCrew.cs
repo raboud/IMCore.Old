@@ -32,10 +32,10 @@ namespace IMCore.Domain
         public virtual Market Branch { get; set; }
         [ForeignKey("LeadId")]
         [InverseProperty("InstallationCrewLead")]
-        public virtual SubContractors Lead { get; set; }
+        public virtual SubContractor Lead { get; set; }
         [ForeignKey("OwnerId")]
         [InverseProperty("InstallationCrewOwner")]
-        public virtual SubContractors Owner { get; set; }
+        public virtual SubContractor Owner { get; set; }
         [InverseProperty("Crew")]
         public virtual ICollection<InstallationCrewType> InstallationCrewType { get; set; }
         [InverseProperty("Crew")]

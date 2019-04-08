@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Stores
+	[Table("Stores")]
+    public partial class Client
     {
-        public Stores()
+        public Client()
         {
             DepartmentsStoresAssignments = new HashSet<DepartmentsStoresAssignments>();
-            StoreContacts = new HashSet<StoreContacts>();
+            StoreContacts = new HashSet<ClientContact>();
         }
 
         [Key]
@@ -38,7 +39,8 @@ namespace IMCore.Domain
         public string FaxNumber { get; set; }
         [Column(TypeName = "ntext")]
         public string Notes { get; set; }
-        public int MarketId { get; set; }
+		[Column("MarketId")]
+		public int BranchId { get; set; }
         [Required]
         public bool? Active { get; set; }
         [StringLength(50)]
@@ -57,19 +59,19 @@ namespace IMCore.Domain
 
         [ForeignKey("AccountCoorId")]
         [InverseProperty("StoresAccountCoor")]
-        public virtual Employees AccountCoor { get; set; }
+        public virtual User AccountCoor { get; set; }
         [ForeignKey("AccountRepId")]
         [InverseProperty("StoresAccountRep")]
-        public virtual Employees AccountRep { get; set; }
-        [ForeignKey("MarketId")]
+        public virtual User AccountRep { get; set; }
+        [ForeignKey("BranchId")]
         [InverseProperty("Stores")]
         public virtual Market Market { get; set; }
         [ForeignKey("StoreTypeId")]
         [InverseProperty("Stores")]
-        public virtual StoreType StoreType { get; set; }
+        public virtual ClientType StoreType { get; set; }
         [InverseProperty("Store")]
         public virtual ICollection<DepartmentsStoresAssignments> DepartmentsStoresAssignments { get; set; }
         [InverseProperty("Store")]
-        public virtual ICollection<StoreContacts> StoreContacts { get; set; }
+        public virtual ICollection<ClientContact> StoreContacts { get; set; }
     }
 }

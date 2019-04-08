@@ -5,21 +5,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Options
+	[Table("Options")]
+    public partial class Option
     {
-        public Options()
+        public Option()
         {
             MaterialCategoryOptionsMappings = new HashSet<MaterialCategoryOptionsMappings>();
-            OptionCost = new HashSet<OptionCost>();
-            OptionPrice = new HashSet<OptionPrice>();
+            Costs = new HashSet<OptionCost>();
+            Prices = new HashSet<OptionPrice>();
             OptionPricingOld = new HashSet<OptionPricingOld>();
-            OptionRetail = new HashSet<OptionRetail>();
-            OrderOptionsDetails = new HashSet<OrderOptionsDetails>();
+            Retails = new HashSet<OptionRetail>();
+            OrderOptionsDetails = new HashSet<OrderOptionalLaborDetail>();
         }
 
         [Key]
         [Column("Id")]
-        public int OptionId { get; set; }
+        public int Id { get; set; }
         [StringLength(255)]
         public string OptionDescription { get; set; }
         [Column(TypeName = "money")]
@@ -38,7 +39,7 @@ namespace IMCore.Domain
         [Required]
         public bool? Active { get; set; }
         [Column("ApplyToMinimumWO")]
-        public bool? ApplyToMinimumWo { get; set; }
+        public bool? ApplyToMinimumWO { get; set; }
         [Column("ItemId")]
         public int? ItemId { get; set; }
         public bool? Size { get; set; }
@@ -48,21 +49,21 @@ namespace IMCore.Domain
         public virtual Item Item { get; set; }
         [ForeignKey("MaterialTypeId")]
         [InverseProperty("Options")]
-        public virtual MaterialType MaterialType { get; set; }
+        public virtual Program MaterialType { get; set; }
         [ForeignKey("UnitOfMeasureId")]
         [InverseProperty("Options")]
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
         [InverseProperty("Option")]
         public virtual ICollection<MaterialCategoryOptionsMappings> MaterialCategoryOptionsMappings { get; set; }
         [InverseProperty("Labor")]
-        public virtual ICollection<OptionCost> OptionCost { get; set; }
+        public virtual ICollection<OptionCost> Costs { get; set; }
         [InverseProperty("Labor")]
-        public virtual ICollection<OptionPrice> OptionPrice { get; set; }
+        public virtual ICollection<OptionPrice> Prices { get; set; }
         [InverseProperty("Option")]
         public virtual ICollection<OptionPricingOld> OptionPricingOld { get; set; }
         [InverseProperty("Labor")]
-        public virtual ICollection<OptionRetail> OptionRetail { get; set; }
+        public virtual ICollection<OptionRetail> Retails { get; set; }
         [InverseProperty("Option")]
-        public virtual ICollection<OrderOptionsDetails> OrderOptionsDetails { get; set; }
+        public virtual ICollection<OrderOptionalLaborDetail> OrderOptionsDetails { get; set; }
     }
 }
