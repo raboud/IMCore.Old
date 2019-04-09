@@ -115,7 +115,7 @@ namespace IMCore.Data
 		public virtual DbSet<OrderDiagram> OrderDiagrams { get; set; }
 		public virtual DbSet<OrderDocument> OrderDocument { get; set; }
 		public virtual DbSet<OrderOption> OrderOptionss { get; set; }
-		public virtual DbSet<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
+		public virtual DbSet<OrderRegMerchandise> OrderRegMerchandiseDetails { get; set; }
 		public virtual DbSet<OrderSOMerchandiseDetail> OrderSomerchandiseDetails { get; set; }
 		public virtual DbSet<Order> Orders { get; set; }
 		public virtual DbSet<OrdersDeleted> OrdersDeleted { get; set; }
@@ -1468,7 +1468,7 @@ namespace IMCore.Data
 					.HasConstraintName("FK_OrderOptionsDetails_Employees");
 			});
 
-			modelBuilder.Entity<OrderRegMerchandiseDetail>(entity =>
+			modelBuilder.Entity<OrderRegMerchandise>(entity =>
 			{
 				entity.HasIndex(e => e.OrderId);
 

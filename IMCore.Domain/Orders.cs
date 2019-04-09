@@ -26,7 +26,7 @@ namespace IMCore.Domain
             OrderDiagrams = new HashSet<OrderDiagram>();
             OrderDocument = new HashSet<OrderDocument>();
 			OptionalLabors = new HashSet<OrderOption>();
-            RegMerchandises = new HashSet<OrderRegMerchandiseDetail>();
+            RegMerchandises = new HashSet<OrderRegMerchandise>();
             SOMerchandises = new HashSet<OrderSOMerchandiseDetail>();
             Payroll = new HashSet<Payroll>();
             PONotes = new HashSet<PONote>();
@@ -205,7 +205,7 @@ namespace IMCore.Domain
         public virtual ICollection<OrderDiagram> OrderDiagrams { get; set; }
         public virtual ICollection<OrderDocument> OrderDocument { get; set; }
         public virtual ICollection<OrderOption> OptionalLabors { get; set; }
-        public virtual ICollection<OrderRegMerchandiseDetail> RegMerchandises { get; set; }
+        public virtual ICollection<OrderRegMerchandise> RegMerchandises { get; set; }
         public virtual ICollection<OrderSOMerchandiseDetail> SOMerchandises { get; set; }
         public virtual ICollection<Payroll> Payroll { get; set; }
         public virtual ICollection<PONote> PONotes { get; set; }
@@ -330,7 +330,7 @@ namespace IMCore.Domain
 
 			if (!bHasStorePickup)
 			{
-				foreach (OrderRegMerchandiseDetail romd in this.RegMerchandises)
+				foreach (OrderRegMerchandise romd in this.RegMerchandises)
 				{
 					if (!romd.Deleted && (romd.Quantity > 0) && (romd.MaterialStatus.Status == "STORE PICKUP"))
 					{

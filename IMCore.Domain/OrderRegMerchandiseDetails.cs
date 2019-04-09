@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-	[Table("OrderRegMerchandiseDetails")]
-    public partial class OrderRegMerchandiseDetail
+	[Table("OrderRegMerchandise")]
+    public partial class OrderRegMerchandise
     {
         [Column("Id")]
         public int Id { get; set; }
