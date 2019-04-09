@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    [Table("OrderSOMerchandiseDetails")]
+    [Table("OrderSOMerchandise")]
     public partial class OrderSOMerchandiseDetail
     {
         public OrderSOMerchandiseDetail()
