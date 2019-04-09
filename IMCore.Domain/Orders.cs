@@ -21,7 +21,7 @@ namespace IMCore.Domain
             Jobs = new HashSet<Jobs>();
             MeasureCompCalcData = new HashSet<MeasureCompCalcs>();
             MeasureCompOrderData = new HashSet<MeasureCompOrder>();
-            BasicLabors = new HashSet<OrderBasicLaborDetail>();
+            BasicLabors = new HashSet<OrderBasicLabor>();
             CustomLabors = new HashSet<OrderCustomDetail>();
             OrderDiagrams = new HashSet<OrderDiagram>();
             OrderDocument = new HashSet<OrderDocument>();
@@ -200,7 +200,7 @@ namespace IMCore.Domain
         public virtual ICollection<Jobs> Jobs { get; set; }
         public virtual ICollection<MeasureCompCalcs> MeasureCompCalcData { get; set; }
         public virtual ICollection<MeasureCompOrder> MeasureCompOrderData { get; set; }
-        public virtual ICollection<OrderBasicLaborDetail> BasicLabors { get; set; }
+        public virtual ICollection<OrderBasicLabor> BasicLabors { get; set; }
         public virtual ICollection<OrderCustomDetail> CustomLabors { get; set; }
         public virtual ICollection<OrderDiagram> OrderDiagrams { get; set; }
         public virtual ICollection<OrderDocument> OrderDocument { get; set; }
@@ -357,7 +357,7 @@ namespace IMCore.Domain
 		{
 			applyToMin = 0;
 			noMinApplied = 0;
-			foreach (OrderBasicLaborDetail bl in this.BasicLabors)
+			foreach (OrderBasicLabor bl in this.BasicLabors)
 			{
 				if (bl.BasicLabor.PrintOnWorkOrder ?? true && !bl.Deleted)
 				{

@@ -110,7 +110,7 @@ namespace IMCore.Data
 		public virtual DbSet<OptionPricingOld> OptionPricingOld { get; set; }
 		public virtual DbSet<OptionRetail> OptionRetail { get; set; }
 		public virtual DbSet<Option> Options { get; set; }
-		public virtual DbSet<OrderBasicLaborDetail> OrderBasicLaborDetails { get; set; }
+		public virtual DbSet<OrderBasicLabor> OrderBasicLaborDetails { get; set; }
 		public virtual DbSet<OrderCustomDetail> OrderCustomDetails { get; set; }
 		public virtual DbSet<OrderDiagram> OrderDiagrams { get; set; }
 		public virtual DbSet<OrderDocument> OrderDocument { get; set; }
@@ -1311,7 +1311,7 @@ namespace IMCore.Data
 					.HasConstraintName("FK_Options_UnitOfMeasure");
 			});
 
-			modelBuilder.Entity<OrderBasicLaborDetail>(entity =>
+			modelBuilder.Entity<OrderBasicLabor>(entity =>
 			{
 				entity.HasIndex(e => e.OrderId);
 

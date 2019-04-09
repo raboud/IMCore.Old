@@ -10,7 +10,7 @@ namespace IMCore.Domain
     {
         public MaterialStatus()
         {
-            OrderBasicLaborDetails = new HashSet<OrderBasicLaborDetail>();
+            OrderBasicLaborDetails = new HashSet<OrderBasicLabor>();
             OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
             OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
         }
@@ -25,7 +25,7 @@ namespace IMCore.Domain
         public bool Installable { get; set; }
 
         [InverseProperty("MaterialStatus")]
-        public virtual ICollection<OrderBasicLaborDetail> OrderBasicLaborDetails { get; set; }
+        public virtual ICollection<OrderBasicLabor> OrderBasicLaborDetails { get; set; }
         [InverseProperty("MaterialStatus")]
         public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
         [InverseProperty("MaterialStatus")]

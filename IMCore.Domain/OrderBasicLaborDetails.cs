@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IMCore.Domain
 {
 	[Table("OrderBasicLabor")]
-    public partial class OrderBasicLaborDetail
+    public partial class OrderBasicLabor
     {
         [Column("Id")]
         public int Id { get; set; }
