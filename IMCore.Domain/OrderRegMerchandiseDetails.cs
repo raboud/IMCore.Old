@@ -52,14 +52,14 @@ namespace IMCore.Domain
         [InverseProperty("OrderRegMerchandiseDetails")]
         public virtual EntryMethod EntryMethod { get; set; }
         [ForeignKey("OrderId")]
-        [InverseProperty("OrderRegMerchandiseDetails")]
+        [InverseProperty("RegMerchandises")]
         public virtual Order Order { get; set; }
         [ForeignKey("ReviewedById")]
         [InverseProperty("OrderRegMerchandiseDetails")]
         public virtual User ReviewedBy { get; set; }
         [ForeignKey("StatusId")]
         [InverseProperty("OrderRegMerchandiseDetails")]
-        public virtual MaterialStatus Status { get; set; }
+        public virtual MaterialStatus MaterialStatus { get; set; }
         [ForeignKey("Uomid")]
         [InverseProperty("OrderRegMerchandiseDetails")]
         public virtual UnitOfMeasure Uom { get; set; }

@@ -33,7 +33,8 @@ namespace IMCore.Domain
         public int Id { get; set; }
         [Required]
         [StringLength(40)]
-        public string MarketName { get; set; }
+		[Column("MarketName")]
+		public string Name { get; set; }
         [StringLength(50)]
         public string PrinterName { get; set; }
         [StringLength(50)]

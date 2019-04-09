@@ -38,7 +38,7 @@ namespace IMCore.Domain
 		DbSet<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
 		DbSet<Order> Orders { get; set; }
 		DbSet<OrderSOMerchandiseDetail> OrderSOMerchandiseDetails { get; set; }
-		DbSet<Permissions> Permissions { get; set; }
+		DbSet<Permission> Permissions { get; set; }
 		DbSet<PONote> PONotes { get; set; }
 		DbSet<ClientContact> ClientContacts { get; set; }
 		DbSet<Client> Clients { get; set; }
@@ -73,7 +73,7 @@ namespace IMCore.Domain
 		DbSet<ItemPricing> ItemPricings { get; set; }
 		DbSet<ItemCosting> ItemCostings { get; set; }
 		DbSet<MaterialCost> MaterialCosts { get; set; }
-		DbSet<Settings> Settings { get; set; }
+		DbSet<Setting> Settings { get; set; }
 		//        DbSet<vwUserPermission> vwUserPermissions { get; set; }
 		DbSet<Version> Versions { get; set; }
 		DbSet<InstallationCrew> InstallationCrews { get; set; }

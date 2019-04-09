@@ -122,7 +122,7 @@ namespace IMCore.Data
 		public virtual DbSet<Payroll> Payroll { get; set; }
 		public virtual DbSet<PayrollMessages> PayrollMessages { get; set; }
 		public virtual DbSet<PermissionType> PermissionType { get; set; }
-		public virtual DbSet<Permissions> Permissions { get; set; }
+		public virtual DbSet<Permission> Permissions { get; set; }
 		public virtual DbSet<PhoneNumberTypes> PhoneNumberTypes { get; set; }
 		public virtual DbSet<PONote> Ponotes { get; set; }
 		public virtual DbSet<POPhoto> Pophotos { get; set; }
@@ -131,7 +131,7 @@ namespace IMCore.Data
 		public virtual DbSet<ProgramReport> ProgramReport { get; set; }
 		public virtual DbSet<ReportType> ReportType { get; set; }
 		public virtual DbSet<ScheduleChangeReasonCodes> ScheduleChangeReasonCodes { get; set; }
-		public virtual DbSet<Settings> Settings { get; set; }
+		public virtual DbSet<Setting> Settings { get; set; }
 		public virtual DbSet<Sodocument> Sodocument { get; set; }
 		public virtual DbSet<SosidocumentTypes> SosidocumentTypes { get; set; }
 		public virtual DbSet<SosioutgoingDocuments> SosioutgoingDocuments { get; set; }
@@ -1344,7 +1344,7 @@ namespace IMCore.Data
 
 			modelBuilder.Entity<OrderCustomDetail>(entity =>
 			{
-				entity.HasKey(e => e.OrderCustomId)
+				entity.HasKey(e => e.Id)
 					.ForSqlServerIsClustered(false);
 
 				entity.HasIndex(e => e.OrderId);
@@ -1487,7 +1487,7 @@ namespace IMCore.Data
 					.HasConstraintName("FK_OrderRegMerchandiseDetails_EntryMethod");
 
 				entity.HasOne(d => d.Order)
-					.WithMany(p => p.OrderRegMerchandiseDetails)
+					.WithMany(p => p.RegMerchandises)
 					.HasForeignKey(d => d.OrderId)
 					.HasConstraintName("FK_OrderRegMerchandiseDetails_Orders");
 
@@ -1496,7 +1496,7 @@ namespace IMCore.Data
 					.HasForeignKey(d => d.ReviewedById)
 					.HasConstraintName("FK_OrderRegMerchandiseDetails_ReviewedBy");
 
-				entity.HasOne(d => d.Status)
+				entity.HasOne(d => d.MaterialStatus)
 					.WithMany(p => p.OrderRegMerchandiseDetails)
 					.HasForeignKey(d => d.StatusId)
 					.HasConstraintName("FK_OrderRegMerchandiseDetails_Material Status");
@@ -1524,7 +1524,7 @@ namespace IMCore.Data
 
 				entity.Property(e => e.ShortDescription).IsUnicode(false);
 
-				entity.Property(e => e.Skunumber).IsUnicode(false);
+				entity.Property(e => e.SKUNumber).IsUnicode(false);
 
 				entity.Property(e => e.SONumber).IsUnicode(false);
 
@@ -1540,7 +1540,7 @@ namespace IMCore.Data
 					.HasConstraintName("FK_OrderSOMerchandiseDetails_Material Status");
 
 				entity.HasOne(d => d.Order)
-					.WithMany(p => p.OrderSomerchandiseDetails)
+					.WithMany(p => p.SOMerchandises)
 					.HasForeignKey(d => d.OrderId)
 					.HasConstraintName("FK_OrderSOMerchandiseDetails_Orders");
 
@@ -1675,7 +1675,7 @@ namespace IMCore.Data
 					.HasConstraintName("FK_Payroll_SubContractors");
 			});
 
-			modelBuilder.Entity<Permissions>(entity =>
+			modelBuilder.Entity<Permission>(entity =>
 			{
 				entity.Property(e => e.Description).IsUnicode(false);
 
@@ -1751,7 +1751,7 @@ namespace IMCore.Data
 					.HasConstraintName("FK_ProgramReport_ReportTypes");
 			});
 
-			modelBuilder.Entity<Settings>(entity =>
+			modelBuilder.Entity<Setting>(entity =>
 			{
 				entity.HasIndex(e => e.UserId);
 			});

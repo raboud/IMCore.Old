@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Settings
+	[Table("Settings")]
+    public partial class Setting
     {
         [Column("Id")]
         public int Id { get; set; }

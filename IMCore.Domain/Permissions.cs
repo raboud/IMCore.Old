@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Permissions
+	[Table("Permissions")]
+    public partial class Permission
     {
-        public Permissions()
+        public Permission()
         {
             UserPermissions = new HashSet<UserPermissions>();
         }

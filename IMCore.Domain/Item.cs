@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace IMCore.Domain
 {
@@ -29,7 +31,7 @@ namespace IMCore.Domain
         public bool PrintOnWorkOrder { get; set; }
         public bool Active { get; set; }
         [Column("ApplyToMinimumWO")]
-        public bool ApplyToMinimumWo { get; set; }
+        public bool ApplyToMinimumWO { get; set; }
         public bool Size { get; set; }
         public bool JobSize { get; set; }
 
@@ -48,5 +50,19 @@ namespace IMCore.Domain
         public virtual ICollection<MaterialCategoryItemMappings> MaterialCategoryItemMappings { get; set; }
         [InverseProperty("Item")]
         public virtual ICollection<Option> Options { get; set; }
-    }
+
+
+		[NotMapped]
+		public ReadOnlyCollection<Material> Materials => this.MaterialCategoryItemMappings.Select(m => m.MaterialCategory).ToList().AsReadOnly();
+		public void ClearMaterails() { }
+		public ReadOnlyCollection<Material> Add(Material m)
+		{
+			return this.Materials;
+		}
+		public ReadOnlyCollection<Material> Remove(Material m)
+		{
+			return this.Materials;
+		}
+
+	}
 }

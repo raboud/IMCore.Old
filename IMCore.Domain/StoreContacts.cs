@@ -36,5 +36,15 @@ namespace IMCore.Domain
         [ForeignKey("StoreId")]
         [InverseProperty("StoreContacts")]
         public virtual Client Store { get; set; }
-    }
+
+		[NotMapped]
+		public string LNameFName
+		{
+			get
+			{
+				return (String.IsNullOrEmpty(LastName) ? "" : (LastName + ", ")) + (String.IsNullOrEmpty(FirstName) ? "" : FirstName);
+			}
+		}
+
+	}
 }

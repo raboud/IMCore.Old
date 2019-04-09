@@ -87,6 +87,9 @@ namespace IMCore.Domain
         [StringLength(82)]
         public string Name { get; set; }
 
+		[ForeignKey("MarketId")]
+		public Market Market { get; set; }
+
         [InverseProperty("Owner")]
         public virtual ICollection<Bill> Bill { get; set; }
         [InverseProperty("BackChargeOwner")]

@@ -9,7 +9,7 @@ namespace IMCore.Domain
     {
         public PermissionType()
         {
-            Permissions = new HashSet<Permissions>();
+            Permissions = new HashSet<Permission>();
         }
 
         [Column("Id")]
@@ -18,6 +18,6 @@ namespace IMCore.Domain
         public string Name { get; set; }
 
         [InverseProperty("PermissionType")]
-        public virtual ICollection<Permissions> Permissions { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

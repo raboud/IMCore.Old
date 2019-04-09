@@ -26,7 +26,7 @@ namespace IMCore.Domain
         public virtual Market Market { get; set; }
         [ForeignKey("PermissionId")]
         [InverseProperty("UserPermissions")]
-        public virtual Permissions Permission { get; set; }
+        public virtual Permission Permission { get; set; }
         [ForeignKey("UserId")]
         [InverseProperty("UserPermissions")]
         public virtual User User { get; set; }

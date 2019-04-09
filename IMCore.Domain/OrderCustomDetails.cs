@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IMCore.TypesAndInterfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,17 +11,17 @@ namespace IMCore.Domain
     {
         [Key]
         [Column("OrderCustomId")]
-        public int OrderCustomId { get; set; }
+        public int Id { get; set; }
         [Column("OrderId")]
         public int OrderId { get; set; }
         [Column("SubContractorId")]
         public int? SubContractorId { get; set; }
-        [Column(TypeName = "decimal(18, 4)")]
-        public decimal? RetailPrice { get; set; }
+        [Column("RetailPrice", TypeName = "decimal(18, 4)")]
+        public decimal? UnitRetail { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal UnitCost { get; set; }
-        [Column(TypeName = "decimal(18, 4)")]
-        public decimal Quanity { get; set; }
+        [Column("Quanity", TypeName = "decimal(18, 4)")]
+        public decimal Quantity { get; set; }
         [Column("UnitOfMeasureId")]
         public int? UnitOfMeasureId { get; set; }
         public bool? NotOnInvoice { get; set; }
@@ -62,7 +63,36 @@ namespace IMCore.Domain
         [InverseProperty("OrderCustomDetails")]
         public virtual SubContractor SubContractor { get; set; }
         [ForeignKey("UnitOfMeasureId")]
-        [InverseProperty("OrderCustomDetails")]
-        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-    }
+		[InverseProperty("OrderCustomDetails")]
+		public virtual UnitOfMeasure UnitOfMeasure { get; set; }
+
+		public void RefreshPrice()
+		{
+			if (this.EntryMethodId == SPNTypes.ENTRY_METHOD_MANUAL)
+			{
+				if (this.Order.MarkDown.HasValue)
+				{
+					this.UnitPrice = this.UnitRetail.Value * (100.0m - this.Order.MarkDown.Value) / 100.0m;
+				}
+				else
+				{
+					this.UnitPrice = (decimal)((this.Order.Program.CustomMultiplier ?? 0.0) * (this.Order.Program.CostMultiplier ?? 0.0)) * (this.UnitRetail ?? 0.0m);
+				}
+			}
+			RefreshCost();
+		}
+
+		public void RefreshCost()
+		{
+			if (this.Order.Program.CustomCostByRetail ?? false)
+			{
+				this.UnitCost = (decimal)((this.Order.Program.CostMultiplier ?? 0.0)) * (this.UnitRetail ?? 0.0m);
+			}
+			else
+			{
+				this.UnitCost = (decimal)((this.Order.Program.CustomMultiplier ?? 0.0) * (this.Order.Program.CostMultiplier ?? 0.0)) * (this.UnitRetail ?? 0.0m);
+			}
+		}
+
+	}
 }

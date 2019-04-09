@@ -71,7 +71,7 @@ namespace IMCore.Domain
         public bool ReceiveCallNotes { get; set; }
         [Column("SMTPEmail")]
         [StringLength(50)]
-        public string Smtpemail { get; set; }
+        public string SMTPEmail { get; set; }
         [StringLength(30)]
         public string UserName { get; set; }
         [Required]

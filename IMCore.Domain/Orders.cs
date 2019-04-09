@@ -26,8 +26,8 @@ namespace IMCore.Domain
             OrderDiagrams = new HashSet<OrderDiagram>();
             OrderDocument = new HashSet<OrderDocument>();
 			OptionalLabors = new HashSet<OrderOptionalLaborDetail>();
-            OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
-            OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
+            RegMerchandises = new HashSet<OrderRegMerchandiseDetail>();
+            SOMerchandises = new HashSet<OrderSOMerchandiseDetail>();
             Payroll = new HashSet<Payroll>();
             PONotes = new HashSet<PONote>();
             Pophotos = new HashSet<POPhoto>();
@@ -205,8 +205,8 @@ namespace IMCore.Domain
         public virtual ICollection<OrderDiagram> OrderDiagrams { get; set; }
         public virtual ICollection<OrderDocument> OrderDocument { get; set; }
         public virtual ICollection<OrderOptionalLaborDetail> OptionalLabors { get; set; }
-        public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
-        public virtual ICollection<OrderSOMerchandiseDetail> OrderSomerchandiseDetails { get; set; }
+        public virtual ICollection<OrderRegMerchandiseDetail> RegMerchandises { get; set; }
+        public virtual ICollection<OrderSOMerchandiseDetail> SOMerchandises { get; set; }
         public virtual ICollection<Payroll> Payroll { get; set; }
         public virtual ICollection<PONote> PONotes { get; set; }
         public virtual ICollection<POPhoto> Pophotos { get; set; }
@@ -241,12 +241,12 @@ namespace IMCore.Domain
 				hasAlerts = true;
 			}
 
-			if (!hasAlerts && this.OrderSomerchandiseDetails.Any(l => !l.Reviewed))
+			if (!hasAlerts && this.SOMerchandises.Any(l => !l.Reviewed))
 			{
 				hasAlerts = true;
 			}
 
-			if (!hasAlerts && this.OrderRegMerchandiseDetails.Any(l => !l.Reviewed))
+			if (!hasAlerts && this.RegMerchandises.Any(l => !l.Reviewed))
 			{
 				hasAlerts = true;
 			}
@@ -260,6 +260,31 @@ namespace IMCore.Domain
 		}
 
 		[NotMapped]
+		public decimal JobTotal
+		{
+			get
+			{
+				decimal t = 0.0M;
+
+				t += (from b in this.BasicLabors
+					  where
+					  (!b.Deleted) &&
+					  ((b.BasicLabor.Size != null && b.BasicLabor.Size.Value) || (b.BasicLabor.Size == null && b.BasicLabor.Item != null && b.BasicLabor.Item.JobSize))
+
+					  select b.Quantity).Sum();
+
+				t += (from b in this.OptionalLabors
+					  where
+					  (!b.Deleted) &&
+					  ((b.Option.Size != null && b.Option.Size.Value) || (b.Option.Size == null && b.Option.Item != null && b.Option.Item.JobSize))
+					  select b.Quantity).Sum();
+
+				return t;
+			}
+		}
+
+
+		[NotMapped]
 		public decimal Total
 		{
 			get
@@ -270,7 +295,7 @@ namespace IMCore.Domain
 					  where (
 					  (!b.Deleted) &&
 					  ((b.BasicLabor.Size != null && b.BasicLabor.Size.Value) || (b.BasicLabor.Size == null && b.BasicLabor.Item != null && b.BasicLabor.Item.Size)))
-					  select b.InstallQuantity).Sum();
+					  select b.Quantity).Sum();
 
 				t += (from b in this.OptionalLabors
 					  where (
@@ -280,6 +305,52 @@ namespace IMCore.Domain
 
 				return t;
 			}
+		}
+
+		public bool RequiresWoodWaiver()
+		{
+			return this.Program.WoodWaiver;
+		}
+
+		public bool HasStorePickup()
+		{
+			bool bHasStorePickup = false;
+
+			if (!bHasStorePickup)
+			{
+				foreach (OrderSOMerchandiseDetail somd in this.SOMerchandises)
+				{
+					if (!somd.Deleted && (somd.Quantity > 0) && (somd.MaterialStatus.Status == "STORE PICKUP"))
+					{
+						bHasStorePickup = true;
+						break;
+					}
+				}
+			}
+
+			if (!bHasStorePickup)
+			{
+				foreach (OrderRegMerchandiseDetail romd in this.RegMerchandises)
+				{
+					if (!romd.Deleted && (romd.Quantity > 0) && (romd.MaterialStatus.Status == "STORE PICKUP"))
+					{
+						bHasStorePickup = true;
+						break;
+					}
+				}
+			}
+
+			return bHasStorePickup;
+		}
+		public bool ValidForUser(User user)
+		{
+			bool valid = true;
+
+			if (user.UserMarketDivisionAssignments.Count > 0)
+			{
+				valid = user.UserMarketDivisionAssignments.Any(u => u.DivisionId == this.Program.DivisionId && u.MarketId == this.Client.BranchId);
+			}
+			return valid;
 		}
 
 		public void GetTotalLabor(out decimal applyToMin, out decimal noMinApplied)
@@ -331,6 +402,31 @@ namespace IMCore.Domain
 					applyToMin = Program.MinimumCost.Value;
 				}
 				return value;
+			}
+		}
+		[NotMapped]
+		public string ScheduleInfo
+		{
+			get
+			{
+				string scheduleDateInfo = "";
+
+				bool ScheduledForAM = this.ScheduledAM;
+
+				if (this.ScheduleStartDate == null || !this.Scheduled)
+				{
+					scheduleDateInfo = "Not Scheduled";
+				}
+				else if (this.ScheduleEndDate == null || this.ScheduleStartDate.Value == this.ScheduleEndDate.Value)
+				{
+					scheduleDateInfo = String.Format("{0} {1}", (this.ScheduleStartDate.Value).ToString("MM/dd/yyyy"), (ScheduledForAM) ? "AM" : "PM");
+				}
+				else
+				{
+					scheduleDateInfo = String.Format("{0} ({2}) to {1}", this.ScheduleStartDate.Value.ToString("MM/dd/yyyy"), this.ScheduleEndDate.Value.ToString("MM/dd/yyyy"), (ScheduledForAM) ? "AM" : "PM");
+				}
+
+				return scheduleDateInfo;
 			}
 		}
 

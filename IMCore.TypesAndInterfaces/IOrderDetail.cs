@@ -11,5 +11,4 @@ namespace IMCore.TypesAndInterfaces
 		int? ReviewedBy { get; set; }
 		Nullable<DateTime> ReviewedDate { get; set; }
 	}
-
 }

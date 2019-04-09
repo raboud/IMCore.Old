@@ -14,8 +14,8 @@ namespace IMCore.Domain
         public int OrderId { get; set; }
         [Column("BasicLaborId")]
         public int BasicLaborId { get; set; }
-        [Column(TypeName = "decimal(18, 4)")]
-        public decimal InstallQuantity { get; set; }
+        [Column("InstallQuantity", TypeName = "decimal(18, 4)")]
+		public decimal Quantity { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal UnitCost { get; set; }
         [Column(TypeName = "decimal(18, 4)")]

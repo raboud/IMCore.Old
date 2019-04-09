@@ -37,13 +37,16 @@ namespace IMCore.Domain
         public DateTime? ScheduledDate { get; set; }
         public bool Deleted { get; set; }
         [Column("SentViaXML")]
-        public bool SentViaXml { get; set; }
+        public bool SentViaXML { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DateTimeSent { get; set; }
 
-        [ForeignKey("EnteredByUserId")]
-        [InverseProperty("Ponotes")]
-        public virtual User EnteredByUser { get; set; }
+		[ForeignKey("EnteredByUserId")]
+		[InverseProperty("Ponotes")]
+		public virtual User EnteredByUser { get; set; }
+
+        public virtual SpokeWith SpokeWith { get; set; }
+
         [ForeignKey("NoteTypeId")]
         [InverseProperty("Ponotes")]
         public virtual NoteType NoteType { get; set; }

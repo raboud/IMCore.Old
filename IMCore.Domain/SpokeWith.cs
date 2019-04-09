@@ -8,7 +8,7 @@ namespace IMCore.Domain
     public partial class SpokeWith
     {
         [Key]
-        [Column("SpokeWith")]
+        [Column("Id")]
         public int Id { get; set; }
         [Required]
         [Column("SW_Text")]

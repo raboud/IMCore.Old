@@ -22,7 +22,7 @@ namespace IMCore.Domain
         public string SONumber { get; set; }
         [Column("SKUNumber")]
         [StringLength(12)]
-        public string Skunumber { get; set; }
+        public string SKUNumber { get; set; }
         [Column("BasicLaborId")]
         public int? BasicLaborId { get; set; }
         [StringLength(100)]
@@ -36,7 +36,7 @@ namespace IMCore.Domain
         [Column(TypeName = "date")]
         public DateTime? ExpectedArrivalDate { get; set; }
         [Column("SOLineNumber")]
-        public int? SolineNumber { get; set; }
+        public int? SOLineNumber { get; set; }
         [Column("MaterialStatusId")]
         public int? MaterialStatusId { get; set; }
         [Column("EntryMethodId")]
@@ -45,13 +45,13 @@ namespace IMCore.Domain
         public int? TransferredTo { get; set; }
         public int? TransferredFrom { get; set; }
         [Column("SOMerLineNumber")]
-        public int? SomerLineNumber { get; set; }
+        public int? SOMerLineNumber { get; set; }
         [Column("OriginalId")]
         public int? OriginalId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal? PreSplitQty { get; set; }
         [Column("XMLStatusId")]
-        public int? XmlstatusId { get; set; }
+        public int? XMLStatusId { get; set; }
         public bool Reviewed { get; set; }
         [Column("ReviewedById")]
         public int? ReviewedById { get; set; }
@@ -71,7 +71,7 @@ namespace IMCore.Domain
         [InverseProperty("OrderSomerchandiseDetails")]
         public virtual MaterialStatus MaterialStatus { get; set; }
         [ForeignKey("OrderId")]
-        [InverseProperty("OrderSomerchandiseDetails")]
+        [InverseProperty("SOMerchandises")]
         public virtual Order Order { get; set; }
         [ForeignKey("ReviewedById")]
         [InverseProperty("OrderSomerchandiseDetails")]

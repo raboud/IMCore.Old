@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0-preview3.19128.7" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace IMCore.Domain
 {
@@ -65,5 +67,17 @@ namespace IMCore.Domain
         public virtual ICollection<OptionRetail> Retails { get; set; }
         [InverseProperty("Option")]
         public virtual ICollection<OrderOptionalLaborDetail> OrderOptionsDetails { get; set; }
-    }
+
+		[NotMapped]
+		public ReadOnlyCollection<Material> Materials => this.MaterialCategoryOptionsMappings.Select(m => m.MaterialCategory).ToList().AsReadOnly();
+		public void ClearMaterails() { }
+		public ReadOnlyCollection<Material> Add(Material m)
+		{
+			return this.Materials;
+		}
+		public ReadOnlyCollection<Material> Remove(Material m)
+		{
+			return this.Materials;
+		}
+	}
 }

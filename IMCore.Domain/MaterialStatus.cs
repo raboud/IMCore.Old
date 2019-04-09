@@ -26,7 +26,7 @@ namespace IMCore.Domain
 
         [InverseProperty("MaterialStatus")]
         public virtual ICollection<OrderBasicLaborDetail> OrderBasicLaborDetails { get; set; }
-        [InverseProperty("Status")]
+        [InverseProperty("MaterialStatus")]
         public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
         [InverseProperty("MaterialStatus")]
         public virtual ICollection<OrderSOMerchandiseDetail> OrderSomerchandiseDetails { get; set; }
