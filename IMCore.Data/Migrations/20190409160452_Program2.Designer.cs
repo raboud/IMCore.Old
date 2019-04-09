@@ -4,14 +4,16 @@ using IMCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IMCore.Data.Migrations
 {
     [DbContext(typeof(IMCoreContext))]
-    partial class IMCoreContextModelSnapshot : ModelSnapshot
+    [Migration("20190409160452_Program2")]
+    partial class Program2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -317,13 +319,13 @@ namespace IMCore.Data.Migrations
                     b.Property<string>("LaborDescription")
                         .HasMaxLength(255);
 
+                    b.Property<int>("MaterialTypeId")
+                        .HasColumnName("ProgramId");
+
                     b.Property<bool?>("PrintOnWorkOrder")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("PrintOnWorkOrder")
                         .HasDefaultValueSql("((1))");
-
-                    b.Property<int>("ProgramId")
-                        .HasColumnName("ProgramId");
 
                     b.Property<decimal?>("RetailPrice")
                         .HasColumnType("money");
@@ -343,7 +345,7 @@ namespace IMCore.Data.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("ProgramId");
+                    b.HasIndex("MaterialTypeId");
 
                     b.HasIndex("UnitOfMeasureId");
 
@@ -2699,6 +2701,9 @@ namespace IMCore.Data.Migrations
                     b.Property<int?>("ItemId")
                         .HasColumnName("ItemId");
 
+                    b.Property<int?>("MaterialTypeId")
+                        .HasColumnName("ProgramId");
+
                     b.Property<string>("OptionDescription")
                         .HasMaxLength(255);
 
@@ -2709,9 +2714,6 @@ namespace IMCore.Data.Migrations
                     b.Property<bool?>("PrintOnWorkOrder")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((1))");
-
-                    b.Property<int?>("ProgramId")
-                        .HasColumnName("ProgramId");
 
                     b.Property<decimal?>("RetailPrice")
                         .HasColumnType("money");
@@ -2732,7 +2734,7 @@ namespace IMCore.Data.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("ProgramId");
+                    b.HasIndex("MaterialTypeId");
 
                     b.HasIndex("UnitOfMeasureId");
 
@@ -3006,6 +3008,9 @@ namespace IMCore.Data.Migrations
 
                     b.Property<int?>("MarkDown");
 
+                    b.Property<int>("MaterialTypeId")
+                        .HasColumnName("ProgramId");
+
                     b.Property<string>("NUMBER")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnName("NUMBER")
@@ -3043,9 +3048,6 @@ namespace IMCore.Data.Migrations
 
                     b.Property<int?>("PrimaryOrderId")
                         .HasColumnName("PrimaryOrderId");
-
-                    b.Property<int>("ProgramId")
-                        .HasColumnName("ProgramId");
 
                     b.Property<string>("PurchaseOrderNumber")
                         .IsFixedLength(true)
@@ -3119,9 +3121,9 @@ namespace IMCore.Data.Migrations
 
                     b.HasIndex("JobStatusId");
 
-                    b.HasIndex("PrimaryOrderId");
+                    b.HasIndex("MaterialTypeId");
 
-                    b.HasIndex("ProgramId");
+                    b.HasIndex("PrimaryOrderId");
 
                     b.HasIndex("PurchaseOrderNumber")
                         .HasName("OrdersPO");
@@ -3706,6 +3708,9 @@ namespace IMCore.Data.Migrations
                     b.Property<DateTime?>("LastModifiedDateTime")
                         .HasColumnType("datetime");
 
+                    b.Property<int>("MaterialTypeId")
+                        .HasColumnName("ProgramId");
+
                     b.Property<bool?>("NoMinimum");
 
                     b.Property<string>("Notes")
@@ -3732,9 +3737,6 @@ namespace IMCore.Data.Migrations
                         .IsUnicode(false);
 
                     b.Property<bool>("Paid");
-
-                    b.Property<int>("ProgramId")
-                        .HasColumnName("ProgramId");
 
                     b.Property<string>("PurchaseOrderNumber")
                         .IsRequired()
@@ -4144,7 +4146,7 @@ namespace IMCore.Data.Migrations
 
             modelBuilder.Entity("IMCore.Domain.ProgramBranchMapping", b =>
                 {
-                    b.Property<int>("ProgramId")
+                    b.Property<int>("MaterialTypeId")
                         .HasColumnName("ProgramId");
 
                     b.Property<int>("MarketId")
@@ -4152,7 +4154,7 @@ namespace IMCore.Data.Migrations
 
                     b.Property<bool>("AllowEntry");
 
-                    b.HasKey("ProgramId", "MarketId");
+                    b.HasKey("MaterialTypeId", "MarketId");
 
                     b.HasIndex("MarketId");
 
@@ -5329,9 +5331,9 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("ItemId")
                         .HasConstraintName("FK_BasicLabor_Item");
 
-                    b.HasOne("IMCore.Domain.Program", "Program")
+                    b.HasOne("IMCore.Domain.Program", "MaterialType")
                         .WithMany("BasicLabor")
-                        .HasForeignKey("ProgramId")
+                        .HasForeignKey("MaterialTypeId")
                         .HasConstraintName("FK_BasicLabor_MaterialType");
 
                     b.HasOne("IMCore.Domain.UnitOfMeasure", "UnitOfMeasure")
@@ -5843,10 +5845,10 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("ItemId")
                         .HasConstraintName("FK_Options_Item");
 
-                    b.HasOne("IMCore.Domain.Program", "Program")
+                    b.HasOne("IMCore.Domain.Program", "MaterialType")
                         .WithMany("Options")
-                        .HasForeignKey("ProgramId")
-                        .HasConstraintName("FK_Options_Program");
+                        .HasForeignKey("MaterialTypeId")
+                        .HasConstraintName("FK_Options_MaterialType");
 
                     b.HasOne("IMCore.Domain.UnitOfMeasure", "UnitOfMeasure")
                         .WithMany("Options")
@@ -5954,15 +5956,15 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("JobStatusId")
                         .HasConstraintName("FK_Orders_JobStatus");
 
+                    b.HasOne("IMCore.Domain.Program", "Program")
+                        .WithMany("Orders")
+                        .HasForeignKey("MaterialTypeId")
+                        .HasConstraintName("FK_Orders_MaterialType");
+
                     b.HasOne("IMCore.Domain.Order", "PrimaryOrder")
                         .WithMany("AssociatedOrders")
                         .HasForeignKey("PrimaryOrderId")
                         .HasConstraintName("FK_Orders_Orders");
-
-                    b.HasOne("IMCore.Domain.Program", "Program")
-                        .WithMany("Orders")
-                        .HasForeignKey("ProgramId")
-                        .HasConstraintName("FK_Orders_Program");
 
                     b.HasOne("IMCore.Domain.User", "ReviewedBy")
                         .WithMany("OrdersReviewedBy")
@@ -6195,17 +6197,17 @@ namespace IMCore.Data.Migrations
             modelBuilder.Entity("IMCore.Domain.Program", b =>
                 {
                     b.HasOne("IMCore.Domain.Division", "Division")
-                        .WithMany("Programs")
+                        .WithMany("MaterialType")
                         .HasForeignKey("DivisionId")
                         .HasConstraintName("FK_MaterialType_Division");
 
                     b.HasOne("IMCore.Domain.JobType", "JobType")
-                        .WithMany("Programs")
+                        .WithMany("MaterialType")
                         .HasForeignKey("JobTypeId")
                         .HasConstraintName("FK_MaterialType_JobType");
 
                     b.HasOne("IMCore.Domain.ClientType", "StoreType")
-                        .WithMany("Programs")
+                        .WithMany("MaterialType")
                         .HasForeignKey("StoreTypeId")
                         .HasConstraintName("FK_MaterialType_StoreType");
                 });
@@ -6217,9 +6219,9 @@ namespace IMCore.Data.Migrations
                         .HasForeignKey("MarketId")
                         .HasConstraintName("FK_MaterialTypesMarketMapping_Market");
 
-                    b.HasOne("IMCore.Domain.Program", "Program")
+                    b.HasOne("IMCore.Domain.Program", "MaterialType")
                         .WithMany("MaterialTypesMarketMapping")
-                        .HasForeignKey("ProgramId")
+                        .HasForeignKey("MaterialTypeId")
                         .HasConstraintName("FK_MaterialTypesMarketMapping_MaterialType");
                 });
 

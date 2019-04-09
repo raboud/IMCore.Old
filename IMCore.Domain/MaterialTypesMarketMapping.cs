@@ -8,8 +8,8 @@ namespace IMCore.Domain
 	[Table("MaterialTypesMarketMapping")]
     public partial class ProgramBranchMapping
     {
-        [Column("MaterialTypeId")]
-        public int MaterialTypeId { get; set; }
+        [Column("ProgramId")]
+        public int ProgramId { get; set; }
         [Column("MarketId")]
         public int MarketId { get; set; }
         public bool AllowEntry { get; set; }
@@ -17,8 +17,8 @@ namespace IMCore.Domain
         [ForeignKey("MarketId")]
         [InverseProperty("MaterialTypesMarketMapping")]
         public virtual Market Market { get; set; }
-        [ForeignKey("MaterialTypeId")]
+        [ForeignKey("ProgramId")]
         [InverseProperty("MaterialTypesMarketMapping")]
-        public virtual Program MaterialType { get; set; }
+        public virtual Program Program { get; set; }
     }
 }

@@ -28,8 +28,8 @@ namespace IMCore.Domain
         public decimal? UnitPrice { get; set; }
         [Column(TypeName = "money")]
         public decimal? UnitCost { get; set; }
-        [Column("MaterialTypeId")]
-        public int MaterialTypeId { get; set; }
+        [Column("ProgramId")]
+        public int ProgramId { get; set; }
         [Column(TypeName = "money")]
         public decimal? RetailPrice { get; set; }
         public bool Active { get; set; }
@@ -42,9 +42,9 @@ namespace IMCore.Domain
         [ForeignKey("ItemId")]
         [InverseProperty("BasicLabor")]
         public virtual Item Item { get; set; }
-        [ForeignKey("MaterialTypeId")]
+        [ForeignKey("ProgramId")]
         [InverseProperty("BasicLabor")]
-        public virtual Program MaterialType { get; set; }
+        public virtual Program Program { get; set; }
         [ForeignKey("UnitOfMeasureId")]
         [InverseProperty("BasicLabor")]
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }

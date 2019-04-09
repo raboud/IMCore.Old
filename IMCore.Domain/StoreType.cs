@@ -13,7 +13,7 @@ namespace IMCore.Domain
         public ClientType()
         {
             ClientTypeReports = new HashSet<ClientTypeReport>();
-            MaterialType = new HashSet<Program>();
+            Programs = new HashSet<Program>();
             Stores = new HashSet<Client>();
         }
 
@@ -33,7 +33,7 @@ namespace IMCore.Domain
         [InverseProperty("ClientType")]
         public virtual ICollection<ClientTypeReport> ClientTypeReports { get; set; }
         [InverseProperty("StoreType")]
-        public virtual ICollection<Program> MaterialType { get; set; }
+        public virtual ICollection<Program> Programs { get; set; }
         [InverseProperty("StoreType")]
         public virtual ICollection<Client> Stores { get; set; }
     }

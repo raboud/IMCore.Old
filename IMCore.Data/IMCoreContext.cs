@@ -95,7 +95,7 @@ namespace IMCore.Data
 		public virtual DbSet<MaterialCost> MaterialCost { get; set; }
 		public virtual DbSet<MaterialPrice> MaterialPrice { get; set; }
 		public virtual DbSet<MaterialStatus> MaterialStatus { get; set; }
-		public virtual DbSet<Program> MaterialType { get; set; }
+		public virtual DbSet<Program> Programs { get; set; }
 		public virtual DbSet<ProgramBranchMapping> MaterialTypesMarketMapping { get; set; }
 		public virtual DbSet<MeasureCompCalcs> MeasureCompCalcData { get; set; }
 		public virtual DbSet<MeasureCompCustomers> MeasureCompCustData { get; set; }
@@ -297,9 +297,9 @@ namespace IMCore.Data
 					.HasForeignKey(d => d.ItemId)
 					.HasConstraintName("FK_BasicLabor_Item");
 
-				entity.HasOne(d => d.MaterialType)
+				entity.HasOne(d => d.Program)
 					.WithMany(p => p.BasicLabor)
-					.HasForeignKey(d => d.MaterialTypeId)
+					.HasForeignKey(d => d.ProgramId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_BasicLabor_MaterialType");
 
@@ -1030,24 +1030,24 @@ namespace IMCore.Data
 				entity.Property(e => e.Valid).HasDefaultValueSql("((1))");
 
 				entity.HasOne(d => d.Division)
-					.WithMany(p => p.MaterialType)
+					.WithMany(p => p.Programs)
 					.HasForeignKey(d => d.DivisionId)
 					.HasConstraintName("FK_MaterialType_Division");
 
 				entity.HasOne(d => d.JobType)
-					.WithMany(p => p.MaterialType)
+					.WithMany(p => p.Programs)
 					.HasForeignKey(d => d.JobTypeId)
 					.HasConstraintName("FK_MaterialType_JobType");
 
 				entity.HasOne(d => d.StoreType)
-					.WithMany(p => p.MaterialType)
+					.WithMany(p => p.Programs)
 					.HasForeignKey(d => d.StoreTypeId)
 					.HasConstraintName("FK_MaterialType_StoreType");
 			});
 
 			modelBuilder.Entity<ProgramBranchMapping>(entity =>
 			{
-				entity.HasKey(e => new { e.MaterialTypeId, e.MarketId });
+				entity.HasKey(e => new { e.ProgramId, e.MarketId });
 
 				entity.HasOne(d => d.Market)
 					.WithMany(p => p.MaterialTypesMarketMapping)
@@ -1055,9 +1055,9 @@ namespace IMCore.Data
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_MaterialTypesMarketMapping_Market");
 
-				entity.HasOne(d => d.MaterialType)
+				entity.HasOne(d => d.Program)
 					.WithMany(p => p.MaterialTypesMarketMapping)
-					.HasForeignKey(d => d.MaterialTypeId)
+					.HasForeignKey(d => d.ProgramId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_MaterialTypesMarketMapping_MaterialType");
 			});
@@ -1300,10 +1300,10 @@ namespace IMCore.Data
 					.HasForeignKey(d => d.ItemId)
 					.HasConstraintName("FK_Options_Item");
 
-				entity.HasOne(d => d.MaterialType)
+				entity.HasOne(d => d.Program)
 					.WithMany(p => p.Options)
-					.HasForeignKey(d => d.MaterialTypeId)
-					.HasConstraintName("FK_Options_MaterialType");
+					.HasForeignKey(d => d.ProgramId)
+					.HasConstraintName("FK_Options_Program");
 
 				entity.HasOne(d => d.UnitOfMeasure)
 					.WithMany(p => p.Options)
@@ -1623,9 +1623,9 @@ namespace IMCore.Data
 
 				entity.HasOne(d => d.Program)
 					.WithMany(p => p.Orders)
-					.HasForeignKey(d => d.MaterialTypeId)
+					.HasForeignKey(d => d.ProgramId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_Orders_MaterialType");
+					.HasConstraintName("FK_Orders_Program");
 
 				entity.HasOne(d => d.PrimaryOrder)
 					.WithMany(p => p.AssociatedOrders)

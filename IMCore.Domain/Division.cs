@@ -10,7 +10,7 @@ namespace IMCore.Domain
         public Division()
         {
             ItemCosting = new HashSet<ItemCosting>();
-            MaterialType = new HashSet<Program>();
+            Programs = new HashSet<Program>();
             UserMarketDivisionAssignments = new HashSet<UserMarketDivisionAssignments>();
             UserPermissions = new HashSet<UserPermissions>();
         }
@@ -37,7 +37,7 @@ namespace IMCore.Domain
         [InverseProperty("Division")]
         public virtual ICollection<ItemCosting> ItemCosting { get; set; }
         [InverseProperty("Division")]
-        public virtual ICollection<Program> MaterialType { get; set; }
+        public virtual ICollection<Program> Programs { get; set; }
         [InverseProperty("Division")]
         public virtual ICollection<UserMarketDivisionAssignments> UserMarketDivisionAssignments { get; set; }
         [InverseProperty("Division")]

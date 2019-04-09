@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-	[Table("MaterialType")]
+	[Table("Program")]
     public partial class Program
     {
         public Program()
@@ -67,23 +67,23 @@ namespace IMCore.Domain
         public int? MarkDownMax { get; set; }
 
         [ForeignKey("DivisionId")]
-        [InverseProperty("MaterialType")]
+        [InverseProperty("Programs")]
         public virtual Division Division { get; set; }
         [ForeignKey("JobTypeId")]
-        [InverseProperty("MaterialType")]
+        [InverseProperty("Programs")]
         public virtual JobType JobType { get; set; }
         [ForeignKey("StoreTypeId")]
-        [InverseProperty("MaterialType")]
+        [InverseProperty("Programs")]
         public virtual ClientType StoreType { get; set; }
-        [InverseProperty("MaterialType")]
+        [InverseProperty("Program")]
         public virtual ICollection<BasicLabor> BasicLabor { get; set; }
         [InverseProperty("Program")]
         public virtual ICollection<MaterialCost> MaterialCost { get; set; }
         [InverseProperty("Program")]
         public virtual ICollection<MaterialPrice> MaterialPrice { get; set; }
-        [InverseProperty("MaterialType")]
+        [InverseProperty("Program")]
         public virtual ICollection<ProgramBranchMapping> MaterialTypesMarketMapping { get; set; }
-        [InverseProperty("MaterialType")]
+        [InverseProperty("Program")]
         public virtual ICollection<Option> Options { get; set; }
         [InverseProperty("Program")]
         public virtual ICollection<Order> Orders { get; set; }

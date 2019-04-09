@@ -11,7 +11,7 @@ namespace IMCore.Domain
         public JobType()
         {
             InstallationCrewType = new HashSet<InstallationCrewType>();
-            MaterialType = new HashSet<Program>();
+            Programs = new HashSet<Program>();
         }
 
         [Key]
@@ -24,6 +24,6 @@ namespace IMCore.Domain
         [InverseProperty("JobType")]
         public virtual ICollection<InstallationCrewType> InstallationCrewType { get; set; }
         [InverseProperty("JobType")]
-        public virtual ICollection<Program> MaterialType { get; set; }
+        public virtual ICollection<Program> Programs { get; set; }
     }
 }

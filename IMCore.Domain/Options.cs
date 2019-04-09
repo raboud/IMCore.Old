@@ -31,8 +31,8 @@ namespace IMCore.Domain
         public decimal? UnitCost { get; set; }
         [Column("UnitOfMeasureId")]
         public int? UnitOfMeasureId { get; set; }
-        [Column("MaterialTypeId")]
-        public int? MaterialTypeId { get; set; }
+        [Column("ProgramId")]
+        public int? ProgramId { get; set; }
         [Column(TypeName = "money")]
         public decimal? RetailPrice { get; set; }
         public bool? ApplyToMinimum { get; set; }
@@ -49,9 +49,9 @@ namespace IMCore.Domain
         [ForeignKey("ItemId")]
         [InverseProperty("Options")]
         public virtual Item Item { get; set; }
-        [ForeignKey("MaterialTypeId")]
+        [ForeignKey("ProgramId")]
         [InverseProperty("Options")]
-        public virtual Program MaterialType { get; set; }
+        public virtual Program Program { get; set; }
         [ForeignKey("UnitOfMeasureId")]
         [InverseProperty("Options")]
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }

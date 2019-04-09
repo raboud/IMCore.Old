@@ -10,7 +10,7 @@ namespace IMCore.Data.Migrations
                 name: "FK_BasicCost_Labor",
                 table: "BasicCost");
 
-            migrationBuilder.DropForeignKey(
+			migrationBuilder.DropForeignKey(
                 name: "FK_BasicCost_Stores",
                 table: "BasicCost");
 

@@ -34,8 +34,8 @@ namespace IMCore.Domain
         public decimal? CostAmount { get; set; }
         [Column(TypeName = "money")]
         public decimal? BilledAmount { get; set; }
-        [Column("MaterialTypeId")]
-        public int MaterialTypeId { get; set; }
+        [Column("ProgramId")]
+        public int ProgramId { get; set; }
         [Column(TypeName = "money")]
         public decimal? OrderAmount { get; set; }
         [Column(TypeName = "money")]
