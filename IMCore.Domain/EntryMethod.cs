@@ -11,7 +11,7 @@ namespace IMCore.Domain
         {
             OrderBasicLaborDetails = new HashSet<OrderBasicLaborDetail>();
             OrderCustomDetails = new HashSet<OrderCustomDetail>();
-            OrderOptionsDetails = new HashSet<OrderOptionalLaborDetail>();
+            OrderOptionsDetails = new HashSet<OrderOption>();
             OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
             OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
             Orders = new HashSet<Order>();
@@ -28,7 +28,7 @@ namespace IMCore.Domain
         [InverseProperty("EntryMethod")]
         public virtual ICollection<OrderCustomDetail> OrderCustomDetails { get; set; }
         [InverseProperty("EntryMethod")]
-        public virtual ICollection<OrderOptionalLaborDetail> OrderOptionsDetails { get; set; }
+        public virtual ICollection<OrderOption> OrderOptionsDetails { get; set; }
         [InverseProperty("EntryMethod")]
         public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
         [InverseProperty("EntryMethod")]

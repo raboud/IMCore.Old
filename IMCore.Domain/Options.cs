@@ -17,7 +17,7 @@ namespace IMCore.Domain
             Prices = new HashSet<OptionPrice>();
             OptionPricingOld = new HashSet<OptionPricingOld>();
             Retails = new HashSet<OptionRetail>();
-            OrderOptionsDetails = new HashSet<OrderOptionalLaborDetail>();
+            OrderOptionsDetails = new HashSet<OrderOption>();
         }
 
         [Key]
@@ -66,7 +66,7 @@ namespace IMCore.Domain
         [InverseProperty("Labor")]
         public virtual ICollection<OptionRetail> Retails { get; set; }
         [InverseProperty("Option")]
-        public virtual ICollection<OrderOptionalLaborDetail> OrderOptionsDetails { get; set; }
+        public virtual ICollection<OrderOption> OrderOptionsDetails { get; set; }
 
 		[NotMapped]
 		public ReadOnlyCollection<Material> Materials => this.MaterialCategoryOptionsMappings.Select(m => m.MaterialCategory).ToList().AsReadOnly();

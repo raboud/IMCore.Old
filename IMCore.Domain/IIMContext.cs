@@ -30,7 +30,7 @@ namespace IMCore.Domain
 		DbSet<Program> Programs { get; set; }
 		DbSet<NoteType> NoteTypes { get; set; }
 		DbSet<Option> OptionalLabor { get; set; }
-		DbSet<OrderOptionalLaborDetail> OrderOptionalLaborDetails { get; set; }
+		DbSet<OrderOption> OrderOptionalLaborDetails { get; set; }
 		//        DbSet<OrderAttachment> OrderAttachments { get; set; }
 		DbSet<OrderBasicLaborDetail> OrderBasicLaborDetails { get; set; }
 		DbSet<OrderCustomDetail> OrderCustomLaborDetails { get; set; }

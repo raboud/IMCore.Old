@@ -25,7 +25,7 @@ namespace IMCore.Domain
             CustomLabors = new HashSet<OrderCustomDetail>();
             OrderDiagrams = new HashSet<OrderDiagram>();
             OrderDocument = new HashSet<OrderDocument>();
-			OptionalLabors = new HashSet<OrderOptionalLaborDetail>();
+			OptionalLabors = new HashSet<OrderOption>();
             RegMerchandises = new HashSet<OrderRegMerchandiseDetail>();
             SOMerchandises = new HashSet<OrderSOMerchandiseDetail>();
             Payroll = new HashSet<Payroll>();
@@ -204,7 +204,7 @@ namespace IMCore.Domain
         public virtual ICollection<OrderCustomDetail> CustomLabors { get; set; }
         public virtual ICollection<OrderDiagram> OrderDiagrams { get; set; }
         public virtual ICollection<OrderDocument> OrderDocument { get; set; }
-        public virtual ICollection<OrderOptionalLaborDetail> OptionalLabors { get; set; }
+        public virtual ICollection<OrderOption> OptionalLabors { get; set; }
         public virtual ICollection<OrderRegMerchandiseDetail> RegMerchandises { get; set; }
         public virtual ICollection<OrderSOMerchandiseDetail> SOMerchandises { get; set; }
         public virtual ICollection<Payroll> Payroll { get; set; }
@@ -371,7 +371,7 @@ namespace IMCore.Domain
 					noMinApplied += cl.ExtendedCost;
 				}
 			}
-			foreach (OrderOptionalLaborDetail ol in this.OptionalLabors)
+			foreach (OrderOption ol in this.OptionalLabors)
 			{
 				if (ol.PrintOnWorkOrder ?? true && !ol.Deleted)
 				{
