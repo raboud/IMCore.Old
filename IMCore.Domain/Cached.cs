@@ -1168,11 +1168,11 @@ namespace IMCore.Domain
 					_cache.Clear();
 					foreach (Program u in ctx.Programs
 						.Include(p => p.ProgramBranchMappings)
-						.Include(p => p.BasicLabor.Select(i => i.MaterialCategoryBasicLaborMappings.Select(mp => mp.MaterialCategory.MaterialCost)))
+						.Include(p => p.BasicLabor.Select(i => i.MaterialBasicLaborMappings.Select(mp => mp.Material.MaterialCost)))
 						.Include(p => p.BasicLabor.Select(i => i.Costs))
 						.Include(p => p.BasicLabor.Select(i => i.Prices))
 						.Include(p => p.BasicLabor.Select(i => i.Retails))
-						.Include(p => p.Options.Select(i => i.MaterialCategoryOptionsMappings.Select(mp => mp.MaterialCategory.MaterialCost)))
+						.Include(p => p.Options.Select(i => i.MaterialOptionsMappings.Select(mp => mp.Material.MaterialCost)))
 						.Include(p => p.Options.Select(i => i.Costs))
 						.Include(p => p.Options.Select(i => i.Prices))
 						.Include(p => p.Options.Select(i => i.Retails))
@@ -1326,7 +1326,7 @@ namespace IMCore.Domain
 				foreach (Item u in ctx.Items
 					.Include(i => i.Costs)
 					.Include(i => i.Prices)
-					.Include(i => i.MaterialCategoryItemMappings).ThenInclude(mc => mc.MaterialCategory.MaterialCost)
+					.Include(i => i.MaterialItemMappings).ThenInclude(mc => mc.Material.MaterialCost)
 					.AsNoTracking())
 				{
 					_cache.Add(u.Id, u);
@@ -1393,7 +1393,7 @@ namespace IMCore.Domain
 			{
 				_cache.Clear();
 				foreach (BasicLabor u in ctx.BasicLabors
-								  .Include(i => i.MaterialCategoryBasicLaborMappings)
+								  .Include(i => i.MaterialBasicLaborMappings)
 								  .Include(i => i.Costs)
 								  .Include(i => i.Prices)
 								  .Include(i => i.Retails)
@@ -1463,7 +1463,7 @@ namespace IMCore.Domain
 				_cache.Clear();
 
 				foreach (Option u in ctx.OptionalLabor
-								  .Include(i => i.MaterialCategoryOptionsMappings)
+								  .Include(i => i.MaterialOptionsMappings)
 								  .Include(i => i.Costs)
 								  .Include(i => i.Prices)
 								  .Include(i => i.Retails)

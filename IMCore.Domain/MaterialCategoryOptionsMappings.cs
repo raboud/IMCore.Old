@@ -5,18 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class MaterialCategoryOptionsMappings
+	[Table("MaterialsOptionsMapping")]
+    public partial class MaterialsOptionsMapping
     {
-        [Column("MaterialCategoryId")]
-        public int MaterialCategoryId { get; set; }
+        [Column("MaterialId")]
+        public int MaterialId { get; set; }
         [Column("OptionId")]
         public int OptionId { get; set; }
 
-        [ForeignKey("MaterialCategoryId")]
-        [InverseProperty("MaterialCategoryOptionsMappings")]
-        public virtual Material MaterialCategory { get; set; }
+        [ForeignKey("MaterialId")]
+        [InverseProperty("MaterialOptionsMappings")]
+        public virtual Material Material { get; set; }
         [ForeignKey("OptionId")]
-        [InverseProperty("MaterialCategoryOptionsMappings")]
+        [InverseProperty("MaterialOptionsMappings")]
         public virtual Option Option { get; set; }
     }
 }

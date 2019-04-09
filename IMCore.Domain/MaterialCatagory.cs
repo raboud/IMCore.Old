@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    [Table("Material Catagory")]
+    [Table("Material")]
     public partial class Material
     {
         public Material()
         {
-            MaterialCategoryBasicLaborMappings = new HashSet<MaterialCategoryBasicLaborMappings>();
-            MaterialCategoryItemMappings = new HashSet<MaterialCategoryItemMappings>();
-            MaterialCategoryOptionsMappings = new HashSet<MaterialCategoryOptionsMappings>();
+            MaterialBasicLaborMappings = new HashSet<MaterialBasicLaborMapping>();
+            MaterialsItemMappings = new HashSet<MaterialsItemMapping>();
+            MaterialOptionsMappings = new HashSet<MaterialsOptionsMapping>();
             MaterialCost = new HashSet<MaterialCost>();
             MaterialPrice = new HashSet<MaterialPrice>();
         }
@@ -42,20 +42,20 @@ namespace IMCore.Domain
         public bool? Active { get; set; }
 
         [ForeignKey("SubCatId")]
-        [InverseProperty("MaterialCatagory")]
+        [InverseProperty("Materials")]
         public virtual MaterialSubCategory SubCat { get; set; }
         [ForeignKey("UnitOfMeasureId")]
-        [InverseProperty("MaterialCatagory")]
+        [InverseProperty("Materials")]
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-        [InverseProperty("MaterialCategory")]
-        public virtual ICollection<MaterialCategoryBasicLaborMappings> MaterialCategoryBasicLaborMappings { get; set; }
-        [InverseProperty("MaterialCategory")]
-        public virtual ICollection<MaterialCategoryItemMappings> MaterialCategoryItemMappings { get; set; }
-        [InverseProperty("MaterialCategory")]
-        public virtual ICollection<MaterialCategoryOptionsMappings> MaterialCategoryOptionsMappings { get; set; }
-        [InverseProperty("MaterialCat")]
+        [InverseProperty("Material")]
+        public virtual ICollection<MaterialBasicLaborMapping> MaterialBasicLaborMappings { get; set; }
+        [InverseProperty("Material")]
+        public virtual ICollection<MaterialsItemMapping> MaterialsItemMappings { get; set; }
+        [InverseProperty("Material")]
+        public virtual ICollection<MaterialsOptionsMapping> MaterialOptionsMappings { get; set; }
+        [InverseProperty("Material")]
         public virtual ICollection<MaterialCost> MaterialCost { get; set; }
-        [InverseProperty("MaterialCat")]
+        [InverseProperty("Material")]
         public virtual ICollection<MaterialPrice> MaterialPrice { get; set; }
     }
 }

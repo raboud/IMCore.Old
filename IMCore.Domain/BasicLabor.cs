@@ -15,7 +15,7 @@ namespace IMCore.Domain
             Prices = new HashSet<BasicPrice>();
             BasicPricingOld = new HashSet<BasicPricingOld>();
             Retails = new HashSet<BasicRetail>();
-            MaterialCategoryBasicLaborMappings = new HashSet<MaterialCategoryBasicLaborMappings>();
+            MaterialBasicLaborMappings = new HashSet<MaterialBasicLaborMapping>();
         }
 
         [Column("UnitOfMeasureId")]
@@ -53,11 +53,11 @@ namespace IMCore.Domain
         public virtual ICollection<BasicPricingOld> BasicPricingOld { get; set; }
         public virtual ICollection<BasicRetail> Retails { get; set; }
         [InverseProperty("BasicLabor")]
-        public virtual ICollection<MaterialCategoryBasicLaborMappings> MaterialCategoryBasicLaborMappings { get; set; }
+        public virtual ICollection<MaterialBasicLaborMapping> MaterialBasicLaborMappings { get; set; }
 
 
 		[NotMapped]
-		public ReadOnlyCollection<Material> Materials => this.MaterialCategoryBasicLaborMappings.Select(m => m.MaterialCategory).ToList().AsReadOnly();
+		public ReadOnlyCollection<Material> Materials => this.MaterialBasicLaborMappings.Select(m => m.Material).ToList().AsReadOnly();
 		public void ClearMaterails() { }
 		public ReadOnlyCollection<Material> Add(Material m)
 		{

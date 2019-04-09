@@ -88,10 +88,10 @@ namespace IMCore.Data
 		public virtual DbSet<Location> Location { get; set; }
 		public virtual DbSet<Branch> Branches { get; set; }
 		public virtual DbSet<MaterialSubCategory> MatSubCat { get; set; }
-		public virtual DbSet<Material> MaterialCatagory { get; set; }
-		public virtual DbSet<MaterialCategoryBasicLaborMappings> MaterialCategoryBasicLaborMappings { get; set; }
-		public virtual DbSet<MaterialCategoryItemMappings> MaterialCategoryItemMappings { get; set; }
-		public virtual DbSet<MaterialCategoryOptionsMappings> MaterialCategoryOptionsMappings { get; set; }
+		public virtual DbSet<Material> Materials { get; set; }
+		public virtual DbSet<MaterialBasicLaborMapping> MaterialsBasicLaborMappings { get; set; }
+		public virtual DbSet<MaterialsItemMapping> MaterialsItemMappings { get; set; }
+		public virtual DbSet<MaterialsOptionsMapping> MaterialsOptionsMappings { get; set; }
 		public virtual DbSet<MaterialCost> MaterialCost { get; set; }
 		public virtual DbSet<MaterialPrice> MaterialPrice { get; set; }
 		public virtual DbSet<MaterialStatus> MaterialStatus { get; set; }
@@ -894,66 +894,66 @@ namespace IMCore.Data
 				entity.Property(e => e.Furnish).HasDefaultValueSql("('false')");
 
 				entity.HasOne(d => d.SubCat)
-					.WithMany(p => p.MaterialCatagory)
+					.WithMany(p => p.Materials)
 					.HasForeignKey(d => d.SubCatId)
-					.HasConstraintName("FK_Material Catagory_MatSubCat");
+					.HasConstraintName("FK_Material_MatSubCat");
 
 				entity.HasOne(d => d.UnitOfMeasure)
-					.WithMany(p => p.MaterialCatagory)
+					.WithMany(p => p.Materials)
 					.HasForeignKey(d => d.UnitOfMeasureId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_Material Catagory_UnitOfMeasure");
+					.HasConstraintName("FK_Material_UnitOfMeasure");
 			});
 
-			modelBuilder.Entity<MaterialCategoryBasicLaborMappings>(entity =>
+			modelBuilder.Entity<MaterialBasicLaborMapping>(entity =>
 			{
-				entity.HasKey(e => new { e.MaterialCategoryId, e.BasicLaborId });
+				entity.HasKey(e => new { e.MaterialId, e.BasicLaborId });
 
 				entity.HasOne(d => d.BasicLabor)
-					.WithMany(p => p.MaterialCategoryBasicLaborMappings)
+					.WithMany(p => p.MaterialBasicLaborMappings)
 					.HasForeignKey(d => d.BasicLaborId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterialCategoryBasicLaborMappings_BasicLabor");
+					.HasConstraintName("FK_MaterialBasicLaborMapping_BasicLabor");
 
-				entity.HasOne(d => d.MaterialCategory)
-					.WithMany(p => p.MaterialCategoryBasicLaborMappings)
-					.HasForeignKey(d => d.MaterialCategoryId)
+				entity.HasOne(d => d.Material)
+					.WithMany(p => p.MaterialBasicLaborMappings)
+					.HasForeignKey(d => d.MaterialId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterialCategoryBasicLaborMappings_MaterialCategory");
+					.HasConstraintName("FK_MaterialBasicLaborMapping_Material");
 			});
 
-			modelBuilder.Entity<MaterialCategoryItemMappings>(entity =>
+			modelBuilder.Entity<MaterialsItemMapping>(entity =>
 			{
-				entity.HasKey(e => new { e.MaterialCategoryId, e.ItemId });
+				entity.HasKey(e => new { e.MaterialId, e.ItemId });
 
 				entity.HasOne(d => d.Item)
-					.WithMany(p => p.MaterialCategoryItemMappings)
+					.WithMany(p => p.MaterialItemMappings)
 					.HasForeignKey(d => d.ItemId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_MaterilCategoryItemMappings_Item");
 
-				entity.HasOne(d => d.MaterialCategory)
-					.WithMany(p => p.MaterialCategoryItemMappings)
-					.HasForeignKey(d => d.MaterialCategoryId)
+				entity.HasOne(d => d.Material)
+					.WithMany(p => p.MaterialsItemMappings)
+					.HasForeignKey(d => d.MaterialId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterilCategoryItemMappings_MaterialCategory");
+					.HasConstraintName("FK_MaterilItemMappings_Material");
 			});
 
-			modelBuilder.Entity<MaterialCategoryOptionsMappings>(entity =>
+			modelBuilder.Entity<MaterialsOptionsMapping>(entity =>
 			{
-				entity.HasKey(e => new { e.MaterialCategoryId, e.OptionId });
+				entity.HasKey(e => new { e.MaterialId, e.OptionId });
 
-				entity.HasOne(d => d.MaterialCategory)
-					.WithMany(p => p.MaterialCategoryOptionsMappings)
-					.HasForeignKey(d => d.MaterialCategoryId)
+				entity.HasOne(d => d.Material)
+					.WithMany(p => p.MaterialOptionsMappings)
+					.HasForeignKey(d => d.MaterialId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterialCategoryOptionsMappings_MaterialCategory");
+					.HasConstraintName("FK_MaterialOptionsMappings_Material");
 
 				entity.HasOne(d => d.Option)
-					.WithMany(p => p.MaterialCategoryOptionsMappings)
+					.WithMany(p => p.MaterialOptionsMappings)
 					.HasForeignKey(d => d.OptionId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterialCategoryOptionsMappings_Options");
+					.HasConstraintName("FK_MaterialOptionsMappings_Options");
 			});
 
 			modelBuilder.Entity<MaterialCost>(entity =>
@@ -965,11 +965,11 @@ namespace IMCore.Data
 					.HasForeignKey(d => d.BranchId)
 					.HasConstraintName("FK_MaterialCost_Branch");
 
-				entity.HasOne(d => d.MaterialCat)
+				entity.HasOne(d => d.Material)
 					.WithMany(p => p.MaterialCost)
-					.HasForeignKey(d => d.MaterialCatId)
+					.HasForeignKey(d => d.MaterialId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterialCost_Material Catagory");
+					.HasConstraintName("FK_MaterialCost_Material");
 
 				entity.HasOne(d => d.Program)
 					.WithMany(p => p.MaterialCost)
@@ -986,11 +986,11 @@ namespace IMCore.Data
 					.HasForeignKey(d => d.BranchId)
 					.HasConstraintName("FK_MaterialPrice_Branch");
 
-				entity.HasOne(d => d.MaterialCat)
+				entity.HasOne(d => d.Material)
 					.WithMany(p => p.MaterialPrice)
-					.HasForeignKey(d => d.MaterialCatId)
+					.HasForeignKey(d => d.MaterialId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterialPrice_Material Catagory");
+					.HasConstraintName("FK_MaterialPrice_Material");
 
 				entity.HasOne(d => d.Program)
 					.WithMany(p => p.MaterialPrice)

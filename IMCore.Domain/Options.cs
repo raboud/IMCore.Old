@@ -12,7 +12,7 @@ namespace IMCore.Domain
     {
         public Option()
         {
-            MaterialCategoryOptionsMappings = new HashSet<MaterialCategoryOptionsMappings>();
+            MaterialOptionsMappings = new HashSet<MaterialsOptionsMapping>();
             Costs = new HashSet<OptionCost>();
             Prices = new HashSet<OptionPrice>();
             OptionPricingOld = new HashSet<OptionPricingOld>();
@@ -56,7 +56,7 @@ namespace IMCore.Domain
         [InverseProperty("Options")]
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
         [InverseProperty("Option")]
-        public virtual ICollection<MaterialCategoryOptionsMappings> MaterialCategoryOptionsMappings { get; set; }
+        public virtual ICollection<MaterialsOptionsMapping> MaterialOptionsMappings { get; set; }
         [InverseProperty("Labor")]
         public virtual ICollection<OptionCost> Costs { get; set; }
         [InverseProperty("Labor")]
@@ -69,7 +69,7 @@ namespace IMCore.Domain
         public virtual ICollection<OrderOption> OrderOptionsDetails { get; set; }
 
 		[NotMapped]
-		public ReadOnlyCollection<Material> Materials => this.MaterialCategoryOptionsMappings.Select(m => m.MaterialCategory).ToList().AsReadOnly();
+		public ReadOnlyCollection<Material> Materials => this.MaterialOptionsMappings.Select(m => m.Material).ToList().AsReadOnly();
 		public void ClearMaterails() { }
 		public ReadOnlyCollection<Material> Add(Material m)
 		{

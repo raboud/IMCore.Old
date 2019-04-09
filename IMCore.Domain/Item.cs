@@ -15,7 +15,7 @@ namespace IMCore.Domain
             Costs = new HashSet<ItemCosting>();
             ItemMatCosting = new HashSet<ItemMatCosting>();
             Prices = new HashSet<ItemPricing>();
-            MaterialCategoryItemMappings = new HashSet<MaterialCategoryItemMappings>();
+            MaterialItemMappings = new HashSet<MaterialsItemMapping>();
             Options = new HashSet<Option>();
         }
 
@@ -47,13 +47,13 @@ namespace IMCore.Domain
         [InverseProperty("Item")]
         public virtual ICollection<ItemPricing> Prices { get; set; }
         [InverseProperty("Item")]
-        public virtual ICollection<MaterialCategoryItemMappings> MaterialCategoryItemMappings { get; set; }
+        public virtual ICollection<MaterialsItemMapping> MaterialItemMappings { get; set; }
         [InverseProperty("Item")]
         public virtual ICollection<Option> Options { get; set; }
 
 
 		[NotMapped]
-		public ReadOnlyCollection<Material> Materials => this.MaterialCategoryItemMappings.Select(m => m.MaterialCategory).ToList().AsReadOnly();
+		public ReadOnlyCollection<Material> Materials => this.MaterialItemMappings.Select(m => m.Material).ToList().AsReadOnly();
 		public void ClearMaterails() { }
 		public ReadOnlyCollection<Material> Add(Material m)
 		{

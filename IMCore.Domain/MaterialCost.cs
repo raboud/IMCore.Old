@@ -9,8 +9,8 @@ namespace IMCore.Domain
     {
         [Column("Id")]
         public int Id { get; set; }
-        [Column("MaterialCatId")]
-        public int MaterialCatId { get; set; }
+        [Column("MaterialId")]
+        public int MaterialId { get; set; }
         [Column("BranchId")]
         public int? BranchId { get; set; }
         [Column("StoreId")]
@@ -31,9 +31,9 @@ namespace IMCore.Domain
         [ForeignKey("BranchId")]
         [InverseProperty("MaterialCost")]
         public virtual Branch Branch { get; set; }
-        [ForeignKey("MaterialCatId")]
+        [ForeignKey("MaterialId")]
         [InverseProperty("MaterialCost")]
-        public virtual Material MaterialCat { get; set; }
+        public virtual Material Material { get; set; }
         [ForeignKey("ProgramId")]
         [InverseProperty("MaterialCost")]
         public virtual Program Program { get; set; }

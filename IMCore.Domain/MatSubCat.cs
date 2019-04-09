@@ -10,7 +10,7 @@ namespace IMCore.Domain
     {
         public MaterialSubCategory()
         {
-            MaterialCatagory = new HashSet<Material>();
+            Materials = new HashSet<Material>();
         }
 
         [Key]
@@ -20,6 +20,6 @@ namespace IMCore.Domain
         public string Description { get; set; }
 
         [InverseProperty("SubCat")]
-        public virtual ICollection<Material> MaterialCatagory { get; set; }
+        public virtual ICollection<Material> Materials { get; set; }
     }
 }
