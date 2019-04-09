@@ -11,8 +11,8 @@ namespace IMCore.Domain
         public int Id { get; set; }
         [Column("ItemId")]
         public int ItemId { get; set; }
-        [Column("MarketId")]
-        public int? MarketId { get; set; }
+        [Column("BranchId")]
+        public int? BranchId { get; set; }
         [Column("StoreId")]
         public int? StoreId { get; set; }
         [Column(TypeName = "money")]
@@ -30,9 +30,9 @@ namespace IMCore.Domain
         [ForeignKey("ItemId")]
         [InverseProperty("Costs")]
         public virtual Item Item { get; set; }
-        [ForeignKey("MarketId")]
+        [ForeignKey("BranchId")]
         [InverseProperty("ItemCosting")]
-        public virtual Market Market { get; set; }
+        public virtual Branch Branch { get; set; }
         [ForeignKey("StoreId")]
         public virtual Client Store { get; set; }
     }

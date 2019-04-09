@@ -11,8 +11,8 @@ namespace IMCore.Domain
         public int Id { get; set; }
         [Column("OptionId")]
         public int OptionId { get; set; }
-        [Column("MarketId")]
-        public int? MarketId { get; set; }
+        [Column("BranchId")]
+        public int? BranchId { get; set; }
         [Column("StoreId")]
         public int? StoreId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
@@ -26,9 +26,9 @@ namespace IMCore.Domain
         [Column(TypeName = "date")]
         public DateTime? EndDate { get; set; }
 
-        [ForeignKey("MarketId")]
+        [ForeignKey("BranchId")]
         [InverseProperty("OptionPricingOld")]
-        public virtual Market Market { get; set; }
+        public virtual Branch Branch { get; set; }
         [ForeignKey("OptionId")]
         [InverseProperty("OptionPricingOld")]
         public virtual Option Option { get; set; }

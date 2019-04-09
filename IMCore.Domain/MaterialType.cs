@@ -13,7 +13,7 @@ namespace IMCore.Domain
             BasicLabor = new HashSet<BasicLabor>();
             MaterialCost = new HashSet<MaterialCost>();
             MaterialPrice = new HashSet<MaterialPrice>();
-            MaterialTypesMarketMapping = new HashSet<ProgramBranchMapping>();
+            ProgramBranchMappings = new HashSet<ProgramBranchMapping>();
             Options = new HashSet<Option>();
             Orders = new HashSet<Order>();
             ProgramReport = new HashSet<ProgramReport>();
@@ -82,7 +82,7 @@ namespace IMCore.Domain
         [InverseProperty("Program")]
         public virtual ICollection<MaterialPrice> MaterialPrice { get; set; }
         [InverseProperty("Program")]
-        public virtual ICollection<ProgramBranchMapping> MaterialTypesMarketMapping { get; set; }
+        public virtual ICollection<ProgramBranchMapping> ProgramBranchMappings { get; set; }
         [InverseProperty("Program")]
         public virtual ICollection<Option> Options { get; set; }
         [InverseProperty("Program")]

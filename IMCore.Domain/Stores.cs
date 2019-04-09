@@ -39,7 +39,7 @@ namespace IMCore.Domain
         public string FaxNumber { get; set; }
         [Column(TypeName = "ntext")]
         public string Notes { get; set; }
-		[Column("MarketId")]
+		[Column("BranchId")]
 		public int BranchId { get; set; }
         [Required]
         public bool? Active { get; set; }
@@ -65,7 +65,7 @@ namespace IMCore.Domain
         public virtual User AccountRep { get; set; }
         [ForeignKey("BranchId")]
         [InverseProperty("Stores")]
-        public virtual Market Market { get; set; }
+        public virtual Branch Branch { get; set; }
         [ForeignKey("StoreTypeId")]
         [InverseProperty("Stores")]
         public virtual ClientType StoreType { get; set; }

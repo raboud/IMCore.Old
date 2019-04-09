@@ -5,20 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-	[Table("MaterialTypesMarketMapping")]
+	[Table("ProgramBranchMapping")]
     public partial class ProgramBranchMapping
     {
         [Column("ProgramId")]
         public int ProgramId { get; set; }
-        [Column("MarketId")]
-        public int MarketId { get; set; }
+        [Column("BranchId")]
+        public int BranchId { get; set; }
         public bool AllowEntry { get; set; }
 
-        [ForeignKey("MarketId")]
-        [InverseProperty("MaterialTypesMarketMapping")]
-        public virtual Market Market { get; set; }
+        [ForeignKey("BranchId")]
+        [InverseProperty("ProgramBranchMappings")]
+        public virtual Branch Branch { get; set; }
         [ForeignKey("ProgramId")]
-        [InverseProperty("MaterialTypesMarketMapping")]
+        [InverseProperty("ProgramBranchMappings")]
         public virtual Program Program { get; set; }
     }
 }

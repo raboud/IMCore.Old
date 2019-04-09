@@ -13,8 +13,8 @@ namespace IMCore.Domain
         public int DiscrepancyTypeId { get; set; }
         [Column("ItemId")]
         public int ItemId { get; set; }
-        [Column("MarketId")]
-        public int MarketId { get; set; }
+        [Column("BranchId")]
+        public int BranchId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal? CurrentPrice { get; set; }
         [Column(TypeName = "decimal(18, 4)")]

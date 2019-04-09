@@ -24,7 +24,7 @@ namespace IMCore.Domain
 
         [ForeignKey("BranchId")]
         [InverseProperty("Costs")]
-        public virtual Market Branch { get; set; }
+        public virtual Branch Branch { get; set; }
         [ForeignKey("StoreId")]
         public virtual Client Store { get; set; }
     }

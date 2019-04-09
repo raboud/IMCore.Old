@@ -11,8 +11,8 @@ namespace IMCore.Domain
         public int Id { get; set; }
         [Column("MaterialCatId")]
         public int MaterialCatId { get; set; }
-        [Column("MarketId")]
-        public int? MarketId { get; set; }
+        [Column("BranchId")]
+        public int? BranchId { get; set; }
         [Column("StoreId")]
         public int? StoreId { get; set; }
         [Column("ProgramId")]
@@ -28,9 +28,9 @@ namespace IMCore.Domain
         [Column(TypeName = "money")]
         public decimal SalesTax { get; set; }
 
-        [ForeignKey("MarketId")]
+        [ForeignKey("BranchId")]
         [InverseProperty("MaterialCost")]
-        public virtual Market Market { get; set; }
+        public virtual Branch Branch { get; set; }
         [ForeignKey("MaterialCatId")]
         [InverseProperty("MaterialCost")]
         public virtual Material MaterialCat { get; set; }

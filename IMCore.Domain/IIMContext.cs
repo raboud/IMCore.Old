@@ -25,7 +25,7 @@ namespace IMCore.Domain
 		DbSet<Division> Divisions { get; set; }
 		DbSet<User> Users { get; set; }
 		//        DbSet<Job> Jobs { get; set; }
-		DbSet<Market> Markets { get; set; }
+		DbSet<Branch> Branches { get; set; }
 		DbSet<MaterialStatus> MaterialStatus { get; set; }
 		DbSet<Program> Programs { get; set; }
 		DbSet<NoteType> NoteTypes { get; set; }
@@ -44,7 +44,7 @@ namespace IMCore.Domain
 		DbSet<Client> Clients { get; set; }
 		DbSet<ClientType> ClientTypes { get; set; }
 		DbSet<UnitOfMeasure> UnitOfMeasures { get; set; }
-		DbSet<UserMarketDivisionAssignments> UserMarketDivisionAssignments { get; set; }
+		DbSet<UserBranchDivisionAssignment> UserBranchDivisionAssignment { get; set; }
 		DbSet<UserPermissions> UserPermissions { get; set; }
 		DbSet<EmailTemplate> EmailTemplates { get; set; }
 		DbSet<UserTask> UserTasks { get; set; }

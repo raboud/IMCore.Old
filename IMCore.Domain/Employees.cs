@@ -16,7 +16,7 @@ namespace IMCore.Domain
             Discrepancies = new HashSet<Discrepancy>();
             JobsAssignedTo = new HashSet<Jobs>();
             JobsCreatedBy = new HashSet<Jobs>();
-            Market = new HashSet<Market>();
+            Branches = new HashSet<Branch>();
             OrderBasicLaborDetails = new HashSet<OrderBasicLabor>();
             OrderCustomDetails = new HashSet<OrderCustom>();
             OrderOptionsDetails = new HashSet<OrderOption>();
@@ -29,7 +29,7 @@ namespace IMCore.Domain
             Ponotes = new HashSet<PONote>();
             StoresAccountCoor = new HashSet<Client>();
             StoresAccountRep = new HashSet<Client>();
-            UserMarketDivisionAssignments = new HashSet<UserMarketDivisionAssignments>();
+            UserBranchDivisionAssignments = new HashSet<UserBranchDivisionAssignment>();
             UserPermissions = new HashSet<UserPermissions>();
             UserTasksAddedBy = new HashSet<UserTask>();
             UserTasksAssignedTo = new HashSet<UserTask>();
@@ -90,7 +90,7 @@ namespace IMCore.Domain
         [InverseProperty("CreatedBy")]
         public virtual ICollection<Jobs> JobsCreatedBy { get; set; }
         [InverseProperty("Manager")]
-        public virtual ICollection<Market> Market { get; set; }
+        public virtual ICollection<Branch> Branches { get; set; }
         [InverseProperty("ReviewedBy")]
         public virtual ICollection<OrderBasicLabor> OrderBasicLaborDetails { get; set; }
         [InverseProperty("ReviewedBy")]
@@ -116,7 +116,7 @@ namespace IMCore.Domain
         [InverseProperty("AccountRep")]
         public virtual ICollection<Client> StoresAccountRep { get; set; }
         [InverseProperty("User")]
-        public virtual ICollection<UserMarketDivisionAssignments> UserMarketDivisionAssignments { get; set; }
+        public virtual ICollection<UserBranchDivisionAssignment> UserBranchDivisionAssignments { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<UserPermissions> UserPermissions { get; set; }
         [InverseProperty("AddedBy")]

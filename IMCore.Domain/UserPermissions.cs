@@ -11,8 +11,8 @@ namespace IMCore.Domain
         public int Id { get; set; }
         [Column("UserId")]
         public int UserId { get; set; }
-        [Column("MarketId")]
-        public int MarketId { get; set; }
+        [Column("BranchId")]
+        public int BranchId { get; set; }
         [Column("DivisionId")]
         public int DivisionId { get; set; }
         [Column("PermissionId")]
@@ -21,9 +21,9 @@ namespace IMCore.Domain
         [ForeignKey("DivisionId")]
         [InverseProperty("UserPermissions")]
         public virtual Division Division { get; set; }
-        [ForeignKey("MarketId")]
+        [ForeignKey("BranchId")]
         [InverseProperty("UserPermissions")]
-        public virtual Market Market { get; set; }
+        public virtual Branch Branch { get; set; }
         [ForeignKey("PermissionId")]
         [InverseProperty("UserPermissions")]
         public virtual Permission Permission { get; set; }

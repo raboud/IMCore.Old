@@ -29,7 +29,7 @@ namespace IMCore.Domain
 
         [ForeignKey("BranchId")]
         [InverseProperty("InstallationCrew")]
-        public virtual Market Branch { get; set; }
+        public virtual Branch Branch { get; set; }
         [ForeignKey("LeadId")]
         [InverseProperty("InstallationCrewLead")]
         public virtual SubContractor Lead { get; set; }

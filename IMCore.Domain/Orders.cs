@@ -346,9 +346,9 @@ namespace IMCore.Domain
 		{
 			bool valid = true;
 
-			if (user.UserMarketDivisionAssignments.Count > 0)
+			if (user.UserBranchDivisionAssignments.Count > 0)
 			{
-				valid = user.UserMarketDivisionAssignments.Any(u => u.DivisionId == this.Program.DivisionId && u.MarketId == this.Client.BranchId);
+				valid = user.UserBranchDivisionAssignments.Any(u => u.DivisionId == this.Program.DivisionId && u.BranchId == this.Client.BranchId);
 			}
 			return valid;
 		}

@@ -86,7 +86,7 @@ namespace IMCore.Data
 		public virtual DbSet<Jobs> Jobs { get; set; }
 		public virtual DbSet<LaborType> LaborType { get; set; }
 		public virtual DbSet<Location> Location { get; set; }
-		public virtual DbSet<Market> Market { get; set; }
+		public virtual DbSet<Branch> Branches { get; set; }
 		public virtual DbSet<MaterialSubCategory> MatSubCat { get; set; }
 		public virtual DbSet<Material> MaterialCatagory { get; set; }
 		public virtual DbSet<MaterialCategoryBasicLaborMappings> MaterialCategoryBasicLaborMappings { get; set; }
@@ -96,7 +96,7 @@ namespace IMCore.Data
 		public virtual DbSet<MaterialPrice> MaterialPrice { get; set; }
 		public virtual DbSet<MaterialStatus> MaterialStatus { get; set; }
 		public virtual DbSet<Program> Programs { get; set; }
-		public virtual DbSet<ProgramBranchMapping> MaterialTypesMarketMapping { get; set; }
+		public virtual DbSet<ProgramBranchMapping> ProgramBranchMappings { get; set; }
 		public virtual DbSet<MeasureCompCalcs> MeasureCompCalcData { get; set; }
 		public virtual DbSet<MeasureCompCustomers> MeasureCompCustData { get; set; }
 		public virtual DbSet<MeasureCompLineItem> MeasureCompLineItemData { get; set; }
@@ -149,7 +149,7 @@ namespace IMCore.Data
 		public virtual DbSet<SubContractor> SubContractors { get; set; }
 		public virtual DbSet<SubContractorsDivisionAssignments> SubContractorsDivisionAssignments { get; set; }
 		public virtual DbSet<UnitOfMeasure> UnitOfMeasure { get; set; }
-		public virtual DbSet<UserMarketDivisionAssignments> UserMarketDivisionAssignments { get; set; }
+		public virtual DbSet<UserBranchDivisionAssignment> UserBranchDivisionAssignments { get; set; }
 		public virtual DbSet<UserPermissions> UserPermissions { get; set; }
 		public virtual DbSet<UserTaskType> UserTaskTypes { get; set; }
 		public virtual DbSet<UserTask> UserTasks { get; set; }
@@ -285,7 +285,7 @@ namespace IMCore.Data
 				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.Costs)
 					.HasForeignKey(d => d.BranchId)
-					.HasConstraintName("FK_BasicCost_Market");
+					.HasConstraintName("FK_BasicCost_Branch");
 			});
 
 			modelBuilder.Entity<BasicLabor>(entity =>
@@ -325,7 +325,7 @@ namespace IMCore.Data
 				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.Prices)
 					.HasForeignKey(d => d.BranchId)
-					.HasConstraintName("FK_BasicPrice_Market");
+					.HasConstraintName("FK_BasicPrice_Branch");
 
 				entity.HasOne(d => d.Labor)
 					.WithMany(p => p.Prices)
@@ -345,11 +345,11 @@ namespace IMCore.Data
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_BasicPricing_BasicLabor");
 
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.BasicPricingOld)
-					.HasForeignKey(d => d.MarketId)
+					.HasForeignKey(d => d.BranchId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_BasicPricing_Market");
+					.HasConstraintName("FK_BasicPricing_Branch");
 			});
 
 			modelBuilder.Entity<BasicRetail>(entity =>
@@ -368,7 +368,7 @@ namespace IMCore.Data
 				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.Retails)
 					.HasForeignKey(d => d.BranchId)
-					.HasConstraintName("FK_BasicRetail_Market");
+					.HasConstraintName("FK_BasicRetail_Branch");
 
 				entity.HasOne(d => d.Labor)
 					.WithMany(p => p.Retails)
@@ -763,7 +763,7 @@ namespace IMCore.Data
 				entity.HasIndex(e => e.ItemId)
 					.HasName("IX_ItemCosting_Labor");
 
-				entity.HasIndex(e => e.MarketId)
+				entity.HasIndex(e => e.BranchId)
 					.HasName("IX_ItemCosting_Branch");
 
 				entity.HasIndex(e => e.StoreId)
@@ -782,10 +782,10 @@ namespace IMCore.Data
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_ItemCosting_Item");
 
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.ItemCosting)
-					.HasForeignKey(d => d.MarketId)
-					.HasConstraintName("FK_ItemCosting_Market");
+					.HasForeignKey(d => d.BranchId)
+					.HasConstraintName("FK_ItemCosting_Branch");
 			});
 
 			modelBuilder.Entity<ItemMatCosting>(entity =>
@@ -798,11 +798,11 @@ namespace IMCore.Data
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_ItemMatCosting_Item");
 
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.ItemMatCosting)
-					.HasForeignKey(d => d.MarketId)
+					.HasForeignKey(d => d.BranchId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_ItemMatCosting_Market");
+					.HasConstraintName("FK_ItemMatCosting_Branch");
 			});
 
 			modelBuilder.Entity<ItemPricing>(entity =>
@@ -810,7 +810,7 @@ namespace IMCore.Data
 				entity.HasIndex(e => e.ItemId)
 					.HasName("IX_ItemPricing_Labor");
 
-				entity.HasIndex(e => e.MarketId)
+				entity.HasIndex(e => e.BranchId)
 					.HasName("IX_ItemPricing_Branch");
 
 				entity.HasIndex(e => e.StoreId)
@@ -824,10 +824,10 @@ namespace IMCore.Data
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_ItemPricing_Item");
 
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.ItemPricing)
-					.HasForeignKey(d => d.MarketId)
-					.HasConstraintName("FK_ItemPricing_Market");
+					.HasForeignKey(d => d.BranchId)
+					.HasConstraintName("FK_ItemPricing_Branch");
 			});
 
 			modelBuilder.Entity<Jobs>(entity =>
@@ -862,7 +862,7 @@ namespace IMCore.Data
 				entity.Property(e => e.Text).IsUnicode(false);
 			});
 
-			modelBuilder.Entity<Market>(entity =>
+			modelBuilder.Entity<Branch>(entity =>
 			{
 				entity.Property(e => e.Active).HasDefaultValueSql("((1))");
 
@@ -875,7 +875,7 @@ namespace IMCore.Data
 				entity.Property(e => e.ZipCode).IsFixedLength();
 
 				entity.HasOne(d => d.Manager)
-					.WithMany(p => p.Market)
+					.WithMany(p => p.Branches)
 					.HasForeignKey(d => d.ManagerId)
 					.HasConstraintName("FK_Branch_Manager");
 			});
@@ -960,10 +960,10 @@ namespace IMCore.Data
 			{
 				entity.Property(e => e.StartDate).HasDefaultValueSql("(getdate())");
 
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.MaterialCost)
-					.HasForeignKey(d => d.MarketId)
-					.HasConstraintName("FK_MaterialCost_Market");
+					.HasForeignKey(d => d.BranchId)
+					.HasConstraintName("FK_MaterialCost_Branch");
 
 				entity.HasOne(d => d.MaterialCat)
 					.WithMany(p => p.MaterialCost)
@@ -981,10 +981,10 @@ namespace IMCore.Data
 			{
 				entity.Property(e => e.StartDate).HasDefaultValueSql("(getdate())");
 
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.MaterialPrice)
-					.HasForeignKey(d => d.MarketId)
-					.HasConstraintName("FK_MaterialPrice_Market");
+					.HasForeignKey(d => d.BranchId)
+					.HasConstraintName("FK_MaterialPrice_Branch");
 
 				entity.HasOne(d => d.MaterialCat)
 					.WithMany(p => p.MaterialPrice)
@@ -1047,19 +1047,19 @@ namespace IMCore.Data
 
 			modelBuilder.Entity<ProgramBranchMapping>(entity =>
 			{
-				entity.HasKey(e => new { e.ProgramId, e.MarketId });
+				entity.HasKey(e => new { e.ProgramId, e.BranchId });
 
-				entity.HasOne(d => d.Market)
-					.WithMany(p => p.MaterialTypesMarketMapping)
-					.HasForeignKey(d => d.MarketId)
+				entity.HasOne(d => d.Branch)
+					.WithMany(p => p.ProgramBranchMappings)
+					.HasForeignKey(d => d.BranchId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterialTypesMarketMapping_Market");
+					.HasConstraintName("FK_ProgramBranchMapping_Branch");
 
 				entity.HasOne(d => d.Program)
-					.WithMany(p => p.MaterialTypesMarketMapping)
+					.WithMany(p => p.ProgramBranchMappings)
 					.HasForeignKey(d => d.ProgramId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_MaterialTypesMarketMapping_MaterialType");
+					.HasConstraintName("FK_ProgramBranchMapping_Program");
 			});
 
 			modelBuilder.Entity<MeasureCompCalcs>(entity =>
@@ -1209,7 +1209,7 @@ namespace IMCore.Data
 				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.OptionCost)
 					.HasForeignKey(d => d.BranchId)
-					.HasConstraintName("FK_OptionCost_Market");
+					.HasConstraintName("FK_OptionCost_Branch");
 
 				entity.HasOne(d => d.Labor)
 					.WithMany(p => p.Costs)
@@ -1234,7 +1234,7 @@ namespace IMCore.Data
 				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.OptionPrice)
 					.HasForeignKey(d => d.BranchId)
-					.HasConstraintName("FK_OptionPrice_Market");
+					.HasConstraintName("FK_OptionPrice_Branch");
 
 				entity.HasOne(d => d.Labor)
 					.WithMany(p => p.Prices)
@@ -1245,10 +1245,10 @@ namespace IMCore.Data
 
 			modelBuilder.Entity<OptionPricingOld>(entity =>
 			{
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.OptionPricingOld)
-					.HasForeignKey(d => d.MarketId)
-					.HasConstraintName("FK_OptionPricing_Market");
+					.HasForeignKey(d => d.BranchId)
+					.HasConstraintName("FK_OptionPricing_Branch");
 
 				entity.HasOne(d => d.Option)
 					.WithMany(p => p.OptionPricingOld)
@@ -1273,7 +1273,7 @@ namespace IMCore.Data
 				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.OptionRetail)
 					.HasForeignKey(d => d.BranchId)
-					.HasConstraintName("FK_OptionRetail_Market");
+					.HasConstraintName("FK_OptionRetail_Branch");
 
 				entity.HasOne(d => d.Labor)
 					.WithMany(p => p.Retails)
@@ -1877,11 +1877,11 @@ namespace IMCore.Data
 					.HasForeignKey(d => d.AccountRepId)
 					.HasConstraintName("FK_Stores_AccountRep");
 
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.Stores)
 					.HasForeignKey(d => d.BranchId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_Stores_Market");
+					.HasConstraintName("FK_Stores_Branch");
 
 				entity.HasOne(d => d.StoreType)
 					.WithMany(p => p.Stores)
@@ -1907,7 +1907,7 @@ namespace IMCore.Data
 
 				entity.Property(e => e.LiabilityInsuranceOk).HasDefaultValueSql("(0)");
 
-				entity.Property(e => e.MarketId).HasDefaultValueSql("(1)");
+				entity.Property(e => e.BranchId).HasDefaultValueSql("(1)");
 
 				entity.Property(e => e.Name).HasComputedColumnSql("((isnull([LastName],'')+', ')+isnull([FirstName],''))");
 
@@ -1935,25 +1935,25 @@ namespace IMCore.Data
 					.ForSqlServerIsClustered(false);
 			});
 
-			modelBuilder.Entity<UserMarketDivisionAssignments>(entity =>
+			modelBuilder.Entity<UserBranchDivisionAssignment>(entity =>
 			{
 				entity.HasOne(d => d.Division)
-					.WithMany(p => p.UserMarketDivisionAssignments)
+					.WithMany(p => p.UserBranchDivisionAssignments)
 					.HasForeignKey(d => d.DivisionId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_UserMarketDivisionAssignments_Division");
+					.HasConstraintName("FK_UserBranchDivisionAssignment_Division");
 
-				entity.HasOne(d => d.Market)
-					.WithMany(p => p.UserMarketDivisionAssignments)
-					.HasForeignKey(d => d.MarketId)
+				entity.HasOne(d => d.Branch)
+					.WithMany(p => p.UserBranchDivisionAssignments)
+					.HasForeignKey(d => d.BranchId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_UserMarketDivisionAssignments_Market");
+					.HasConstraintName("FK_UserBranchDivisionAssignment_Branch");
 
 				entity.HasOne(d => d.User)
-					.WithMany(p => p.UserMarketDivisionAssignments)
+					.WithMany(p => p.UserBranchDivisionAssignments)
 					.HasForeignKey(d => d.UserId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_UserMarketDivisionAssignments_Employees");
+					.HasConstraintName("FK_UserBranchDivisionAssignment_Employees");
 			});
 
 			modelBuilder.Entity<UserPermissions>(entity =>
@@ -1964,11 +1964,11 @@ namespace IMCore.Data
 					.OnDelete(DeleteBehavior.ClientSetNull)
 					.HasConstraintName("FK_UserPermissions_Division");
 
-				entity.HasOne(d => d.Market)
+				entity.HasOne(d => d.Branch)
 					.WithMany(p => p.UserPermissions)
-					.HasForeignKey(d => d.MarketId)
+					.HasForeignKey(d => d.BranchId)
 					.OnDelete(DeleteBehavior.ClientSetNull)
-					.HasConstraintName("FK_UserPermissions_Market");
+					.HasConstraintName("FK_UserPermissions_Branch");
 
 				entity.HasOne(d => d.Permission)
 					.WithMany(p => p.UserPermissions)

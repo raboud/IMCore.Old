@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class Market
+	[Table("Branch")]
+    public partial class Branch
     {
-        public Market()
+        public Branch()
         {
             Costs = new HashSet<BasicCost>();
             Prices = new HashSet<BasicPrice>();
@@ -19,21 +20,21 @@ namespace IMCore.Domain
             ItemPricing = new HashSet<ItemPricing>();
             MaterialCost = new HashSet<MaterialCost>();
             MaterialPrice = new HashSet<MaterialPrice>();
-            MaterialTypesMarketMapping = new HashSet<ProgramBranchMapping>();
+            ProgramBranchMappings = new HashSet<ProgramBranchMapping>();
             OptionCost = new HashSet<OptionCost>();
             OptionPrice = new HashSet<OptionPrice>();
             OptionPricingOld = new HashSet<OptionPricingOld>();
             OptionRetail = new HashSet<OptionRetail>();
             Stores = new HashSet<Client>();
-            UserMarketDivisionAssignments = new HashSet<UserMarketDivisionAssignments>();
+            UserBranchDivisionAssignments = new HashSet<UserBranchDivisionAssignment>();
             UserPermissions = new HashSet<UserPermissions>();
         }
 
-		[Column("MarketId")]
+		[Column("Id")]
         public int Id { get; set; }
         [Required]
         [StringLength(40)]
-		[Column("MarketName")]
+		[Column("Name")]
 		public string Name { get; set; }
         [StringLength(50)]
         public string PrinterName { get; set; }
@@ -62,43 +63,43 @@ namespace IMCore.Domain
         public string LabelPrinter { get; set; }
 
         [ForeignKey("ManagerId")]
-        [InverseProperty("Market")]
+        [InverseProperty("Branches")]
         public virtual User Manager { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<BasicCost> Costs { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<BasicPrice> Prices { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
         public virtual ICollection<BasicPricingOld> BasicPricingOld { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<BasicRetail> Retails { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<InstallationCrew> InstallationCrew { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
         public virtual ICollection<ItemCosting> ItemCosting { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
         public virtual ICollection<ItemMatCosting> ItemMatCosting { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
         public virtual ICollection<ItemPricing> ItemPricing { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
         public virtual ICollection<MaterialCost> MaterialCost { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
         public virtual ICollection<MaterialPrice> MaterialPrice { get; set; }
-        [InverseProperty("Market")]
-        public virtual ICollection<ProgramBranchMapping> MaterialTypesMarketMapping { get; set; }
+        [InverseProperty("Branch")]
+        public virtual ICollection<ProgramBranchMapping> ProgramBranchMappings { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<OptionCost> OptionCost { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<OptionPrice> OptionPrice { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
         public virtual ICollection<OptionPricingOld> OptionPricingOld { get; set; }
         [InverseProperty("Branch")]
         public virtual ICollection<OptionRetail> OptionRetail { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
         public virtual ICollection<Client> Stores { get; set; }
-        [InverseProperty("Market")]
-        public virtual ICollection<UserMarketDivisionAssignments> UserMarketDivisionAssignments { get; set; }
-        [InverseProperty("Market")]
+        [InverseProperty("Branch")]
+        public virtual ICollection<UserBranchDivisionAssignment> UserBranchDivisionAssignments { get; set; }
+        [InverseProperty("Branch")]
         public virtual ICollection<UserPermissions> UserPermissions { get; set; }
     }
 }

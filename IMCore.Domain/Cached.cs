@@ -584,7 +584,7 @@ namespace IMCore.Domain
 			}
 		}
 
-		public Market Branch { get { return Market.Cache[this.BranchId]; } }
+		// public Branch Branch { get { return Domain.Branch.Cache[this.BranchId]; } }
 		public ClientType ClientType { get { return ClientType.Cache[this.StoreTypeId]; } }
 		//        public List<CFI.DB.Entities.ClientContact> Contacts { get { return CFI.DB.Entities.ClientContact.Cache.Where(c => c.ClientID == this.ID).ToList(); } }
 
@@ -995,15 +995,15 @@ namespace IMCore.Domain
 		}
 	}
 
-	partial class Market
+	partial class Branch
 	{
 		public sealed class CacheIndexer
 		{
-			public Market this[int index]
+			public Branch this[int index]
 			{
 				get
 				{
-					Market sw = null;
+					Branch sw = null;
 					lock (_cache)
 					{
 						if (_cache.ContainsKey(index))
@@ -1015,11 +1015,11 @@ namespace IMCore.Domain
 				}
 			}
 
-			public List<Market> Values
+			public List<Branch> Values
 			{
 				get
 				{
-					List<Market> l;
+					List<Branch> l;
 					lock (_cache)
 					{
 						l = _cache.Values.ToList();
@@ -1036,17 +1036,17 @@ namespace IMCore.Domain
 			get { return Indexer ?? (Indexer = new CacheIndexer()); }
 		}
 
-		static private Dictionary<int, Market> _cache { get; set; }
+		static private Dictionary<int, Branch> _cache { get; set; }
 		static public void RefreshCache(IIMContext ctx, ILogger logger)
 		{
 			if (_cache == null)
 			{
-				_cache = new Dictionary<int, Market>();
+				_cache = new Dictionary<int, Branch>();
 			}
 			lock (_cache)
 			{
 				_cache.Clear();
-				foreach (Market u in ctx.Markets.AsNoTracking())
+				foreach (Branch u in ctx.Branches.AsNoTracking())
 				{
 					_cache.Add(u.Id, u);
 				}
@@ -1167,7 +1167,7 @@ namespace IMCore.Domain
 				{
 					_cache.Clear();
 					foreach (Program u in ctx.Programs
-						.Include(p => p.MaterialTypesMarketMapping)
+						.Include(p => p.ProgramBranchMappings)
 						.Include(p => p.BasicLabor.Select(i => i.MaterialCategoryBasicLaborMappings.Select(mp => mp.MaterialCategory.MaterialCost)))
 						.Include(p => p.BasicLabor.Select(i => i.Costs))
 						.Include(p => p.BasicLabor.Select(i => i.Prices))

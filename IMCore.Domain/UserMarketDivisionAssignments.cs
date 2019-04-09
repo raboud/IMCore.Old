@@ -5,25 +5,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-    public partial class UserMarketDivisionAssignments
+	[Table("UserBranchDivisionAssignments")]
+    public partial class UserBranchDivisionAssignment
     {
         [Column("Id")]
         public int Id { get; set; }
         [Column("UserId")]
         public int UserId { get; set; }
-        [Column("MarketId")]
-        public int MarketId { get; set; }
+        [Column("BranchId")]
+        public int BranchId { get; set; }
         [Column("DivisionId")]
         public int DivisionId { get; set; }
 
         [ForeignKey("DivisionId")]
-        [InverseProperty("UserMarketDivisionAssignments")]
+        [InverseProperty("UserBranchDivisionAssignments")]
         public virtual Division Division { get; set; }
-        [ForeignKey("MarketId")]
-        [InverseProperty("UserMarketDivisionAssignments")]
-        public virtual Market Market { get; set; }
+        [ForeignKey("BranchId")]
+        [InverseProperty("UserBranchDivisionAssignments")]
+        public virtual Branch Branch { get; set; }
         [ForeignKey("UserId")]
-        [InverseProperty("UserMarketDivisionAssignments")]
+        [InverseProperty("UserBranchDivisionAssignments")]
         public virtual User User { get; set; }
     }
 }
