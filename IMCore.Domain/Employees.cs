@@ -18,7 +18,7 @@ namespace IMCore.Domain
             JobsCreatedBy = new HashSet<Jobs>();
             Market = new HashSet<Market>();
             OrderBasicLaborDetails = new HashSet<OrderBasicLabor>();
-            OrderCustomDetails = new HashSet<OrderCustomDetail>();
+            OrderCustomDetails = new HashSet<OrderCustom>();
             OrderOptionsDetails = new HashSet<OrderOption>();
             OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
             OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
@@ -94,7 +94,7 @@ namespace IMCore.Domain
         [InverseProperty("ReviewedBy")]
         public virtual ICollection<OrderBasicLabor> OrderBasicLaborDetails { get; set; }
         [InverseProperty("ReviewedBy")]
-        public virtual ICollection<OrderCustomDetail> OrderCustomDetails { get; set; }
+        public virtual ICollection<OrderCustom> OrderCustomDetails { get; set; }
         [InverseProperty("ReviewedBy")]
         public virtual ICollection<OrderOption> OrderOptionsDetails { get; set; }
         [InverseProperty("ReviewedBy")]

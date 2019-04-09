@@ -6,8 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMCore.Domain
 {
-	[Table("OrderCustomDetails")]
-    public partial class OrderCustomDetail
+	[Table("OrderCustom")]
+    public partial class OrderCustom
     {
         [Key]
         [Column("OrderCustomId")]
@@ -20,7 +20,7 @@ namespace IMCore.Domain
         public decimal? UnitRetail { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal UnitCost { get; set; }
-        [Column("Quanity", TypeName = "decimal(18, 4)")]
+        [Column("Quantity", TypeName = "decimal(18, 4)")]
         public decimal Quantity { get; set; }
         [Column("UnitOfMeasureId")]
         public int? UnitOfMeasureId { get; set; }

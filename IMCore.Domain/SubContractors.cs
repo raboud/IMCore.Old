@@ -15,7 +15,7 @@ namespace IMCore.Domain
             BillDetails = new HashSet<BillDetail>();
             InstallationCrewLead = new HashSet<InstallationCrew>();
             InstallationCrewOwner = new HashSet<InstallationCrew>();
-            OrderCustomDetails = new HashSet<OrderCustomDetail>();
+            OrderCustomDetails = new HashSet<OrderCustom>();
             Payroll = new HashSet<Payroll>();
         }
 
@@ -99,7 +99,7 @@ namespace IMCore.Domain
         [InverseProperty("Owner")]
         public virtual ICollection<InstallationCrew> InstallationCrewOwner { get; set; }
         [InverseProperty("SubContractor")]
-        public virtual ICollection<OrderCustomDetail> OrderCustomDetails { get; set; }
+        public virtual ICollection<OrderCustom> OrderCustomDetails { get; set; }
         [InverseProperty("SubContractor")]
         public virtual ICollection<Payroll> Payroll { get; set; }
 

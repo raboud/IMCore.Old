@@ -33,7 +33,7 @@ namespace IMCore.Domain
 		DbSet<OrderOption> OrderOptionalLaborDetails { get; set; }
 		//        DbSet<OrderAttachment> OrderAttachments { get; set; }
 		DbSet<OrderBasicLabor> OrderBasicLaborDetails { get; set; }
-		DbSet<OrderCustomDetail> OrderCustomLaborDetails { get; set; }
+		DbSet<OrderCustom> OrderCustomLaborDetails { get; set; }
 		DbSet<OrderDiagram> OrderDiagrams { get; set; }
 		DbSet<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
 		DbSet<Order> Orders { get; set; }

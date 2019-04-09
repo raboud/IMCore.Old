@@ -13,7 +13,7 @@ namespace IMCore.Domain
             Item = new HashSet<Item>();
             MaterialCatagory = new HashSet<Material>();
             Options = new HashSet<Option>();
-            OrderCustomDetails = new HashSet<OrderCustomDetail>();
+            OrderCustomDetails = new HashSet<OrderCustom>();
             OrderRegMerchandiseDetails = new HashSet<OrderRegMerchandiseDetail>();
             OrderSomerchandiseDetails = new HashSet<OrderSOMerchandiseDetail>();
         }
@@ -40,7 +40,7 @@ namespace IMCore.Domain
         [InverseProperty("UnitOfMeasure")]
         public virtual ICollection<Option> Options { get; set; }
         [InverseProperty("UnitOfMeasure")]
-        public virtual ICollection<OrderCustomDetail> OrderCustomDetails { get; set; }
+        public virtual ICollection<OrderCustom> OrderCustomDetails { get; set; }
         [InverseProperty("Uom")]
         public virtual ICollection<OrderRegMerchandiseDetail> OrderRegMerchandiseDetails { get; set; }
         [InverseProperty("Uom")]

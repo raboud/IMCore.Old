@@ -111,7 +111,7 @@ namespace IMCore.Data
 		public virtual DbSet<OptionRetail> OptionRetail { get; set; }
 		public virtual DbSet<Option> Options { get; set; }
 		public virtual DbSet<OrderBasicLabor> OrderBasicLaborDetails { get; set; }
-		public virtual DbSet<OrderCustomDetail> OrderCustomDetails { get; set; }
+		public virtual DbSet<OrderCustom> OrderCustomDetails { get; set; }
 		public virtual DbSet<OrderDiagram> OrderDiagrams { get; set; }
 		public virtual DbSet<OrderDocument> OrderDocument { get; set; }
 		public virtual DbSet<OrderOption> OrderOptionss { get; set; }
@@ -1342,7 +1342,7 @@ namespace IMCore.Data
 					.HasConstraintName("FK_OrderBasicLaborDetail_ReviewedBy");
 			});
 
-			modelBuilder.Entity<OrderCustomDetail>(entity =>
+			modelBuilder.Entity<OrderCustom>(entity =>
 			{
 				entity.HasKey(e => e.Id)
 					.ForSqlServerIsClustered(false);
